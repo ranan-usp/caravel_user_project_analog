@@ -286,8 +286,8 @@ lappend tcl_files $PDKPATH/libs.tech/xschem/scripts/sky130_models.tcl
 ###########################################################################
 
 ## (spice patched) skywater-pdk install
-# set SKYWATER_MODELS ~/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest
-# set SKYWATER_STDCELLS ~/skywater-pdk/libraries/sky130_fd_sc_hd/latest
+# set SKYWATER_MODELS ~/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest
+# set SKYWATER_STDCELLS ~/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest
 
 ## opencircuitdesign pdks install. You need to change these to point to your open_pdks installation
 # set SKYWATER_MODELS /usr/local/share/pdk/sky130A/libs.tech/ngspice

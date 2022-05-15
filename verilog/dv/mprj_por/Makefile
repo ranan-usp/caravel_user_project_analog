@@ -30,6 +30,10 @@ UPRJ_VERILOG_PATH ?= ../../../verilog
 UPRJ_RTL_PATH = $(UPRJ_VERILOG_PATH)/rtl
 UPRJ_BEHAVIOURAL_MODELS = ../
 
+ADD_INCLUDE_FILE1 = /home/oe23ranan/mpw/caravel_tutorial/caravel_example/mgmt_core_wrapper/verilog/rtl
+ADD_INCLUDE_FILE2 = /home/oe23ranan/mpw/caravel_tutorial/caravel_example/mgmt_core_wrapper/verilog
+
+
 ## RISCV GCC 
 GCC_PATH?=/ef/apps/bin
 GCC_PREFIX?=riscv32-unknown-elf
@@ -60,7 +64,7 @@ else
 endif
 
 %.vcd: %.vvp
-	vvp $<
+	vvp -v $<
 
 %.elf: %.c $(CARAVEL_FIRMWARE_PATH)/sections.lds $(CARAVEL_FIRMWARE_PATH)/start.s check-env
 	${GCC_PATH}/${GCC_PREFIX}-gcc -I $(CARAVEL_PATH) -march=rv32imc -mabi=ilp32 -Wl,-Bstatic,-T,$(CARAVEL_FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(CARAVEL_FIRMWARE_PATH)/start.s $<
