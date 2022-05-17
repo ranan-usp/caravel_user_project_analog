@@ -15,7 +15,7 @@
 
 `default_nettype wire
 
-`timescale 1 ns / 1 ps
+`timescale 1ns/1ps
 
 `include "uprj_analog_netlists.v"
 `include "caravan_netlists.v"
