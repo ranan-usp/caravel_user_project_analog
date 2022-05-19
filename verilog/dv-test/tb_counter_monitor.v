@@ -19,7 +19,9 @@ module tb_count_monitor;
                         .d5 (d5),
                         .d5b (d5b),
                         .d6 (d6),
-                        .d6b (d6b));
+                        .d6b (d6b),
+                        .rs (rs));
+                        
     
     // Generate clock
     always #10 clk = ~clk;
