@@ -1,0 +1,4 @@
+-r ./dependencies/requirements_lint.txt
+-r ./dependencies/python/precompile_time.txt
+-r ./dependencies/python/compile_time.txt
+-r ./requirements.txt

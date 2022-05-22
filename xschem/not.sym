@@ -1,0 +1,21 @@
+v {xschem version=3.0.0 file_version=1.2 }
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -150 0 -130 0 {}
+L 4 -40 0 -20 0 {}
+L 4 -130 -30 -130 30 {}
+L 4 -130 -30 -60 0 {}
+L 4 -130 30 -60 0 {}
+B 5 -152.5 -2.5 -147.5 2.5 {name=a dir=in }
+B 5 -22.5 -2.5 -17.5 2.5 {name=y verilog_type=wire dir=out }
+A 4 -50 0 10 270 360 {}
+T {@symname} -131.5 34 0 0 0.3 0.3 {}
+T {@name} -65 -32 0 0 0.2 0.2 {}
+T {a} -145 16 0 0 0.2 0.2 {}
+T {y} -25 16 0 1 0.2 0.2 {}

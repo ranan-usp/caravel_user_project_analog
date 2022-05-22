@@ -29,6 +29,7 @@
 if {[catch {set PDKPATH $env(PDKPATH)}]} {
     set PDKPATH "/usr/share/pdk/sky130A"
 }
+set PDKPATH "/home/oe23ranan/pdk/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A"
 #### Flush any previous definition
 set XSCHEM_LIBRARY_PATH {}
 #### include devices/*.sym
@@ -292,5 +293,7 @@ lappend tcl_files $PDKPATH/libs.tech/xschem/scripts/sky130_models.tcl
 ## opencircuitdesign pdks install. You need to change these to point to your open_pdks installation
 # set SKYWATER_MODELS /usr/local/share/pdk/sky130A/libs.tech/ngspice
 # set SKYWATER_STDCELLS /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice
+# set SKYWATER_MODELS /home/oe23ranan/pdk/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.tech/ngspice
 set SKYWATER_MODELS $PDKPATH/libs.tech/ngspice
+# set SKYWATER_STDCELLS /home/oe23ranan/pdk/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.ref/sky130_fd_sc_hd/spice
 set SKYWATER_STDCELLS $PDKPATH/libs.ref/sky130_fd_sc_hd/spice
