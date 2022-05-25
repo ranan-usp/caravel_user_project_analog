@@ -127,13 +127,13 @@ echo -------------------
 *.include /home/oe23ranan/pdk/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.tech/ngspice/corners/fs_rmax_cmin.spice
 *.include /home/oe23ranan/pdk/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.tech/ngspice/corners/fs_rmin_cmax.spice
 
-.include /pdk/open_pdks/sources/sky130-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_4.spice
-.include /pdk/open_pdks/sources/sky130-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_8.spice
-.include /pdk/open_pdks/sources/sky130-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_3.spice
-.include /pdk/open_pdks/sources/sky130-pdk/libraries/sky130_fd_sc_hd/latest/cells/buf/sky130_fd_sc_hd__buf_1.spice
-.include /pdk/open_pdks/sources/sky130-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_1.spice
-.include /pdk/open_pdks/sources/sky130-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
-.include /pdk/open_pdks/sources/sky130-pdk/libraries/sky130_fd_sc_hd/latest/cells/tap/sky130_fd_sc_hd__tap_2.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_4.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_8.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_3.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/buf/sky130_fd_sc_hd__buf_1.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_1.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/tap/sky130_fd_sc_hd__tap_2.spice
 **** end user architecture code
 **.ends
 
