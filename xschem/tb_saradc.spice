@@ -162,7 +162,7 @@ XC2 Vref C6V sky130_fd_pr__cap_mim_m3_1 W=2 L=2.15 MF=1 m=1
 x1 Sample Vref GND analog_switch
 x20 COMP_ENB CDACin net1 analog_switch
 x21 Sample CDACin VIN analog_switch
-V1 net1 GND 0
+V1 net1 GND 1.8
 .ends
 
 

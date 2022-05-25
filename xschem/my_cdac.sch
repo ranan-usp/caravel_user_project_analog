@@ -213,7 +213,7 @@ C {opin.sym} 1650 -480 0 0 {name=p18 lab=Vref}
 C {analog_switch.sym} 1580 -480 1 1 {name=x1}
 C {analog_switch.sym} 30 220 1 1 {name=x20}
 C {analog_switch.sym} -70 220 3 0 {name=x21}
-C {vsource.sym} 40 420 0 0 {name=V1 value=0}
+C {vsource.sym} 40 420 0 0 {name=V1 value=1.8}
 C {gnd.sym} 40 470 0 0 {name=l2 lab=GND}
 C {gnd.sym} 1590 -290 0 0 {name=l1 lab=GND}
 C {lab_wire.sym} 110 200 0 0 {name=l3 sig_type=std_logic lab=CDACin}
