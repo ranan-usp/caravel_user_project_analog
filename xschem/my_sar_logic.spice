@@ -1,0 +1,77 @@
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/adc/my_sar_logic.sch
+**.subckt my_sar_logic Sample COMP_IN CLK clkc Q[5],Q[4],Q[3],Q[2],Q[1],Q[0]
+*+ SW[5],SW[4],SW[3],SW[2],SW[1],SW[0] SWB[5],SWB[4],SWB[3],SWB[2],SWB[1],SWB[0] dvss dvdd
+*.opin Sample
+*.ipin COMP_IN
+*.ipin CLK
+*.opin clkc
+*.opin Q[5],Q[4],Q[3],Q[2],Q[1],Q[0]
+*.opin SW[5],SW[4],SW[3],SW[2],SW[1],SW[0]
+*.opin SWB[5],SWB[4],SWB[3],SWB[2],SWB[1],SWB[0]
+*.iopin dvss
+*.iopin dvdd
+x41 Sample D1 net2 avss dvss dvdd dvdd SW[0] sky130_fd_sc_hd__or3_1
+x46 D1 dvss dvss dvdd dvdd D1B sky130_fd_sc_hd__inv_2
+x22 D2 dvss dvss dvdd dvdd D2B sky130_fd_sc_hd__inv_2
+x24 D3 dvss dvss dvdd dvdd D3B sky130_fd_sc_hd__inv_2
+x34 D4 dvss dvss dvdd dvdd D4B sky130_fd_sc_hd__inv_2
+x36 D5 dvss dvss dvdd dvdd D5B sky130_fd_sc_hd__inv_2
+x44 D6 dvss dvss dvdd dvdd D6B sky130_fd_sc_hd__inv_2
+x45 CLK dvss dvss dvdd dvdd mark2 sky130_fd_sc_hd__inv_2
+x49 CLK COMP_EN dvss dvss dvdd Vdvdd clkc sky130_fd_sc_hd__nor2_1
+x1 CLK VC dvdd VB net1 mydf
+x3 CLK VE VC COMP_EN mark mydf
+x5 CLK VG VE VF net1 mydf
+x8 CLK VI VG VH net1 mydf
+x11 CLK VK VI VJ net1 mydf
+x14 CLK VM VK VL net1 mydf
+x17 CLK VO VM VN net1 mydf
+x20 CLK mark VO VP net1 mydf
+x23 D6B 5D COMP_IN net5 Sample mydf
+x25 D5B 4D COMP_IN net6 Sample mydf
+x26 D4B 3D COMP_IN net7 Sample mydf
+x27 D3B 2D COMP_IN net8 Sample mydf
+x28 D2B 1D COMP_IN net9 Sample mydf
+x29 D1B net2 COMP_IN net10 Sample mydf
+x30 mark2 net1 mark net11 net4 mydf
+x31 net1 Q[5] 5D net12 net13 mydf
+x32 net1 Q[4] 4D net14 net15 mydf
+x33 net1 Q[3] 3D net16 net17 mydf
+x35 net1 Q[2] 2D net18 net19 mydf
+x48 net1 Q[1] 1D net20 net21 mydf
+x50 net1 Q[0] net2 net22 net23 mydf
+x18 VM VN dvss dvss dvdd dvdd D2 sky130_fd_sc_hd__and2_0
+x2 VO VP dvss dvss dvdd dvdd D1 sky130_fd_sc_hd__and2_0
+x4 VI VJ dvss dvss dvdd dvdd D4 sky130_fd_sc_hd__and2_0
+x6 VK VL dvss dvss dvdd dvdd D3 sky130_fd_sc_hd__and2_0
+x9 VE VF dvss dvss dvdd dvdd D6 sky130_fd_sc_hd__and2_0
+x12 VG VH dvss dvss dvdd dvdd D5 sky130_fd_sc_hd__and2_0
+x15 dvdd VB dvss dvss dvdd dvdd Sample sky130_fd_sc_hd__and2_0
+x42 VC COMP_EN dvss dvss dvdd dvdd net3 sky130_fd_sc_hd__and2_0
+x7 SW[0] dvss dvss dvdd dvdd SWB[0] sky130_fd_sc_hd__inv_2
+x10 SW[1] dvss dvss dvdd dvdd SWB[1] sky130_fd_sc_hd__inv_2
+x13 SW[2] dvss dvss dvdd dvdd SWB[2] sky130_fd_sc_hd__inv_2
+x16 SW[3] dvss dvss dvdd dvdd SWB[3] sky130_fd_sc_hd__inv_2
+x19 SW[4] dvss dvss dvdd dvdd SWB[4] sky130_fd_sc_hd__inv_2
+x43 SW[5] dvss dvss dvdd dvdd SWB[5] sky130_fd_sc_hd__inv_2
+x37 Sample D2 1D avss dvss dvdd dvdd SW[1] sky130_fd_sc_hd__or3_1
+x38 Sample D3 2D avss dvss dvdd dvdd SW[2] sky130_fd_sc_hd__or3_1
+x39 Sample D4 3D avss dvss dvdd dvdd SW[3] sky130_fd_sc_hd__or3_1
+x40 Sample D5 4D avss dvss dvdd dvdd SW[4] sky130_fd_sc_hd__or3_1
+x47 Sample D6 5D avss dvss dvdd dvdd SW[5] sky130_fd_sc_hd__or3_1
+**.ends
+
+* expanding   symbol:  adc/mydf.sym # of pins=5
+** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/adc/mydf.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/adc/mydf.sch
+.subckt mydf  CLK Q D Q_N RESET
+*.ipin CLK
+*.ipin D
+*.ipin RESET
+*.opin Q
+*.opin Q_N
+x50 CLK D net1 dvss dvss dvdd dvdd Q Q_N sky130_fd_sc_hd__dfrbp_1
+x1 RESET dvss dvss dvdd dvdd net1 sky130_fd_sc_hd__inv_1
+.ends
+
+.end

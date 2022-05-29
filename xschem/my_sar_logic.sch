@@ -7,17 +7,17 @@ E {}
 N 440 -770 470 -770 {
 lab=Sample}
 N 1540 -1110 1540 -1050 {
-lab=Q05}
+lab=Q[5]}
 N 1820 -1110 1820 -1050 {
-lab=Q04}
+lab=Q[4]}
 N 2100 -1110 2100 -1050 {
-lab=Q03}
+lab=Q[3]}
 N 2380 -1110 2380 -1050 {
-lab=Q02}
+lab=Q[2]}
 N 2660 -1110 2660 -1050 {
-lab=Q01}
+lab=Q[1]}
 N 2940 -1110 2940 -1050 {
-lab=Q00}
+lab=Q[0]}
 N 1330 -1270 1330 -1190 {
 lab=5D}
 N 1290 -1270 1290 -1240 {
@@ -51,53 +51,53 @@ lab=Sample}
 N 1250 -1270 1250 -1180 {
 lab=Sample}
 N 1290 -1600 1290 -1390 {
-lab=SW5}
+lab=SW[5]}
 N 1290 -1410 1360 -1410 {
-lab=SW5}
+lab=SW[5]}
 N 1360 -1430 1360 -1410 {
-lab=SW5}
+lab=SW[5]}
 N 1570 -1600 1570 -1390 {
-lab=SW4}
+lab=SW[4]}
 N 1570 -1410 1640 -1410 {
-lab=SW4}
+lab=SW[4]}
 N 1640 -1430 1640 -1410 {
-lab=SW4}
+lab=SW[4]}
 N 1850 -1600 1850 -1390 {
-lab=SW3}
+lab=SW[3]}
 N 1850 -1410 1920 -1410 {
-lab=SW3}
+lab=SW[3]}
 N 1920 -1430 1920 -1410 {
-lab=SW3}
+lab=SW[3]}
 N 2130 -1600 2130 -1390 {
-lab=SW2}
+lab=SW[3]}
 N 2130 -1410 2200 -1410 {
-lab=SW2}
+lab=SW[3]}
 N 2200 -1430 2200 -1410 {
-lab=SW2}
+lab=SW[3]}
 N 2410 -1600 2410 -1390 {
-lab=SW1}
+lab=SW[1]}
 N 2410 -1410 2480 -1410 {
-lab=SW1}
+lab=SW[1]}
 N 2480 -1430 2480 -1410 {
-lab=SW1}
+lab=SW[1]}
 N 2690 -1600 2690 -1390 {
-lab=SW0}
+lab=SW[0]}
 N 2690 -1410 2760 -1410 {
-lab=SW0}
+lab=SW[0]}
 N 2760 -1430 2760 -1410 {
-lab=SW0}
+lab=SW[0]}
 N 1360 -1600 1360 -1510 {
-lab=SW5B}
+lab=SWB[5]}
 N 1640 -1600 1640 -1510 {
-lab=SW4B}
+lab=SWB[4]}
 N 1920 -1600 1920 -1510 {
-lab=SW3B}
+lab=SWB[3]}
 N 2200 -1600 2200 -1510 {
-lab=SW2B}
+lab=SWB[2]}
 N 2480 -1600 2480 -1510 {
-lab=SW1B}
+lab=SWB[1]}
 N 2760 -1600 2760 -1510 {
-lab=SW0B}
+lab=SWB[0]}
 N 1090 -800 1090 -680 {
 lab=D6B}
 N 1090 -800 1130 -800 {
@@ -355,7 +355,7 @@ lab=D5}
 N 1030 -580 1030 -540 {
 lab=D6}
 N 750 -560 750 -540 {
-lab=GND}
+lab=#net2}
 N 560 -290 660 -290 {
 lab=VC}
 N 840 -290 940 -290 {
@@ -500,25 +500,8 @@ N 470 -770 470 -540 {
 lab=Sample}
 N 470 -770 2620 -770 {
 lab=Sample}
-C {opin.sym} 450 -770 0 1 {name=p9 lab=Sample}
-C {ipin.sym} 1040 -880 0 0 {name=p10 lab=COMP_IN}
-C {opin.sym} 1540 -1100 3 0 {name=p11 lab=Q05}
-C {opin.sym} 1820 -1100 3 0 {name=p12 lab=Q04}
-C {opin.sym} 2100 -1100 3 0 {name=p13 lab=Q03}
-C {opin.sym} 2380 -1100 3 0 {name=p14 lab=Q02}
-C {opin.sym} 2660 -1100 3 0 {name=p15 lab=Q01}
-C {opin.sym} 2940 -1100 3 0 {name=p16 lab=Q00}
-C {opin.sym} 1290 -1590 3 0 {name=p23 lab=SW5}
-C {opin.sym} 1570 -1590 3 0 {name=p25 lab=SW4}
-C {opin.sym} 1640 -1590 3 0 {name=p26 lab=SW4B}
-C {opin.sym} 1850 -1590 3 0 {name=p27 lab=SW3}
-C {opin.sym} 1920 -1590 3 0 {name=p28 lab=SW3B}
-C {opin.sym} 2130 -1590 3 0 {name=p29 lab=SW2}
-C {opin.sym} 2200 -1590 3 0 {name=p30 lab=SW2B}
-C {opin.sym} 2410 -1590 3 0 {name=p31 lab=SW1}
-C {opin.sym} 2480 -1590 3 0 {name=p32 lab=SW1B}
-C {opin.sym} 2690 -1590 3 0 {name=p33 lab=SW0}
-C {opin.sym} 2760 -1590 3 0 {name=p34 lab=SW0B}
+C {opin.sym} 200 -1100 0 1 {name=p9 lab=Sample}
+C {ipin.sym} 200 -1170 0 0 {name=p10 lab=COMP_IN}
 C {lab_pin.sym} 1290 -1240 3 0 {name=l10 lab=D6}
 C {lab_pin.sym} 1570 -1240 3 0 {name=l16 lab=D5}
 C {lab_pin.sym} 1850 -1240 3 0 {name=l17 lab=D4}
@@ -548,7 +531,6 @@ C {lab_wire.sym} 1610 -1080 0 0 {name=l24 sig_type=std_logic lab=4D}
 C {lab_wire.sym} 1890 -1080 0 0 {name=l25 sig_type=std_logic lab=3D}
 C {lab_wire.sym} 2170 -1080 0 0 {name=l26 sig_type=std_logic lab=2D}
 C {lab_wire.sym} 2450 -1080 0 0 {name=l27 sig_type=std_logic lab=1D}
-C {opin.sym} 1360 -1590 3 0 {name=p3 lab=SW5B}
 C {vsource.sym} 220 -250 0 0 {name=V1 value=1.8}
 C {gnd.sym} 220 -190 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} 1030 -720 1 0 {name=l9 lab=D6}
@@ -580,7 +562,7 @@ C {my_df2.sym} 2210 -270 0 0 {name=x32}
 C {my_df2.sym} 2490 -270 0 0 {name=x33}
 C {ipin.sym} 340 -180 0 0 {name=p2 lab=CLK}
 C {xschem_sky130/sky130_stdcells/inv_2.sym} 2520 -180 0 0 {name=x34 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
-C {opin.sym} 920 -80 0 0 {name=p1 lab=COMP_EN}
+C {opin.sym} 200 -1030 0 1 {name=p1 lab=COMP_EN}
 C {lab_wire.sym} 1090 -720 0 1 {name=l8 sig_type=std_logic lab=D6B}
 C {lab_wire.sym} 1370 -720 0 1 {name=l30 sig_type=std_logic lab=D5B}
 C {lab_wire.sym} 1650 -720 0 1 {name=l31 sig_type=std_logic lab=D4B}
@@ -612,7 +594,6 @@ C {lab_wire.sym} 2330 -60 0 0 {name=l50 sig_type=std_logic lab=mark}
 C {lab_wire.sym} 2930 -190 0 0 {name=l21 sig_type=std_logic lab=clear}
 C {lab_wire.sym} 2610 -200 0 0 {name=l28 sig_type=std_logic lab=mark2}
 C {my_df3.sym} 2700 -100 0 0 {name=x5}
-C {gnd.sym} 750 -560 2 0 {name=l29 lab=GND}
 C {df4.sym} 500 -110 0 0 {name=x48}
 C {my_df3.sym} 1450 -860 0 0 {name=x1}
 C {my_df3.sym} 1730 -860 0 0 {name=x3}
@@ -620,3 +601,28 @@ C {my_df3.sym} 2010 -860 0 0 {name=x8}
 C {my_df3.sym} 2290 -860 0 0 {name=x11}
 C {my_df3.sym} 2570 -860 0 0 {name=x14}
 C {my_df3.sym} 2850 -860 0 0 {name=x17}
+C {lab_wire.sym} 2760 -1600 3 1 {name=l2 sig_type=std_logic lab=SWB[0]}
+C {lab_wire.sym} 2690 -1600 3 1 {name=l3 sig_type=std_logic lab=SW[0]}
+C {lab_wire.sym} 2480 -1600 3 1 {name=l4 sig_type=std_logic lab=SWB[1]}
+C {lab_wire.sym} 2410 -1600 3 1 {name=l5 sig_type=std_logic lab=SW[1]}
+C {lab_wire.sym} 2200 -1600 3 1 {name=l6 sig_type=std_logic lab=SWB[2]}
+C {lab_wire.sym} 2130 -1600 3 1 {name=l7 sig_type=std_logic lab=SW[3]}
+C {lab_wire.sym} 1920 -1600 3 1 {name=l22 sig_type=std_logic lab=SWB[3]}
+C {lab_wire.sym} 1850 -1600 3 1 {name=l51 sig_type=std_logic lab=SW[3]}
+C {lab_wire.sym} 1640 -1600 3 1 {name=l52 sig_type=std_logic lab=SWB[4]}
+C {lab_wire.sym} 1570 -1600 3 1 {name=l53 sig_type=std_logic lab=SW[4]}
+C {lab_wire.sym} 1360 -1600 3 1 {name=l54 sig_type=std_logic lab=SWB[5]}
+C {lab_wire.sym} 1290 -1600 3 1 {name=l55 sig_type=std_logic lab=SW[5]}
+C {lab_wire.sym} 2940 -1110 3 1 {name=l56 sig_type=std_logic lab=Q[0]}
+C {lab_wire.sym} 2660 -1110 3 1 {name=l57 sig_type=std_logic lab=Q[1]}
+C {lab_wire.sym} 2380 -1110 3 1 {name=l58 sig_type=std_logic lab=Q[2]}
+C {lab_wire.sym} 2100 -1110 3 1 {name=l59 sig_type=std_logic lab=Q[3]}
+C {lab_wire.sym} 1820 -1110 3 1 {name=l60 sig_type=std_logic lab=Q[4]}
+C {lab_wire.sym} 1540 -1110 3 1 {name=l61 sig_type=std_logic lab=Q[5]}
+C {noconn.sym} 750 -560 3 1 {name=l29}
+C {opin.sym} 200 -970 0 1 {name=p5 lab=Q[5:0]}
+C {opin.sym} 200 -920 0 1 {name=p6 lab=SW[5:0]}
+C {opin.sym} 200 -880 0 1 {name=p7 lab=SWB[5:0]}
+C {lab_wire.sym} 1030 -880 0 0 {name=l62 sig_type=std_logic lab=COMP_IN}
+C {lab_wire.sym} 440 -770 0 0 {name=l63 sig_type=std_logic lab=Sample}
+C {lab_wire.sym} 930 -80 0 1 {name=l64 sig_type=std_logic lab=COMP_EN}

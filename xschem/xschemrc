@@ -34,7 +34,7 @@ set PDKPATH "/home/oe23ranan/pdk/volare/sky130/versions/41c0908b47130d5675ff8484
 #### Flush any previous definition
 set XSCHEM_LIBRARY_PATH {}
 #### include devices/*.sym
-append XSCHEM_LIBRARY_PATH ${XSCHEM_SHAREDIR}/xschem_library/devices
+append XSCHEM_LIBRARY_PATH ${XSCHEM_SHAREDIR}/xschem_library
 #### include skywater libraries. Here i use [pwd]. This works if i start xschem from here.
 append XSCHEM_LIBRARY_PATH :$env(PWD)
 append XSCHEM_LIBRARY_PATH :$PDKPATH/libs.tech/xschem
@@ -297,6 +297,10 @@ lappend tcl_files $PDKPATH/libs.tech/xschem/scripts/sky130_models.tcl
 # set SKYWATER_MODELS /home/oe23ranan/pdk/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.tech/ngspice
 set SKYWATER_MODELS $PDKPATH/libs.tech/ngspice
 # set SKYWATER_STDCELLS /home/oe23ranan/pdk/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.ref/sky130_fd_sc_hd/spice
+
+set SKYWATER_MODELS /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest
+
+
 set SKYWATER_STDCELLS $PDKPATH/libs.ref/sky130_fd_sc_hd/spice
 set SKYWATER_STDCELLS /pdk/open_pdks/sources/sky130-pdk/libraries/sky130_fd_sc_hd/latest
 set SKYWATER_STDCELLS /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest

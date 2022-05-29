@@ -1,0 +1,681 @@
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/tb/sar_10b/tr_sar.sch
+**.subckt tr_sar
+Vssa ?1 avss ?1 GND  0
+**** end_element
+Vcca ?1 avdd ?1 GND  1.5
+**** end_element
+Vinn ?1 vinn ?1 GND  vsign
+**** end_element
+Vinp ?1 vinp ?1 GND  vsigp
+**** end_element
+Vclk ?1 clk ?1 GND  PULSE(0 1 10e-6 1e-9 1e-9 2e-6 4e-6)
+**** end_element
+Vcal ?1 cal ?1 GND  0
+**** end_element
+xsar ?1 avdd ?1 dvdd ?1 dvss ?10 result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_ ?1 vinn ?1 avss ?1 clk ?1 vinp ?1 dvdd ?1 valid ?1 cal ?1 rstn  sar
+**** end_element
+Vrstn ?1 rstn ?1 GND  PULSE(0 1.2 10e-6 1e-9 1e-9 99e-6 100e-6)
+**** end_element
+Vssd ?1 dvss ?1 GND  0
+**** end_element
+Vccd ?1 dvdd ?1 GND  1.2
+**** end_element
+**** begin user architecture code
+ 
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_4.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_8.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_3.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/buf/sky130_fd_sc_hd__buf_1.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_1.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/tap/sky130_fd_sc_hd__tap_2.spice 
+ *-------------------------
+* normal setup
+*-------------------------
+.options method = gear
+.options gmin   = 1e-15
+.options abstol = 1e-14
+.options chtol  = 1e-18
+.options reltol = 100e-6
+*-------------------------
+
+*-------------------------
+* extracted logic setup
+*-------------------------
+*.options method = gear
+*.options gmin   = 1e-12
+*.options abstol = 1e-10
+*.options chtol  = 1e-12
+*.options reltol = 100e-3
+*-------------------------
+
+
+.ic v(xsar.vp)=0
+.ic v(xsar.vn)=0
+.ic v(xsar.outp)=0
+.ic v(xsar.outn)=0
+.ic v(xsar.comp)=0
+
+.ic v(xsar.ctlp_0_)=0
+.ic v(xsar.ctlp_1_)=0
+.ic v(xsar.ctlp_2_)=0
+.ic v(xsar.ctlp_3_)=0
+.ic v(xsar.ctlp_4_)=0
+.ic v(xsar.ctlp_5_)=0
+.ic v(xsar.ctlp_6_)=0
+.ic v(xsar.ctlp_7_)=0
+.ic v(xsar.ctlp_8_)=0
+.ic v(xsar.ctlp_9_)=0
+
+.ic v(xsar.ctln_0_)=0
+.ic v(xsar.ctln_1_)=0
+.ic v(xsar.ctln_2_)=0
+.ic v(xsar.ctln_3_)=0
+.ic v(xsar.ctln_4_)=0
+.ic v(xsar.ctln_5_)=0
+.ic v(xsar.ctln_6_)=0
+.ic v(xsar.ctln_7_)=0
+.ic v(xsar.ctln_8_)=0
+.ic v(xsar.ctln_9_)=0
+
+
+*.include /home/oe23ranan/caravel_user_project_analog/my_xschem/switches/bootstrapped_sw.sp
+*.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/dac/dac_mom.pex.sp
+*.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/sar/sar.pex.spice
+*.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/sar/sar_mom.pex.spice
+*.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/sar/sar_mim.pex.spice
+*.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/control/sarlogic.ext.spice
+*.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/sar/sar.pex.spice
+.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/sar/sar.ext.spice
+
+.param MC_SWITCH=0
+.param vin=0
+.param vcm=0.75
+.param vsigp="{vcm + vin/2}"
+.param vsign="{vcm - vin/2}"
+
+.tran 100e-9 68e-6 uic
+
+.control
+
+run
+
+meas tran d0 find v(xsar.xlogic.res0) at=62.5e-6
+meas tran d1 find v(xsar.xlogic.res1) at=62.5e-6
+meas tran d2 find v(xsar.xlogic.res2) at=62.5e-6
+meas tran d3 find v(xsar.xlogic.res3) at=62.5e-6
+meas tran d4 find v(xsar.xlogic.res4) at=62.5e-6
+meas tran d5 find v(xsar.xlogic.res5) at=62.5e-6
+meas tran d6 find v(xsar.xlogic.res6) at=62.5e-6
+meas tran d7 find v(xsar.xlogic.res7) at=62.5e-6
+meas tran d8 find v(xsar.xlogic.res8) at=62.5e-6
+meas tran d9 find v(xsar.xlogic.res9) at=62.5e-6
+
+meas tran vpmax max xsar.vp
+meas tran vpmin min xsar.vp
+meas tran vpend find v(xsar.vp) at=62.5e-6
+
+meas tran vnmax max xsar.vn
+meas tran vnmin min xsar.vn
+meas tran vnend find v(xsar.vn) at=62.5e-6
+
+meas tran i_inp_max max(i_inp_abs)
+
+* Current measurements
+let i_inp_abs  = abs(vinp#branch)
+let i_inn_abs  = abs(vinn#branch)
+let i_vcca_abs = abs(vcca#branch)
+let i_vccd_abs = abs(vccd#branch)
+
+meas tran i_inp_max  max i_inp_abs   from=1u
+meas tran i_inn_max  max i_inn_abs   from=1u
+meas tran i_vcca_max max i_vcca_abs  from=1u
+meas tran i_vccd_max max i_vccd_abs  from=1u
+
+
+print i_inp_max 
+print i_inn_max 
+print i_vcca_max
+print i_vccd_max
+
+print d0
+print d1
+print d2
+print d3
+print d4
+print d5
+print d6
+print d7
+print d8
+print d9
+
+print vpmax
+print vpmin
+
+print vnmax
+print vnmin
+
+print vpend
+print vnend
+
+echo Simulation Finished
+echo -------------------
+shell date
+echo -------------------
+
+.endc
+ 
+ * FET CORNERS
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_all.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_all.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_all.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
+
+* TT + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmax.spice
+
+* FF + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmax.spice
+
+
+* SS + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmax.spice
+
+* SF + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmax.spice
+
+* FS + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
+ 
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sar_10b/sar/sar.sym # of pins=12
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/sar/sar.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/sar/sar.sch
+.subckt sar  avdd dvdd dvss result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_ vinn avss clk vinp en valid cal rstn  
+*.iopin avss
+*.iopin avdd
+*.iopin dvss
+*.iopin dvdd
+*.ipin vinp
+*.ipin vinn
+*.opin result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_
+*.ipin clk
+*.ipin en
+*.opin valid
+*.ipin cal
+*.ipin rstn
+xlat ?1 dvdd ?1 comp ?1 net1 ?1 dvss ?1 outn ?1 outp  latch
+**** end_element
+xdn ?1 vn ?1 sample ?1 avdd ?1 avss ?1 vinn ?10 ctln_9_,ctln_8_,ctln_7_,ctln_6_,ctln_5_,ctln_4_,ctln_3_,ctln_2_,ctln_1_,ctln_0_ ?1 avss  dac
+**** end_element
+xdp ?1 vp ?1 sample ?1 avdd ?1 avss ?1 vinp ?10 ctlp_9_,ctlp_8_,ctlp_7_,ctlp_6_,ctlp_5_,ctlp_4_,ctlp_3_,ctlp_2_,ctlp_1_,ctlp_0_ ?1 avdd  dac
+**** end_element
+xcom ?1 avss ?1 avdd ?1 clkca ?1 outp ?1 vp ?1 outn ?1 vn ?5 trim_4_,trim_3_,trim_2_,trim_1_,trim_0_ ?5 trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_  comparator
+**** end_element
+**** spice_prefix X
+C1_57_,C1_56_,C1_55_,C1_54_,C1_53_,C1_52_,C1_51_,C1_50_,C1_49_,C1_48_,C1_47_,C1_46_,C1_45_,C1_44_,C1_43_,C1_42_,C1_41_,C1_40_,C1_39_,C1_38_,C1_37_,C1_36_,C1_35_,C1_34_,C1_33_,C1_32_,C1_31_,C1_30_,C1_29_,C1_28_,C1_27_,C1_26_,C1_25_,C1_24_,C1_23_,C1_22_,C1_21_,C1_20_,C1_19_,C1_18_,C1_17_,C1_16_,C1_15_,C1_14_,C1_13_,C1_12_,C1_11_,C1_10_,C1_9_,C1_8_,C1_7_,C1_6_,C1_5_,C1_4_,C1_3_,C1_2_,C1_1_,C1_0_ ?1 avdd ?1 avss  sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+**** end_element
+**** spice_prefix X
+C2_13_,C2_12_,C2_11_,C2_10_,C2_9_,C2_8_,C2_7_,C2_6_,C2_5_,C2_4_,C2_3_,C2_2_,C2_1_,C2_0_ ?1 dvdd ?1 dvss  sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+**** end_element
+xlogic ?5 trim_4_,trim_3_,trim_2_,trim_1_,trim_0_ ?5 trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_ ?1 clkc ?1 comp ?1 cal ?1 en ?10 ctlp_9_,ctlp_8_,ctlp_7_,ctlp_6_,ctlp_5_,ctlp_4_,ctlp_3_,ctlp_2_,ctlp_1_,ctlp_0_ ?1 clk ?10 result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_ ?10 ctln_9_,ctln_8_,ctln_7_,ctln_6_,ctln_5_,ctln_4_,ctln_3_,ctln_2_,ctln_1_,ctln_0_ ?1 valid ?1 rstn ?1 sample ?1 dvdd ?1 dvss  sarlogic
+**** end_element
+xbuf ?1 avdd ?1 clkc ?1 clkca ?1 avss  buffer_lvt
+**** end_element
+.ends
+
+
+* expanding   symbol:  sar_10b/latch/latch.sym # of pins=6
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/latch/latch.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/latch/latch.sch
+.subckt latch  vdd Q Qn vss R S  
+*.ipin S
+*.ipin R
+*.iopin vss
+*.iopin vdd
+*.opin Q
+*.opin Qn
+x1 ?1 vdd ?1 Qn ?1 Q ?1 vss  inv_lvt
+**** end_element
+x2 ?1 vdd ?1 Q ?1 Qn ?1 vss  inv_lvt
+**** end_element
+x3 ?1 vdd ?1 R ?1 net2 ?1 vss  inv_lvt
+**** end_element
+x4 ?1 vdd ?1 S ?1 net1 ?1 vss  inv_lvt
+**** end_element
+**** spice_prefix X
+M3 ?1 Qn ?1 net1 ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M1 ?1 Q ?1 net2 ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+.ends
+
+
+* expanding   symbol:  sar_10b/dac/dac.sym # of pins=7
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/dac/dac.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/dac/dac.sch
+.subckt dac  out sample vdd vss vin ctl_9_,ctl_8_,ctl_7_,ctl_6_,ctl_5_,ctl_4_,ctl_3_,ctl_2_,ctl_1_,ctl_0_ dum  
+*.ipin vin
+*.ipin sample
+*.opin out
+*.ipin ctl_9_,ctl_8_,ctl_7_,ctl_6_,ctl_5_,ctl_4_,ctl_3_,ctl_2_,ctl_1_,ctl_0_
+*.ipin dum
+*.iopin vdd
+*.iopin vss
+xca ?1 out ?1 n6 ?1 n0 ?1 n5 ?1 n4 ?1 n2 ?1 ndum ?1 n3 ?1 n1 ?1 n7 ?1 n8 ?1 n9  carray
+**** end_element
+xswt ?1 out ?1 sample ?1 vdd ?1 vin ?1 vss  bootstrapped_sw_hv
+**** end_element
+xidum ?1 dum  vss vss vdd vdd ?1 ndum  sky130_fd_sc_hd__inv_2
+**** end_element
+xi0 ?1 ctl_0_  vss vss vdd vdd ?1 n0  sky130_fd_sc_hd__inv_2
+**** end_element
+xi1 ?1 ctl_1_  vss vss vdd vdd ?1 n1  sky130_fd_sc_hd__inv_2
+**** end_element
+xi2 ?1 ctl_2_  vss vss vdd vdd ?1 n2  sky130_fd_sc_hd__inv_2
+**** end_element
+xi3 ?1 ctl_3_  vss vss vdd vdd ?1 n3  sky130_fd_sc_hd__inv_2
+**** end_element
+xi4 ?1 ctl_4_  vss vss vdd vdd ?1 n4  sky130_fd_sc_hd__inv_2
+**** end_element
+xi5 ?1 ctl_5_  vss vss vdd vdd ?1 n5  sky130_fd_sc_hd__inv_2
+**** end_element
+xi6 ?1 ctl_6_  vss vss vdd vdd ?1 n6  sky130_fd_sc_hd__inv_2
+**** end_element
+xi7 ?1 ctl_7_  vss vss vdd vdd ?1 n7  sky130_fd_sc_hd__inv_2
+**** end_element
+xi8 ?1 ctl_8_  vss vss vdd vdd ?1 n8  sky130_fd_sc_hd__inv_2
+**** end_element
+xi9 ?1 ctl_9_  vss vss vdd vdd ?1 n9  sky130_fd_sc_hd__inv_2
+**** end_element
+.ends
+
+
+* expanding   symbol:  sar_10b/comparator/comparator.sym # of pins=9
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/comparator/comparator.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/comparator/comparator.sch
+.subckt comparator  vss vdd clk outp vp outn vn trim_4_,trim_3_,trim_2_,trim_1_,trim_0_ trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_  
+*.ipin vn
+*.ipin vp
+*.ipin clk
+*.iopin vdd
+*.iopin vss
+*.opin outp
+*.opin outn
+*.ipin trim_4_,trim_3_,trim_2_,trim_1_,trim_0_
+*.ipin trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_
+**** spice_prefix X
+Mdiff ?1 diff ?1 clk ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=2 m=2
+**** end_element
+**** spice_prefix X
+Minn ?1 in ?1 vn ?1 diff ?1 vss  sky130_fd_pr__nfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+Minp ?1 ip ?1 vp ?1 diff ?1 vss  sky130_fd_pr__nfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+Ml4 ?1 outp ?1 outn ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+Ml3 ?1 outn ?1 outp ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M3 ?1 outp ?1 clk ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M2 ?1 outn ?1 clk ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+Ml1 ?1 outn ?1 outp ?1 in ?1 vss  sky130_fd_pr__nfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+Ml2 ?1 outp ?1 outn ?1 ip ?1 vss  sky130_fd_pr__nfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M4 ?1 ip ?1 clk ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M1 ?1 in ?1 clk ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8 L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+x2 ?1 in ?5 trim_4_,trim_3_,trim_2_,trim_1_,trim_0_ ?1 vss  trim
+**** end_element
+x3 ?1 ip ?5 trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_ ?1 vss  trim
+**** end_element
+.ends
+
+
+* expanding   symbol:  sar_10b/control/sarlogic.sym # of pins=15
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/control/sarlogic.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/control/sarlogic.sch
+.subckt sarlogic  trim_4_,trim_3_,trim_2_,trim_1_,trim_0_ trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_ clkc comp cal en ctlp_9_,ctlp_8_,ctlp_7_,ctlp_6_,ctlp_5_,ctlp_4_,ctlp_3_,ctlp_2_,ctlp_1_,ctlp_0_ clk result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_ ctln_9_,ctln_8_,ctln_7_,ctln_6_,ctln_5_,ctln_4_,ctln_3_,ctln_2_,ctln_1_,ctln_0_ valid rstn sample dvdd dvss  
+*.opin clkc
+*.opin ctlp_9_,ctlp_8_,ctlp_7_,ctlp_6_,ctlp_5_,ctlp_4_,ctlp_3_,ctlp_2_,ctlp_1_,ctlp_0_
+*.opin ctln_9_,ctln_8_,ctln_7_,ctln_6_,ctln_5_,ctln_4_,ctln_3_,ctln_2_,ctln_1_,ctln_0_
+*.opin sample
+*.opin trim_4_,trim_3_,trim_2_,trim_1_,trim_0_
+*.opin trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_
+*.ipin comp
+*.ipin cal
+*.ipin en
+*.ipin clk
+*.ipin result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_
+*.ipin valid
+*.ipin rstn
+*.iopin dvdd
+*.iopin dvss
+**** begin user architecture code
+.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/control/cmos_cells_digital.sp
+.include /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/control/sarlogic.sp
+ 
+**** end user architecture code
+**** begin user architecture code
+* Keep the sar_logic underscore name. Otherwise xschem gets confused.
+Xuut dclk drstn den dcomp dcal dvalid dres0 dres1 dres2 dres3 dres4 dres5 dres6 dres7 dres8 dres9 dsamp dctlp0 dctlp1 dctlp2 dctlp3 dctlp4 dctlp5 dctlp6 dctlp7 dctlp8 dctlp9 dctln0 dctln1 dctln2 dctln3 dctln4 dctln5 dctln6 dctln7 dctln8 dctln9 dtrim0 dtrim1 dtrim2 dtrim3 dtrim4 dtrimb0 dtrimb1 dtrimb2 dtrimb3 dtrimb4 dclkc sar_logic
+
+.model adc_buff adc_bridge(in_low = 0.2 in_high=0.8)
+.model dac_buff dac_bridge(out_high = 1.2)
+
+Aad [clk rstn en comp cal] [dclk drstn den dcomp dcal] adc_buff
+Ada1 [dctlp0 dctlp1 dctlp2 dctlp3 dctlp4 dctlp5 dctlp6 dctlp7 dctlp8 dctlp9] [ctlp_0_ ctlp_1_ ctlp_2_ ctlp_3_ ctlp_4_ ctlp_5_ ctlp_6_ ctlp_7_ ctlp_8_ ctlp_9_] dac_buff
+Ada2 [dctln0 dctln1 dctln2 dctln3 dctln4 dctln5 dctln6 dctln7 dctln8 dctln9] [ctln_0_ ctln_1_ ctln_2_ ctln_3_ ctln_4_ ctln_5_ ctln_6_ ctln_7_ ctln_8_ ctln_9_] dac_buff
+Ada3 [dres0 dres1 dres2 dres3 dres4 dres5 dres6 dres7 dres8 dres9 dsamp dclkc] [res0 res1 res2 res3 res4 res5 res6 res7 res8 res9 sample clkc] dac_buff
+Ada4 [dtrim4 dtrim3 dtrim2 dtrim1 dtrim0 dtrimb4 dtrimb3 dtrimb2 dtrimb1 dtrimb0] [trim_4_ trim_3_ trim_2_ trim_1_ trim_0_ trimb_4_ trimb_3_ trimb_2_ trimb_1_ trimb_0_ ] dac_buff
+
+**** end user architecture code
+.ends
+
+
+* expanding   symbol:  logic/buffer_lvt.sym # of pins=4
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/logic/buffer_lvt.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/logic/buffer_lvt.sch
+.subckt buffer_lvt  vdd in out vss  
+*.iopin vdd
+*.iopin vss
+*.ipin in
+*.opin out
+**** spice_prefix X
+M1 ?1 net1 ?1 in ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M2 ?1 net1 ?1 in ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M3 ?1 out ?1 net1 ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M4 ?1 out ?1 net1 ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+.ends
+
+
+* expanding   symbol:  logic/inv_lvt.sym # of pins=4
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/logic/inv_lvt.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/logic/inv_lvt.sch
+.subckt inv_lvt  vdd in out vss  
+*.iopin vdd
+*.iopin vss
+*.ipin in
+*.opin out
+**** spice_prefix X
+M1 ?1 out ?1 in ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M2 ?1 out ?1 in ?1 vdd ?1 vdd  sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+.ends
+
+
+* expanding   symbol:  sar_10b/dac/carray.sym # of pins=12
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/dac/carray.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/dac/carray.sch
+.subckt carray  top n6 n0 n5 n4 n2 ndum n3 n1 n7 n8 n9  
+*.iopin top
+*.iopin n7
+*.iopin n6
+*.iopin n5
+*.iopin n4
+*.iopin n2
+*.iopin n0
+*.iopin ndum
+*.iopin n3
+*.iopin n1
+*.iopin n8
+*.iopin n9
+xcdum ?1 top ?1 ndum  unitcap
+**** end_element
+xc0 ?1 top ?1 n0  unitcap
+**** end_element
+xc1_1_,xc1_0_ ?1 top ?1 n1  unitcap
+**** end_element
+xc2_3_,xc2_2_,xc2_1_,xc2_0_ ?1 top ?1 n2  unitcap
+**** end_element
+xc3_7_,xc3_6_,xc3_5_,xc3_4_,xc3_3_,xc3_2_,xc3_1_,xc3_0_ ?1 top ?1 n3  unitcap
+**** end_element
+xc4_15_,xc4_14_,xc4_13_,xc4_12_,xc4_11_,xc4_10_,xc4_9_,xc4_8_,xc4_7_,xc4_6_,xc4_5_,xc4_4_,xc4_3_,xc4_2_,xc4_1_,xc4_0_ ?1 top ?1 n4  unitcap
+**** end_element
+xc5_31_,xc5_30_,xc5_29_,xc5_28_,xc5_27_,xc5_26_,xc5_25_,xc5_24_,xc5_23_,xc5_22_,xc5_21_,xc5_20_,xc5_19_,xc5_18_,xc5_17_,xc5_16_,xc5_15_,xc5_14_,xc5_13_,xc5_12_,xc5_11_,xc5_10_,xc5_9_,xc5_8_,xc5_7_,xc5_6_,xc5_5_,xc5_4_,xc5_3_,xc5_2_,xc5_1_,xc5_0_ ?1 top ?1 n5  unitcap
+**** end_element
+xc6_63_,xc6_62_,xc6_61_,xc6_60_,xc6_59_,xc6_58_,xc6_57_,xc6_56_,xc6_55_,xc6_54_,xc6_53_,xc6_52_,xc6_51_,xc6_50_,xc6_49_,xc6_48_,xc6_47_,xc6_46_,xc6_45_,xc6_44_,xc6_43_,xc6_42_,xc6_41_,xc6_40_,xc6_39_,xc6_38_,xc6_37_,xc6_36_,xc6_35_,xc6_34_,xc6_33_,xc6_32_,xc6_31_,xc6_30_,xc6_29_,xc6_28_,xc6_27_,xc6_26_,xc6_25_,xc6_24_,xc6_23_,xc6_22_,xc6_21_,xc6_20_,xc6_19_,xc6_18_,xc6_17_,xc6_16_,xc6_15_,xc6_14_,xc6_13_,xc6_12_,xc6_11_,xc6_10_,xc6_9_,xc6_8_,xc6_7_,xc6_6_,xc6_5_,xc6_4_,xc6_3_,xc6_2_,xc6_1_,xc6_0_ ?1 top ?1 n6  unitcap
+**** end_element
+xc7_127_,xc7_126_,xc7_125_,xc7_124_,xc7_123_,xc7_122_,xc7_121_,xc7_120_,xc7_119_,xc7_118_,xc7_117_,xc7_116_,xc7_115_,xc7_114_,xc7_113_,xc7_112_,xc7_111_,xc7_110_,xc7_109_,xc7_108_,xc7_107_,xc7_106_,xc7_105_,xc7_104_,xc7_103_,xc7_102_,xc7_101_,xc7_100_,xc7_99_,xc7_98_,xc7_97_,xc7_96_,xc7_95_,xc7_94_,xc7_93_,xc7_92_,xc7_91_,xc7_90_,xc7_89_,xc7_88_,xc7_87_,xc7_86_,xc7_85_,xc7_84_,xc7_83_,xc7_82_,xc7_81_,xc7_80_,xc7_79_,xc7_78_,xc7_77_,xc7_76_,xc7_75_,xc7_74_,xc7_73_,xc7_72_,xc7_71_,xc7_70_,xc7_69_,xc7_68_,xc7_67_,xc7_66_,xc7_65_,xc7_64_,xc7_63_,xc7_62_,xc7_61_,xc7_60_,xc7_59_,xc7_58_,xc7_57_,xc7_56_,xc7_55_,xc7_54_,xc7_53_,xc7_52_,xc7_51_,xc7_50_,xc7_49_,xc7_48_,xc7_47_,xc7_46_,xc7_45_,xc7_44_,xc7_43_,xc7_42_,xc7_41_,xc7_40_,xc7_39_,xc7_38_,xc7_37_,xc7_36_,xc7_35_,xc7_34_,xc7_33_,xc7_32_,xc7_31_,xc7_30_,xc7_29_,xc7_28_,xc7_27_,xc7_26_,xc7_25_,xc7_24_,xc7_23_,xc7_22_,xc7_21_,xc7_20_,xc7_19_,xc7_18_,xc7_17_,xc7_16_,xc7_15_,xc7_14_,xc7_13_,xc7_12_,xc7_11_,xc7_10_,xc7_9_,xc7_8_,xc7_7_,xc7_6_,xc7_5_,xc7_4_,xc7_3_,xc7_2_,xc7_1_,xc7_0_ ?1 top ?1 n7  unitcap
+**** end_element
+xc8_255_,xc8_254_,xc8_253_,xc8_252_,xc8_251_,xc8_250_,xc8_249_,xc8_248_,xc8_247_,xc8_246_,xc8_245_,xc8_244_,xc8_243_,xc8_242_,xc8_241_,xc8_240_,xc8_239_,xc8_238_,xc8_237_,xc8_236_,xc8_235_,xc8_234_,xc8_233_,xc8_232_,xc8_231_,xc8_230_,xc8_229_,xc8_228_,xc8_227_,xc8_226_,xc8_225_,xc8_224_,xc8_223_,xc8_222_,xc8_221_,xc8_220_,xc8_219_,xc8_218_,xc8_217_,xc8_216_,xc8_215_,xc8_214_,xc8_213_,xc8_212_,xc8_211_,xc8_210_,xc8_209_,xc8_208_,xc8_207_,xc8_206_,xc8_205_,xc8_204_,xc8_203_,xc8_202_,xc8_201_,xc8_200_,xc8_199_,xc8_198_,xc8_197_,xc8_196_,xc8_195_,xc8_194_,xc8_193_,xc8_192_,xc8_191_,xc8_190_,xc8_189_,xc8_188_,xc8_187_,xc8_186_,xc8_185_,xc8_184_,xc8_183_,xc8_182_,xc8_181_,xc8_180_,xc8_179_,xc8_178_,xc8_177_,xc8_176_,xc8_175_,xc8_174_,xc8_173_,xc8_172_,xc8_171_,xc8_170_,xc8_169_,xc8_168_,xc8_167_,xc8_166_,xc8_165_,xc8_164_,xc8_163_,xc8_162_,xc8_161_,xc8_160_,xc8_159_,xc8_158_,xc8_157_,xc8_156_,xc8_155_,xc8_154_,xc8_153_,xc8_152_,xc8_151_,xc8_150_,xc8_149_,xc8_148_,xc8_147_,xc8_146_,xc8_145_,xc8_144_,xc8_143_,xc8_142_,xc8_141_,xc8_140_,xc8_139_,xc8_138_,xc8_137_,xc8_136_,xc8_135_,xc8_134_,xc8_133_,xc8_132_,xc8_131_,xc8_130_,xc8_129_,xc8_128_,xc8_127_,xc8_126_,xc8_125_,xc8_124_,xc8_123_,xc8_122_,xc8_121_,xc8_120_,xc8_119_,xc8_118_,xc8_117_,xc8_116_,xc8_115_,xc8_114_,xc8_113_,xc8_112_,xc8_111_,xc8_110_,xc8_109_,xc8_108_,xc8_107_,xc8_106_,xc8_105_,xc8_104_,xc8_103_,xc8_102_,xc8_101_,xc8_100_,xc8_99_,xc8_98_,xc8_97_,xc8_96_,xc8_95_,xc8_94_,xc8_93_,xc8_92_,xc8_91_,xc8_90_,xc8_89_,xc8_88_,xc8_87_,xc8_86_,xc8_85_,xc8_84_,xc8_83_,xc8_82_,xc8_81_,xc8_80_,xc8_79_,xc8_78_,xc8_77_,xc8_76_,xc8_75_,xc8_74_,xc8_73_,xc8_72_,xc8_71_,xc8_70_,xc8_69_,xc8_68_,xc8_67_,xc8_66_,xc8_65_,xc8_64_,xc8_63_,xc8_62_,xc8_61_,xc8_60_,xc8_59_,xc8_58_,xc8_57_,xc8_56_,xc8_55_,xc8_54_,xc8_53_,xc8_52_,xc8_51_,xc8_50_,xc8_49_,xc8_48_,xc8_47_,xc8_46_,xc8_45_,xc8_44_,xc8_43_,xc8_42_,xc8_41_,xc8_40_,xc8_39_,xc8_38_,xc8_37_,xc8_36_,xc8_35_,xc8_34_,xc8_33_,xc8_32_,xc8_31_,xc8_30_,xc8_29_,xc8_28_,xc8_27_,xc8_26_,xc8_25_,xc8_24_,xc8_23_,xc8_22_,xc8_21_,xc8_20_,xc8_19_,xc8_18_,xc8_17_,xc8_16_,xc8_15_,xc8_14_,xc8_13_,xc8_12_,xc8_11_,xc8_10_,xc8_9_,xc8_8_,xc8_7_,xc8_6_,xc8_5_,xc8_4_,xc8_3_,xc8_2_,xc8_1_,xc8_0_ ?1 top ?1 n8  unitcap
+**** end_element
+xc9_511_,xc9_510_,xc9_509_,xc9_508_,xc9_507_,xc9_506_,xc9_505_,xc9_504_,xc9_503_,xc9_502_,xc9_501_,xc9_500_,xc9_499_,xc9_498_,xc9_497_,xc9_496_,xc9_495_,xc9_494_,xc9_493_,xc9_492_,xc9_491_,xc9_490_,xc9_489_,xc9_488_,xc9_487_,xc9_486_,xc9_485_,xc9_484_,xc9_483_,xc9_482_,xc9_481_,xc9_480_,xc9_479_,xc9_478_,xc9_477_,xc9_476_,xc9_475_,xc9_474_,xc9_473_,xc9_472_,xc9_471_,xc9_470_,xc9_469_,xc9_468_,xc9_467_,xc9_466_,xc9_465_,xc9_464_,xc9_463_,xc9_462_,xc9_461_,xc9_460_,xc9_459_,xc9_458_,xc9_457_,xc9_456_,xc9_455_,xc9_454_,xc9_453_,xc9_452_,xc9_451_,xc9_450_,xc9_449_,xc9_448_,xc9_447_,xc9_446_,xc9_445_,xc9_444_,xc9_443_,xc9_442_,xc9_441_,xc9_440_,xc9_439_,xc9_438_,xc9_437_,xc9_436_,xc9_435_,xc9_434_,xc9_433_,xc9_432_,xc9_431_,xc9_430_,xc9_429_,xc9_428_,xc9_427_,xc9_426_,xc9_425_,xc9_424_,xc9_423_,xc9_422_,xc9_421_,xc9_420_,xc9_419_,xc9_418_,xc9_417_,xc9_416_,xc9_415_,xc9_414_,xc9_413_,xc9_412_,xc9_411_,xc9_410_,xc9_409_,xc9_408_,xc9_407_,xc9_406_,xc9_405_,xc9_404_,xc9_403_,xc9_402_,xc9_401_,xc9_400_,xc9_399_,xc9_398_,xc9_397_,xc9_396_,xc9_395_,xc9_394_,xc9_393_,xc9_392_,xc9_391_,xc9_390_,xc9_389_,xc9_388_,xc9_387_,xc9_386_,xc9_385_,xc9_384_,xc9_383_,xc9_382_,xc9_381_,xc9_380_,xc9_379_,xc9_378_,xc9_377_,xc9_376_,xc9_375_,xc9_374_,xc9_373_,xc9_372_,xc9_371_,xc9_370_,xc9_369_,xc9_368_,xc9_367_,xc9_366_,xc9_365_,xc9_364_,xc9_363_,xc9_362_,xc9_361_,xc9_360_,xc9_359_,xc9_358_,xc9_357_,xc9_356_,xc9_355_,xc9_354_,xc9_353_,xc9_352_,xc9_351_,xc9_350_,xc9_349_,xc9_348_,xc9_347_,xc9_346_,xc9_345_,xc9_344_,xc9_343_,xc9_342_,xc9_341_,xc9_340_,xc9_339_,xc9_338_,xc9_337_,xc9_336_,xc9_335_,xc9_334_,xc9_333_,xc9_332_,xc9_331_,xc9_330_,xc9_329_,xc9_328_,xc9_327_,xc9_326_,xc9_325_,xc9_324_,xc9_323_,xc9_322_,xc9_321_,xc9_320_,xc9_319_,xc9_318_,xc9_317_,xc9_316_,xc9_315_,xc9_314_,xc9_313_,xc9_312_,xc9_311_,xc9_310_,xc9_309_,xc9_308_,xc9_307_,xc9_306_,xc9_305_,xc9_304_,xc9_303_,xc9_302_,xc9_301_,xc9_300_,xc9_299_,xc9_298_,xc9_297_,xc9_296_,xc9_295_,xc9_294_,xc9_293_,xc9_292_,xc9_291_,xc9_290_,xc9_289_,xc9_288_,xc9_287_,xc9_286_,xc9_285_,xc9_284_,xc9_283_,xc9_282_,xc9_281_,xc9_280_,xc9_279_,xc9_278_,xc9_277_,xc9_276_,xc9_275_,xc9_274_,xc9_273_,xc9_272_,xc9_271_,xc9_270_,xc9_269_,xc9_268_,xc9_267_,xc9_266_,xc9_265_,xc9_264_,xc9_263_,xc9_262_,xc9_261_,xc9_260_,xc9_259_,xc9_258_,xc9_257_,xc9_256_,xc9_255_,xc9_254_,xc9_253_,xc9_252_,xc9_251_,xc9_250_,xc9_249_,xc9_248_,xc9_247_,xc9_246_,xc9_245_,xc9_244_,xc9_243_,xc9_242_,xc9_241_,xc9_240_,xc9_239_,xc9_238_,xc9_237_,xc9_236_,xc9_235_,xc9_234_,xc9_233_,xc9_232_,xc9_231_,xc9_230_,xc9_229_,xc9_228_,xc9_227_,xc9_226_,xc9_225_,xc9_224_,xc9_223_,xc9_222_,xc9_221_,xc9_220_,xc9_219_,xc9_218_,xc9_217_,xc9_216_,xc9_215_,xc9_214_,xc9_213_,xc9_212_,xc9_211_,xc9_210_,xc9_209_,xc9_208_,xc9_207_,xc9_206_,xc9_205_,xc9_204_,xc9_203_,xc9_202_,xc9_201_,xc9_200_,xc9_199_,xc9_198_,xc9_197_,xc9_196_,xc9_195_,xc9_194_,xc9_193_,xc9_192_,xc9_191_,xc9_190_,xc9_189_,xc9_188_,xc9_187_,xc9_186_,xc9_185_,xc9_184_,xc9_183_,xc9_182_,xc9_181_,xc9_180_,xc9_179_,xc9_178_,xc9_177_,xc9_176_,xc9_175_,xc9_174_,xc9_173_,xc9_172_,xc9_171_,xc9_170_,xc9_169_,xc9_168_,xc9_167_,xc9_166_,xc9_165_,xc9_164_,xc9_163_,xc9_162_,xc9_161_,xc9_160_,xc9_159_,xc9_158_,xc9_157_,xc9_156_,xc9_155_,xc9_154_,xc9_153_,xc9_152_,xc9_151_,xc9_150_,xc9_149_,xc9_148_,xc9_147_,xc9_146_,xc9_145_,xc9_144_,xc9_143_,xc9_142_,xc9_141_,xc9_140_,xc9_139_,xc9_138_,xc9_137_,xc9_136_,xc9_135_,xc9_134_,xc9_133_,xc9_132_,xc9_131_,xc9_130_,xc9_129_,xc9_128_,xc9_127_,xc9_126_,xc9_125_,xc9_124_,xc9_123_,xc9_122_,xc9_121_,xc9_120_,xc9_119_,xc9_118_,xc9_117_,xc9_116_,xc9_115_,xc9_114_,xc9_113_,xc9_112_,xc9_111_,xc9_110_,xc9_109_,xc9_108_,xc9_107_,xc9_106_,xc9_105_,xc9_104_,xc9_103_,xc9_102_,xc9_101_,xc9_100_,xc9_99_,xc9_98_,xc9_97_,xc9_96_,xc9_95_,xc9_94_,xc9_93_,xc9_92_,xc9_91_,xc9_90_,xc9_89_,xc9_88_,xc9_87_,xc9_86_,xc9_85_,xc9_84_,xc9_83_,xc9_82_,xc9_81_,xc9_80_,xc9_79_,xc9_78_,xc9_77_,xc9_76_,xc9_75_,xc9_74_,xc9_73_,xc9_72_,xc9_71_,xc9_70_,xc9_69_,xc9_68_,xc9_67_,xc9_66_,xc9_65_,xc9_64_,xc9_63_,xc9_62_,xc9_61_,xc9_60_,xc9_59_,xc9_58_,xc9_57_,xc9_56_,xc9_55_,xc9_54_,xc9_53_,xc9_52_,xc9_51_,xc9_50_,xc9_49_,xc9_48_,xc9_47_,xc9_46_,xc9_45_,xc9_44_,xc9_43_,xc9_42_,xc9_41_,xc9_40_,xc9_39_,xc9_38_,xc9_37_,xc9_36_,xc9_35_,xc9_34_,xc9_33_,xc9_32_,xc9_31_,xc9_30_,xc9_29_,xc9_28_,xc9_27_,xc9_26_,xc9_25_,xc9_24_,xc9_23_,xc9_22_,xc9_21_,xc9_20_,xc9_19_,xc9_18_,xc9_17_,xc9_16_,xc9_15_,xc9_14_,xc9_13_,xc9_12_,xc9_11_,xc9_10_,xc9_9_,xc9_8_,xc9_7_,xc9_6_,xc9_5_,xc9_4_,xc9_3_,xc9_2_,xc9_1_,xc9_0_ ?1 top ?1 n9  unitcap
+**** end_element
+.ends
+
+
+* expanding   symbol:  switches/bootstrapped_sw_hv.sym # of pins=5
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/switches/bootstrapped_sw_hv.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/switches/bootstrapped_sw_hv.sch
+.subckt bootstrapped_sw_hv  out en vdd in vss  
+*.iopin out
+*.ipin en
+*.iopin vss
+*.iopin vdd
+*.iopin in
+xinv1 ?1 vdd ?1 en ?1 enb ?1 vss  inv_lvt
+**** end_element
+**** spice_prefix X
+Cbs_4_,Cbs_3_,Cbs_2_,Cbs_1_,Cbs_0_ ?1 vbsh ?1 vbsl  sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+**** end_element
+**** spice_prefix X
+M3 ?1 vdd ?1 vg ?1 vbsh ?1 vbsh  sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M4 ?1 vg ?1 enb ?1 vbsh ?1 vbsh  sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+Ms ?1 out ?1 vg ?1 in ?1 vss  sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M1 ?1 vbsl ?1 vg ?1 in ?1 vss  sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M2 ?1 vbsl ?1 enb ?1 vss ?1 vss  sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+Ms2 ?1 vss ?1 enb ?1 vs ?1 vss  sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+Ms1 ?1 vs ?1 vdd ?1 vg ?1 vss  sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+.ends
+
+
+* expanding   symbol:  sar_10b/comparator/trim.sym # of pins=3
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/comparator/trim.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/comparator/trim.sch
+.subckt trim  drain d_4_,d_3_,d_2_,d_1_,d_0_ vss  
+*.iopin vss
+*.ipin d_4_,d_3_,d_2_,d_1_,d_0_
+*.opin drain
+**** spice_prefix X
+M4_7_,M4_6_,M4_5_,M4_4_,M4_3_,M4_2_,M4_1_,M4_0_ ?1 n4 ?1 d_4_ ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M3_3_,M3_2_,M3_1_,M3_0_ ?1 n3 ?1 d_3_ ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M2_1_,M2_0_ ?1 n2 ?1 d_2_ ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M1 ?1 n1 ?1 d_1_ ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+**** spice_prefix X
+M0 ?1 n0 ?1 d_0_ ?1 vss ?1 vss  sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1
++ nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 
++ mult=1 m=1
+**** end_element
+x4_7_,x4_6_,x4_5_,x4_4_,x4_3_,x4_2_,x4_1_,x4_0_ ?1 drain ?1 n4  trimcap
+**** end_element
+x3_3_,x3_2_,x3_1_,x3_0_ ?1 drain ?1 n3  trimcap
+**** end_element
+x2_1_,x2_0_ ?1 drain ?1 n2  trimcap
+**** end_element
+x1 ?1 drain ?1 n1  trimcap
+**** end_element
+x0 ?1 drain ?1 n0  trimcap
+**** end_element
+.ends
+
+
+* expanding   symbol:  sar_10b/unitcap/unitcap.sym # of pins=2
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/unitcap/unitcap.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/unitcap/unitcap.sch
+.subckt unitcap  cp cn  
+*.iopin cp
+*.iopin cn
+C1 ?1 cp ?1 cn  2.6f m=1
+**** end_element
+.ends
+
+
+* expanding   symbol:  sar_10b/comparator/trimcap.sym # of pins=2
+** sym_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/comparator/trimcap.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/my_xschem/sar_10b/comparator/trimcap.sch
+.subckt trimcap  cp cn  
+*.iopin cp
+*.iopin cn
+c0 ?1 net1 ?1 cn  2f m=1
+**** end_element
+c1 ?1 cp ?1 net1  1f m=1
+**** end_element
+.ends
+
+.GLOBAL GND
+.end
