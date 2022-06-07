@@ -1,0 +1,23 @@
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/tb/sar_10b/tr_sar.sch
+**.subckt tr_sar
+Vssa ?1 avss ?1 GND  0
+**** end_element
+Vcca ?1 avdd ?1 GND  1.5
+**** end_element
+Vinn ?1 vinn ?1 GND  vsign
+**** end_element
+Vinp ?1 vinp ?1 GND  vsigp
+**** end_element
+Vclk ?1 clk ?1 GND  PULSE(0 1 10e-6 1e-9 1e-9 2e-6 4e-6)
+**** end_element
+Vcal ?1 cal ?1 GND  0
+**** end_element
+xsar ?1 avdd ?1 dvdd ?1 dvss ?10 result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_ ?1 vinn ?1 avss ?1 clk ?1 vinp ?1 dvdd ?1 valid ?1 cal ?1 rstn  sar
+**** end_element
+Vrstn ?1 rstn ?1 GND  PULSE(0 1.2 10e-6 1e-9 1e-9 99e-6 100e-6)
+**** end_element
+Vssd ?1 dvss ?1 GND  0
+**** end_element
+Vccd ?1 dvdd ?1 GND  1.2
+**** end_element
+**** begin user architecture code

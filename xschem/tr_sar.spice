@@ -1,0 +1,1682 @@
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/tb/sar_10b/tr_sar.sch
+**.subckt tr_sar
+Vssa avss GND 0
+Vcca avdd GND 1.5
+Vinn vinn GND vsign
+Vinp vinp GND vsigp
+Vclk clk GND PULSE(0 1 10e-6 1e-9 1e-9 2e-6 4e-6)
+Vcal cal GND 0
+xsar avdd dvdd dvss result_9_ result_8_ result_7_ result_6_ result_5_ result_4_ result_3_ result_2_
++ result_1_ result_0_ vinn avss clk vinp dvdd valid cal rstn sar
+Vrstn rstn GND PULSE(0 1.2 10e-6 1e-9 1e-9 99e-6 100e-6)
+Vssd dvss GND 0
+Vccd dvdd GND 1.2
+**** begin user architecture code
+
+.lib /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/sky130.lib.spice tt
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_4.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_8.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_3.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/buf/sky130_fd_sc_hd__buf_1.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_1.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/tap/sky130_fd_sc_hd__tap_2.spice
+ *-------------------------
+* normal setup
+*-------------------------
+.options method = gear
+.options gmin   = 1e-15
+.options abstol = 1e-14
+.options chtol  = 1e-18
+.options reltol = 100e-6
+*-------------------------
+
+*-------------------------
+* extracted logic setup
+*-------------------------
+*.options method = gear
+*.options gmin   = 1e-12
+*.options abstol = 1e-10
+*.options chtol  = 1e-12
+*.options reltol = 100e-3
+*-------------------------
+
+
+.ic v(xsar.vp)=0
+.ic v(xsar.vn)=0
+.ic v(xsar.outp)=0
+.ic v(xsar.outn)=0
+.ic v(xsar.comp)=0
+
+.ic v(xsar.ctlp_0_)=0
+.ic v(xsar.ctlp_1_)=0
+.ic v(xsar.ctlp_2_)=0
+.ic v(xsar.ctlp_3_)=0
+.ic v(xsar.ctlp_4_)=0
+.ic v(xsar.ctlp_5_)=0
+.ic v(xsar.ctlp_6_)=0
+.ic v(xsar.ctlp_7_)=0
+.ic v(xsar.ctlp_8_)=0
+.ic v(xsar.ctlp_9_)=0
+
+.ic v(xsar.ctln_0_)=0
+.ic v(xsar.ctln_1_)=0
+.ic v(xsar.ctln_2_)=0
+.ic v(xsar.ctln_3_)=0
+.ic v(xsar.ctln_4_)=0
+.ic v(xsar.ctln_5_)=0
+.ic v(xsar.ctln_6_)=0
+.ic v(xsar.ctln_7_)=0
+.ic v(xsar.ctln_8_)=0
+.ic v(xsar.ctln_9_)=0
+
+
+*.include /home/oe23ranan/lsi/mpw6/xschem/switches/bootstrapped_sw.sp
+*.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/dac/dac_mom.pex.sp
+*.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/sar/sar.pex.spice
+*.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/sar/sar_mom.pex.spice
+*.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/sar/sar_mim.pex.spice
+*.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/control/sarlogic.ext.spice
+*.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/sar/sar.pex.spice
+.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/sar/sar.ext.spice
+
+.param MC_SWITCH=0
+.param vin=0
+.param vcm=0.75
+.param vsigp="{vcm + vin/2}"
+.param vsign="{vcm - vin/2}"
+
+.tran 100e-9 68e-6 uic
+
+.control
+
+run
+
+meas tran d0 find v(xsar.xlogic.res0) at=62.5e-6
+meas tran d1 find v(xsar.xlogic.res1) at=62.5e-6
+meas tran d2 find v(xsar.xlogic.res2) at=62.5e-6
+meas tran d3 find v(xsar.xlogic.res3) at=62.5e-6
+meas tran d4 find v(xsar.xlogic.res4) at=62.5e-6
+meas tran d5 find v(xsar.xlogic.res5) at=62.5e-6
+meas tran d6 find v(xsar.xlogic.res6) at=62.5e-6
+meas tran d7 find v(xsar.xlogic.res7) at=62.5e-6
+meas tran d8 find v(xsar.xlogic.res8) at=62.5e-6
+meas tran d9 find v(xsar.xlogic.res9) at=62.5e-6
+
+meas tran vpmax max xsar.vp
+meas tran vpmin min xsar.vp
+meas tran vpend find v(xsar.vp) at=62.5e-6
+
+meas tran vnmax max xsar.vn
+meas tran vnmin min xsar.vn
+meas tran vnend find v(xsar.vn) at=62.5e-6
+
+meas tran i_inp_max max(i_inp_abs)
+
+* Current measurements
+let i_inp_abs  = abs(vinp#branch)
+let i_inn_abs  = abs(vinn#branch)
+let i_vcca_abs = abs(vcca#branch)
+let i_vccd_abs = abs(vccd#branch)
+
+meas tran i_inp_max  max i_inp_abs   from=1u
+meas tran i_inn_max  max i_inn_abs   from=1u
+meas tran i_vcca_max max i_vcca_abs  from=1u
+meas tran i_vccd_max max i_vccd_abs  from=1u
+
+
+print i_inp_max
+print i_inn_max
+print i_vcca_max
+print i_vccd_max
+
+print d0
+print d1
+print d2
+print d3
+print d4
+print d5
+print d6
+print d7
+print d8
+print d9
+
+print vpmax
+print vpmin
+
+print vnmax
+print vnmin
+
+print vpend
+print vnend
+
+echo Simulation Finished
+echo -------------------
+shell date
+echo -------------------
+
+.endc
+
+ * FET CORNERS
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_all.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_all.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_all.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
+
+* TT + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmax.spice
+
+* FF + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmax.spice
+
+
+* SS + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmax.spice
+
+* SF + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmax.spice
+
+* FS + R + C
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sar_10b/sar/sar.sym # of pins=12
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/sar/sar.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/sar/sar.sch
+.subckt sar  avdd dvdd dvss result_9_ result_8_ result_7_ result_6_ result_5_ result_4_ result_3_
++ result_2_ result_1_ result_0_ vinn avss clk vinp en valid cal rstn
+*.iopin avss
+*.iopin avdd
+*.iopin dvss
+*.iopin dvdd
+*.ipin vinp
+*.ipin vinn
+*.opin
+*+ result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_
+*.ipin clk
+*.ipin en
+*.opin valid
+*.ipin cal
+*.ipin rstn
+xlat dvdd comp net1 dvss outn outp latch
+xdn vn sample avdd avss vinn ctln_9_ ctln_8_ ctln_7_ ctln_6_ ctln_5_ ctln_4_ ctln_3_ ctln_2_ ctln_1_
++ ctln_0_ avss dac
+xdp vp sample avdd avss vinp ctlp_9_ ctlp_8_ ctlp_7_ ctlp_6_ ctlp_5_ ctlp_4_ ctlp_3_ ctlp_2_ ctlp_1_
++ ctlp_0_ avdd dac
+xcom avss avdd clkca outp vp outn vn trim_4_ trim_3_ trim_2_ trim_1_ trim_0_ trimb_4_ trimb_3_
++ trimb_2_ trimb_1_ trimb_0_ comparator
+XC1_57_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_56_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_55_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_54_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_53_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_52_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_51_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_50_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_49_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_48_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_47_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_46_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_45_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_44_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_43_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_42_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_41_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_40_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_39_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_38_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_37_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_36_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_35_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_34_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_33_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_32_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_31_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_30_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_29_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_28_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_27_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_26_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_25_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_24_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_23_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_22_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_21_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_20_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_19_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_18_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_17_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_16_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_15_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_14_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_13_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_12_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_11_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_10_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_9_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_8_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_7_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_6_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_5_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_4_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_3_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_2_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_1_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC1_0_ avdd avss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_13_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_12_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_11_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_10_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_9_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_8_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_7_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_6_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_5_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_4_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_3_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_2_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_1_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+XC2_0_ dvdd dvss sky130_fd_pr__cap_mim_m3_2 W=12 L=12 MF=1 m=1
+xlogic trim_4_ trim_3_ trim_2_ trim_1_ trim_0_ trimb_4_ trimb_3_ trimb_2_ trimb_1_ trimb_0_ clkc
++ comp cal en ctlp_9_ ctlp_8_ ctlp_7_ ctlp_6_ ctlp_5_ ctlp_4_ ctlp_3_ ctlp_2_ ctlp_1_ ctlp_0_ clk
++ result_9_ result_8_ result_7_ result_6_ result_5_ result_4_ result_3_ result_2_ result_1_ result_0_ ctln_9_
++ ctln_8_ ctln_7_ ctln_6_ ctln_5_ ctln_4_ ctln_3_ ctln_2_ ctln_1_ ctln_0_ valid rstn sample dvdd dvss
++ sarlogic
+xbuf avdd clkc clkca avss buffer_lvt
+.ends
+
+
+* expanding   symbol:  sar_10b/latch/latch.sym # of pins=6
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/latch/latch.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/latch/latch.sch
+.subckt latch  vdd Q Qn vss R S
+*.ipin S
+*.ipin R
+*.iopin vss
+*.iopin vdd
+*.opin Q
+*.opin Qn
+x1 vdd Qn Q vss inv_lvt
+x2 vdd Q Qn vss inv_lvt
+x3 vdd R net2 vss inv_lvt
+x4 vdd S net1 vss inv_lvt
+XM3 Qn net1 vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM1 Q net2 vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sar_10b/dac/dac.sym # of pins=7
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/dac/dac.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/dac/dac.sch
+.subckt dac  out sample vdd vss vin ctl_9_ ctl_8_ ctl_7_ ctl_6_ ctl_5_ ctl_4_ ctl_3_ ctl_2_ ctl_1_
++ ctl_0_ dum
+*.ipin vin
+*.ipin sample
+*.opin out
+*.ipin ctl_9_,ctl_8_,ctl_7_,ctl_6_,ctl_5_,ctl_4_,ctl_3_,ctl_2_,ctl_1_,ctl_0_
+*.ipin dum
+*.iopin vdd
+*.iopin vss
+xca out n6 n0 n5 n4 n2 ndum n3 n1 n7 n8 n9 carray
+xswt out sample vdd vin vss bootstrapped_sw_hv
+xidum dum vss vss vdd vdd ndum sky130_fd_sc_hd__inv_2
+xi0 ctl_0_ vss vss vdd vdd n0 sky130_fd_sc_hd__inv_2
+xi1 ctl_1_ vss vss vdd vdd n1 sky130_fd_sc_hd__inv_2
+xi2 ctl_2_ vss vss vdd vdd n2 sky130_fd_sc_hd__inv_2
+xi3 ctl_3_ vss vss vdd vdd n3 sky130_fd_sc_hd__inv_2
+xi4 ctl_4_ vss vss vdd vdd n4 sky130_fd_sc_hd__inv_2
+xi5 ctl_5_ vss vss vdd vdd n5 sky130_fd_sc_hd__inv_2
+xi6 ctl_6_ vss vss vdd vdd n6 sky130_fd_sc_hd__inv_2
+xi7 ctl_7_ vss vss vdd vdd n7 sky130_fd_sc_hd__inv_2
+xi8 ctl_8_ vss vss vdd vdd n8 sky130_fd_sc_hd__inv_2
+xi9 ctl_9_ vss vss vdd vdd n9 sky130_fd_sc_hd__inv_2
+.ends
+
+
+* expanding   symbol:  sar_10b/comparator/comparator.sym # of pins=9
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/comparator/comparator.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/comparator/comparator.sch
+.subckt comparator  vss vdd clk outp vp outn vn trim_4_ trim_3_ trim_2_ trim_1_ trim_0_ trimb_4_
++ trimb_3_ trimb_2_ trimb_1_ trimb_0_
+*.ipin vn
+*.ipin vp
+*.ipin clk
+*.iopin vdd
+*.iopin vss
+*.opin outp
+*.opin outn
+*.ipin trim_4_,trim_3_,trim_2_,trim_1_,trim_0_
+*.ipin trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_
+XMdiff diff clk vss vss sky130_fd_pr__nfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=2 m=2
+XMinn in vn diff vss sky130_fd_pr__nfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMinp ip vp diff vss sky130_fd_pr__nfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMl4 outp outn vdd vdd sky130_fd_pr__pfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMl3 outn outp vdd vdd sky130_fd_pr__pfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 outp clk vdd vdd sky130_fd_pr__pfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 outn clk vdd vdd sky130_fd_pr__pfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMl1 outn outp in vss sky130_fd_pr__nfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMl2 outp outn ip vss sky130_fd_pr__nfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 ip clk vdd vdd sky130_fd_pr__pfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM1 in clk vdd vdd sky130_fd_pr__pfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+x2 in trim_4_ trim_3_ trim_2_ trim_1_ trim_0_ vss trim
+x3 ip trimb_4_ trimb_3_ trimb_2_ trimb_1_ trimb_0_ vss trim
+.ends
+
+
+* expanding   symbol:  sar_10b/control/sarlogic.sym # of pins=15
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/control/sarlogic.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/control/sarlogic.sch
+.subckt sarlogic  trim_4_ trim_3_ trim_2_ trim_1_ trim_0_ trimb_4_ trimb_3_ trimb_2_ trimb_1_
++ trimb_0_ clkc comp cal en ctlp_9_ ctlp_8_ ctlp_7_ ctlp_6_ ctlp_5_ ctlp_4_ ctlp_3_ ctlp_2_ ctlp_1_ ctlp_0_
++ clk result_9_ result_8_ result_7_ result_6_ result_5_ result_4_ result_3_ result_2_ result_1_ result_0_
++ ctln_9_ ctln_8_ ctln_7_ ctln_6_ ctln_5_ ctln_4_ ctln_3_ ctln_2_ ctln_1_ ctln_0_ valid rstn sample dvdd dvss
+*.opin clkc
+*.opin ctlp_9_,ctlp_8_,ctlp_7_,ctlp_6_,ctlp_5_,ctlp_4_,ctlp_3_,ctlp_2_,ctlp_1_,ctlp_0_
+*.opin ctln_9_,ctln_8_,ctln_7_,ctln_6_,ctln_5_,ctln_4_,ctln_3_,ctln_2_,ctln_1_,ctln_0_
+*.opin sample
+*.opin trim_4_,trim_3_,trim_2_,trim_1_,trim_0_
+*.opin trimb_4_,trimb_3_,trimb_2_,trimb_1_,trimb_0_
+*.ipin comp
+*.ipin cal
+*.ipin en
+*.ipin clk
+*.ipin
+*+ result_9_,result_8_,result_7_,result_6_,result_5_,result_4_,result_3_,result_2_,result_1_,result_0_
+*.ipin valid
+*.ipin rstn
+*.iopin dvdd
+*.iopin dvss
+**** begin user architecture code
+.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/control/cmos_cells_digital.sp
+.include /home/oe23ranan/lsi/mpw6/xschem/sar_10b/control/sarlogic.sp
+
+**** end user architecture code
+**** begin user architecture code
+* Keep the sar_logic underscore name. Otherwise xschem gets confused.
+Xuut dclk drstn den dcomp dcal dvalid dres0 dres1 dres2 dres3 dres4 dres5 dres6 dres7 dres8 dres9
++ dsamp dctlp0 dctlp1 dctlp2 dctlp3 dctlp4 dctlp5 dctlp6 dctlp7 dctlp8 dctlp9 dctln0 dctln1 dctln2 dctln3
++ dctln4 dctln5 dctln6 dctln7 dctln8 dctln9 dtrim0 dtrim1 dtrim2 dtrim3 dtrim4 dtrimb0 dtrimb1 dtrimb2
++ dtrimb3 dtrimb4 dclkc sar_logic
+
+.model adc_buff adc_bridge(in_low = 0.2 in_high=0.8)
+.model dac_buff dac_bridge(out_high = 1.2)
+
+Aad [clk rstn en comp cal] [dclk drstn den dcomp dcal] adc_buff
+Ada1 [dctlp0 dctlp1 dctlp2 dctlp3 dctlp4 dctlp5 dctlp6 dctlp7 dctlp8 dctlp9] [ctlp_0_ ctlp_1_
++ ctlp_2_ ctlp_3_ ctlp_4_ ctlp_5_ ctlp_6_ ctlp_7_ ctlp_8_ ctlp_9_] dac_buff
+Ada2 [dctln0 dctln1 dctln2 dctln3 dctln4 dctln5 dctln6 dctln7 dctln8 dctln9] [ctln_0_ ctln_1_
++ ctln_2_ ctln_3_ ctln_4_ ctln_5_ ctln_6_ ctln_7_ ctln_8_ ctln_9_] dac_buff
+Ada3 [dres0 dres1 dres2 dres3 dres4 dres5 dres6 dres7 dres8 dres9 dsamp dclkc] [res0 res1 res2 res3
++ res4 res5 res6 res7 res8 res9 sample clkc] dac_buff
+Ada4 [dtrim4 dtrim3 dtrim2 dtrim1 dtrim0 dtrimb4 dtrimb3 dtrimb2 dtrimb1 dtrimb0] [trim_4_ trim_3_
++ trim_2_ trim_1_ trim_0_ trimb_4_ trimb_3_ trimb_2_ trimb_1_ trimb_0_ ] dac_buff
+
+**** end user architecture code
+.ends
+
+
+* expanding   symbol:  logic/buffer_lvt.sym # of pins=4
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/logic/buffer_lvt.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/logic/buffer_lvt.sch
+.subckt buffer_lvt  vdd in out vss
+*.iopin vdd
+*.iopin vss
+*.ipin in
+*.opin out
+XM1 net1 in vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net1 in vdd vdd sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 out net1 vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 out net1 vdd vdd sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  logic/inv_lvt.sym # of pins=4
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/logic/inv_lvt.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/logic/inv_lvt.sch
+.subckt inv_lvt  vdd in out vss
+*.iopin vdd
+*.iopin vss
+*.ipin in
+*.opin out
+XM1 out in vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 out in vdd vdd sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sar_10b/dac/carray.sym # of pins=12
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/dac/carray.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/dac/carray.sch
+.subckt carray  top n6 n0 n5 n4 n2 ndum n3 n1 n7 n8 n9
+*.iopin top
+*.iopin n7
+*.iopin n6
+*.iopin n5
+*.iopin n4
+*.iopin n2
+*.iopin n0
+*.iopin ndum
+*.iopin n3
+*.iopin n1
+*.iopin n8
+*.iopin n9
+xcdum top ndum unitcap
+xc0 top n0 unitcap
+xc1_1_ top n1 unitcap
+xc1_0_ top n1 unitcap
+xc2_3_ top n2 unitcap
+xc2_2_ top n2 unitcap
+xc2_1_ top n2 unitcap
+xc2_0_ top n2 unitcap
+xc3_7_ top n3 unitcap
+xc3_6_ top n3 unitcap
+xc3_5_ top n3 unitcap
+xc3_4_ top n3 unitcap
+xc3_3_ top n3 unitcap
+xc3_2_ top n3 unitcap
+xc3_1_ top n3 unitcap
+xc3_0_ top n3 unitcap
+xc4_15_ top n4 unitcap
+xc4_14_ top n4 unitcap
+xc4_13_ top n4 unitcap
+xc4_12_ top n4 unitcap
+xc4_11_ top n4 unitcap
+xc4_10_ top n4 unitcap
+xc4_9_ top n4 unitcap
+xc4_8_ top n4 unitcap
+xc4_7_ top n4 unitcap
+xc4_6_ top n4 unitcap
+xc4_5_ top n4 unitcap
+xc4_4_ top n4 unitcap
+xc4_3_ top n4 unitcap
+xc4_2_ top n4 unitcap
+xc4_1_ top n4 unitcap
+xc4_0_ top n4 unitcap
+xc5_31_ top n5 unitcap
+xc5_30_ top n5 unitcap
+xc5_29_ top n5 unitcap
+xc5_28_ top n5 unitcap
+xc5_27_ top n5 unitcap
+xc5_26_ top n5 unitcap
+xc5_25_ top n5 unitcap
+xc5_24_ top n5 unitcap
+xc5_23_ top n5 unitcap
+xc5_22_ top n5 unitcap
+xc5_21_ top n5 unitcap
+xc5_20_ top n5 unitcap
+xc5_19_ top n5 unitcap
+xc5_18_ top n5 unitcap
+xc5_17_ top n5 unitcap
+xc5_16_ top n5 unitcap
+xc5_15_ top n5 unitcap
+xc5_14_ top n5 unitcap
+xc5_13_ top n5 unitcap
+xc5_12_ top n5 unitcap
+xc5_11_ top n5 unitcap
+xc5_10_ top n5 unitcap
+xc5_9_ top n5 unitcap
+xc5_8_ top n5 unitcap
+xc5_7_ top n5 unitcap
+xc5_6_ top n5 unitcap
+xc5_5_ top n5 unitcap
+xc5_4_ top n5 unitcap
+xc5_3_ top n5 unitcap
+xc5_2_ top n5 unitcap
+xc5_1_ top n5 unitcap
+xc5_0_ top n5 unitcap
+xc6_63_ top n6 unitcap
+xc6_62_ top n6 unitcap
+xc6_61_ top n6 unitcap
+xc6_60_ top n6 unitcap
+xc6_59_ top n6 unitcap
+xc6_58_ top n6 unitcap
+xc6_57_ top n6 unitcap
+xc6_56_ top n6 unitcap
+xc6_55_ top n6 unitcap
+xc6_54_ top n6 unitcap
+xc6_53_ top n6 unitcap
+xc6_52_ top n6 unitcap
+xc6_51_ top n6 unitcap
+xc6_50_ top n6 unitcap
+xc6_49_ top n6 unitcap
+xc6_48_ top n6 unitcap
+xc6_47_ top n6 unitcap
+xc6_46_ top n6 unitcap
+xc6_45_ top n6 unitcap
+xc6_44_ top n6 unitcap
+xc6_43_ top n6 unitcap
+xc6_42_ top n6 unitcap
+xc6_41_ top n6 unitcap
+xc6_40_ top n6 unitcap
+xc6_39_ top n6 unitcap
+xc6_38_ top n6 unitcap
+xc6_37_ top n6 unitcap
+xc6_36_ top n6 unitcap
+xc6_35_ top n6 unitcap
+xc6_34_ top n6 unitcap
+xc6_33_ top n6 unitcap
+xc6_32_ top n6 unitcap
+xc6_31_ top n6 unitcap
+xc6_30_ top n6 unitcap
+xc6_29_ top n6 unitcap
+xc6_28_ top n6 unitcap
+xc6_27_ top n6 unitcap
+xc6_26_ top n6 unitcap
+xc6_25_ top n6 unitcap
+xc6_24_ top n6 unitcap
+xc6_23_ top n6 unitcap
+xc6_22_ top n6 unitcap
+xc6_21_ top n6 unitcap
+xc6_20_ top n6 unitcap
+xc6_19_ top n6 unitcap
+xc6_18_ top n6 unitcap
+xc6_17_ top n6 unitcap
+xc6_16_ top n6 unitcap
+xc6_15_ top n6 unitcap
+xc6_14_ top n6 unitcap
+xc6_13_ top n6 unitcap
+xc6_12_ top n6 unitcap
+xc6_11_ top n6 unitcap
+xc6_10_ top n6 unitcap
+xc6_9_ top n6 unitcap
+xc6_8_ top n6 unitcap
+xc6_7_ top n6 unitcap
+xc6_6_ top n6 unitcap
+xc6_5_ top n6 unitcap
+xc6_4_ top n6 unitcap
+xc6_3_ top n6 unitcap
+xc6_2_ top n6 unitcap
+xc6_1_ top n6 unitcap
+xc6_0_ top n6 unitcap
+xc7_127_ top n7 unitcap
+xc7_126_ top n7 unitcap
+xc7_125_ top n7 unitcap
+xc7_124_ top n7 unitcap
+xc7_123_ top n7 unitcap
+xc7_122_ top n7 unitcap
+xc7_121_ top n7 unitcap
+xc7_120_ top n7 unitcap
+xc7_119_ top n7 unitcap
+xc7_118_ top n7 unitcap
+xc7_117_ top n7 unitcap
+xc7_116_ top n7 unitcap
+xc7_115_ top n7 unitcap
+xc7_114_ top n7 unitcap
+xc7_113_ top n7 unitcap
+xc7_112_ top n7 unitcap
+xc7_111_ top n7 unitcap
+xc7_110_ top n7 unitcap
+xc7_109_ top n7 unitcap
+xc7_108_ top n7 unitcap
+xc7_107_ top n7 unitcap
+xc7_106_ top n7 unitcap
+xc7_105_ top n7 unitcap
+xc7_104_ top n7 unitcap
+xc7_103_ top n7 unitcap
+xc7_102_ top n7 unitcap
+xc7_101_ top n7 unitcap
+xc7_100_ top n7 unitcap
+xc7_99_ top n7 unitcap
+xc7_98_ top n7 unitcap
+xc7_97_ top n7 unitcap
+xc7_96_ top n7 unitcap
+xc7_95_ top n7 unitcap
+xc7_94_ top n7 unitcap
+xc7_93_ top n7 unitcap
+xc7_92_ top n7 unitcap
+xc7_91_ top n7 unitcap
+xc7_90_ top n7 unitcap
+xc7_89_ top n7 unitcap
+xc7_88_ top n7 unitcap
+xc7_87_ top n7 unitcap
+xc7_86_ top n7 unitcap
+xc7_85_ top n7 unitcap
+xc7_84_ top n7 unitcap
+xc7_83_ top n7 unitcap
+xc7_82_ top n7 unitcap
+xc7_81_ top n7 unitcap
+xc7_80_ top n7 unitcap
+xc7_79_ top n7 unitcap
+xc7_78_ top n7 unitcap
+xc7_77_ top n7 unitcap
+xc7_76_ top n7 unitcap
+xc7_75_ top n7 unitcap
+xc7_74_ top n7 unitcap
+xc7_73_ top n7 unitcap
+xc7_72_ top n7 unitcap
+xc7_71_ top n7 unitcap
+xc7_70_ top n7 unitcap
+xc7_69_ top n7 unitcap
+xc7_68_ top n7 unitcap
+xc7_67_ top n7 unitcap
+xc7_66_ top n7 unitcap
+xc7_65_ top n7 unitcap
+xc7_64_ top n7 unitcap
+xc7_63_ top n7 unitcap
+xc7_62_ top n7 unitcap
+xc7_61_ top n7 unitcap
+xc7_60_ top n7 unitcap
+xc7_59_ top n7 unitcap
+xc7_58_ top n7 unitcap
+xc7_57_ top n7 unitcap
+xc7_56_ top n7 unitcap
+xc7_55_ top n7 unitcap
+xc7_54_ top n7 unitcap
+xc7_53_ top n7 unitcap
+xc7_52_ top n7 unitcap
+xc7_51_ top n7 unitcap
+xc7_50_ top n7 unitcap
+xc7_49_ top n7 unitcap
+xc7_48_ top n7 unitcap
+xc7_47_ top n7 unitcap
+xc7_46_ top n7 unitcap
+xc7_45_ top n7 unitcap
+xc7_44_ top n7 unitcap
+xc7_43_ top n7 unitcap
+xc7_42_ top n7 unitcap
+xc7_41_ top n7 unitcap
+xc7_40_ top n7 unitcap
+xc7_39_ top n7 unitcap
+xc7_38_ top n7 unitcap
+xc7_37_ top n7 unitcap
+xc7_36_ top n7 unitcap
+xc7_35_ top n7 unitcap
+xc7_34_ top n7 unitcap
+xc7_33_ top n7 unitcap
+xc7_32_ top n7 unitcap
+xc7_31_ top n7 unitcap
+xc7_30_ top n7 unitcap
+xc7_29_ top n7 unitcap
+xc7_28_ top n7 unitcap
+xc7_27_ top n7 unitcap
+xc7_26_ top n7 unitcap
+xc7_25_ top n7 unitcap
+xc7_24_ top n7 unitcap
+xc7_23_ top n7 unitcap
+xc7_22_ top n7 unitcap
+xc7_21_ top n7 unitcap
+xc7_20_ top n7 unitcap
+xc7_19_ top n7 unitcap
+xc7_18_ top n7 unitcap
+xc7_17_ top n7 unitcap
+xc7_16_ top n7 unitcap
+xc7_15_ top n7 unitcap
+xc7_14_ top n7 unitcap
+xc7_13_ top n7 unitcap
+xc7_12_ top n7 unitcap
+xc7_11_ top n7 unitcap
+xc7_10_ top n7 unitcap
+xc7_9_ top n7 unitcap
+xc7_8_ top n7 unitcap
+xc7_7_ top n7 unitcap
+xc7_6_ top n7 unitcap
+xc7_5_ top n7 unitcap
+xc7_4_ top n7 unitcap
+xc7_3_ top n7 unitcap
+xc7_2_ top n7 unitcap
+xc7_1_ top n7 unitcap
+xc7_0_ top n7 unitcap
+xc8_255_ top n8 unitcap
+xc8_254_ top n8 unitcap
+xc8_253_ top n8 unitcap
+xc8_252_ top n8 unitcap
+xc8_251_ top n8 unitcap
+xc8_250_ top n8 unitcap
+xc8_249_ top n8 unitcap
+xc8_248_ top n8 unitcap
+xc8_247_ top n8 unitcap
+xc8_246_ top n8 unitcap
+xc8_245_ top n8 unitcap
+xc8_244_ top n8 unitcap
+xc8_243_ top n8 unitcap
+xc8_242_ top n8 unitcap
+xc8_241_ top n8 unitcap
+xc8_240_ top n8 unitcap
+xc8_239_ top n8 unitcap
+xc8_238_ top n8 unitcap
+xc8_237_ top n8 unitcap
+xc8_236_ top n8 unitcap
+xc8_235_ top n8 unitcap
+xc8_234_ top n8 unitcap
+xc8_233_ top n8 unitcap
+xc8_232_ top n8 unitcap
+xc8_231_ top n8 unitcap
+xc8_230_ top n8 unitcap
+xc8_229_ top n8 unitcap
+xc8_228_ top n8 unitcap
+xc8_227_ top n8 unitcap
+xc8_226_ top n8 unitcap
+xc8_225_ top n8 unitcap
+xc8_224_ top n8 unitcap
+xc8_223_ top n8 unitcap
+xc8_222_ top n8 unitcap
+xc8_221_ top n8 unitcap
+xc8_220_ top n8 unitcap
+xc8_219_ top n8 unitcap
+xc8_218_ top n8 unitcap
+xc8_217_ top n8 unitcap
+xc8_216_ top n8 unitcap
+xc8_215_ top n8 unitcap
+xc8_214_ top n8 unitcap
+xc8_213_ top n8 unitcap
+xc8_212_ top n8 unitcap
+xc8_211_ top n8 unitcap
+xc8_210_ top n8 unitcap
+xc8_209_ top n8 unitcap
+xc8_208_ top n8 unitcap
+xc8_207_ top n8 unitcap
+xc8_206_ top n8 unitcap
+xc8_205_ top n8 unitcap
+xc8_204_ top n8 unitcap
+xc8_203_ top n8 unitcap
+xc8_202_ top n8 unitcap
+xc8_201_ top n8 unitcap
+xc8_200_ top n8 unitcap
+xc8_199_ top n8 unitcap
+xc8_198_ top n8 unitcap
+xc8_197_ top n8 unitcap
+xc8_196_ top n8 unitcap
+xc8_195_ top n8 unitcap
+xc8_194_ top n8 unitcap
+xc8_193_ top n8 unitcap
+xc8_192_ top n8 unitcap
+xc8_191_ top n8 unitcap
+xc8_190_ top n8 unitcap
+xc8_189_ top n8 unitcap
+xc8_188_ top n8 unitcap
+xc8_187_ top n8 unitcap
+xc8_186_ top n8 unitcap
+xc8_185_ top n8 unitcap
+xc8_184_ top n8 unitcap
+xc8_183_ top n8 unitcap
+xc8_182_ top n8 unitcap
+xc8_181_ top n8 unitcap
+xc8_180_ top n8 unitcap
+xc8_179_ top n8 unitcap
+xc8_178_ top n8 unitcap
+xc8_177_ top n8 unitcap
+xc8_176_ top n8 unitcap
+xc8_175_ top n8 unitcap
+xc8_174_ top n8 unitcap
+xc8_173_ top n8 unitcap
+xc8_172_ top n8 unitcap
+xc8_171_ top n8 unitcap
+xc8_170_ top n8 unitcap
+xc8_169_ top n8 unitcap
+xc8_168_ top n8 unitcap
+xc8_167_ top n8 unitcap
+xc8_166_ top n8 unitcap
+xc8_165_ top n8 unitcap
+xc8_164_ top n8 unitcap
+xc8_163_ top n8 unitcap
+xc8_162_ top n8 unitcap
+xc8_161_ top n8 unitcap
+xc8_160_ top n8 unitcap
+xc8_159_ top n8 unitcap
+xc8_158_ top n8 unitcap
+xc8_157_ top n8 unitcap
+xc8_156_ top n8 unitcap
+xc8_155_ top n8 unitcap
+xc8_154_ top n8 unitcap
+xc8_153_ top n8 unitcap
+xc8_152_ top n8 unitcap
+xc8_151_ top n8 unitcap
+xc8_150_ top n8 unitcap
+xc8_149_ top n8 unitcap
+xc8_148_ top n8 unitcap
+xc8_147_ top n8 unitcap
+xc8_146_ top n8 unitcap
+xc8_145_ top n8 unitcap
+xc8_144_ top n8 unitcap
+xc8_143_ top n8 unitcap
+xc8_142_ top n8 unitcap
+xc8_141_ top n8 unitcap
+xc8_140_ top n8 unitcap
+xc8_139_ top n8 unitcap
+xc8_138_ top n8 unitcap
+xc8_137_ top n8 unitcap
+xc8_136_ top n8 unitcap
+xc8_135_ top n8 unitcap
+xc8_134_ top n8 unitcap
+xc8_133_ top n8 unitcap
+xc8_132_ top n8 unitcap
+xc8_131_ top n8 unitcap
+xc8_130_ top n8 unitcap
+xc8_129_ top n8 unitcap
+xc8_128_ top n8 unitcap
+xc8_127_ top n8 unitcap
+xc8_126_ top n8 unitcap
+xc8_125_ top n8 unitcap
+xc8_124_ top n8 unitcap
+xc8_123_ top n8 unitcap
+xc8_122_ top n8 unitcap
+xc8_121_ top n8 unitcap
+xc8_120_ top n8 unitcap
+xc8_119_ top n8 unitcap
+xc8_118_ top n8 unitcap
+xc8_117_ top n8 unitcap
+xc8_116_ top n8 unitcap
+xc8_115_ top n8 unitcap
+xc8_114_ top n8 unitcap
+xc8_113_ top n8 unitcap
+xc8_112_ top n8 unitcap
+xc8_111_ top n8 unitcap
+xc8_110_ top n8 unitcap
+xc8_109_ top n8 unitcap
+xc8_108_ top n8 unitcap
+xc8_107_ top n8 unitcap
+xc8_106_ top n8 unitcap
+xc8_105_ top n8 unitcap
+xc8_104_ top n8 unitcap
+xc8_103_ top n8 unitcap
+xc8_102_ top n8 unitcap
+xc8_101_ top n8 unitcap
+xc8_100_ top n8 unitcap
+xc8_99_ top n8 unitcap
+xc8_98_ top n8 unitcap
+xc8_97_ top n8 unitcap
+xc8_96_ top n8 unitcap
+xc8_95_ top n8 unitcap
+xc8_94_ top n8 unitcap
+xc8_93_ top n8 unitcap
+xc8_92_ top n8 unitcap
+xc8_91_ top n8 unitcap
+xc8_90_ top n8 unitcap
+xc8_89_ top n8 unitcap
+xc8_88_ top n8 unitcap
+xc8_87_ top n8 unitcap
+xc8_86_ top n8 unitcap
+xc8_85_ top n8 unitcap
+xc8_84_ top n8 unitcap
+xc8_83_ top n8 unitcap
+xc8_82_ top n8 unitcap
+xc8_81_ top n8 unitcap
+xc8_80_ top n8 unitcap
+xc8_79_ top n8 unitcap
+xc8_78_ top n8 unitcap
+xc8_77_ top n8 unitcap
+xc8_76_ top n8 unitcap
+xc8_75_ top n8 unitcap
+xc8_74_ top n8 unitcap
+xc8_73_ top n8 unitcap
+xc8_72_ top n8 unitcap
+xc8_71_ top n8 unitcap
+xc8_70_ top n8 unitcap
+xc8_69_ top n8 unitcap
+xc8_68_ top n8 unitcap
+xc8_67_ top n8 unitcap
+xc8_66_ top n8 unitcap
+xc8_65_ top n8 unitcap
+xc8_64_ top n8 unitcap
+xc8_63_ top n8 unitcap
+xc8_62_ top n8 unitcap
+xc8_61_ top n8 unitcap
+xc8_60_ top n8 unitcap
+xc8_59_ top n8 unitcap
+xc8_58_ top n8 unitcap
+xc8_57_ top n8 unitcap
+xc8_56_ top n8 unitcap
+xc8_55_ top n8 unitcap
+xc8_54_ top n8 unitcap
+xc8_53_ top n8 unitcap
+xc8_52_ top n8 unitcap
+xc8_51_ top n8 unitcap
+xc8_50_ top n8 unitcap
+xc8_49_ top n8 unitcap
+xc8_48_ top n8 unitcap
+xc8_47_ top n8 unitcap
+xc8_46_ top n8 unitcap
+xc8_45_ top n8 unitcap
+xc8_44_ top n8 unitcap
+xc8_43_ top n8 unitcap
+xc8_42_ top n8 unitcap
+xc8_41_ top n8 unitcap
+xc8_40_ top n8 unitcap
+xc8_39_ top n8 unitcap
+xc8_38_ top n8 unitcap
+xc8_37_ top n8 unitcap
+xc8_36_ top n8 unitcap
+xc8_35_ top n8 unitcap
+xc8_34_ top n8 unitcap
+xc8_33_ top n8 unitcap
+xc8_32_ top n8 unitcap
+xc8_31_ top n8 unitcap
+xc8_30_ top n8 unitcap
+xc8_29_ top n8 unitcap
+xc8_28_ top n8 unitcap
+xc8_27_ top n8 unitcap
+xc8_26_ top n8 unitcap
+xc8_25_ top n8 unitcap
+xc8_24_ top n8 unitcap
+xc8_23_ top n8 unitcap
+xc8_22_ top n8 unitcap
+xc8_21_ top n8 unitcap
+xc8_20_ top n8 unitcap
+xc8_19_ top n8 unitcap
+xc8_18_ top n8 unitcap
+xc8_17_ top n8 unitcap
+xc8_16_ top n8 unitcap
+xc8_15_ top n8 unitcap
+xc8_14_ top n8 unitcap
+xc8_13_ top n8 unitcap
+xc8_12_ top n8 unitcap
+xc8_11_ top n8 unitcap
+xc8_10_ top n8 unitcap
+xc8_9_ top n8 unitcap
+xc8_8_ top n8 unitcap
+xc8_7_ top n8 unitcap
+xc8_6_ top n8 unitcap
+xc8_5_ top n8 unitcap
+xc8_4_ top n8 unitcap
+xc8_3_ top n8 unitcap
+xc8_2_ top n8 unitcap
+xc8_1_ top n8 unitcap
+xc8_0_ top n8 unitcap
+xc9_511_ top n9 unitcap
+xc9_510_ top n9 unitcap
+xc9_509_ top n9 unitcap
+xc9_508_ top n9 unitcap
+xc9_507_ top n9 unitcap
+xc9_506_ top n9 unitcap
+xc9_505_ top n9 unitcap
+xc9_504_ top n9 unitcap
+xc9_503_ top n9 unitcap
+xc9_502_ top n9 unitcap
+xc9_501_ top n9 unitcap
+xc9_500_ top n9 unitcap
+xc9_499_ top n9 unitcap
+xc9_498_ top n9 unitcap
+xc9_497_ top n9 unitcap
+xc9_496_ top n9 unitcap
+xc9_495_ top n9 unitcap
+xc9_494_ top n9 unitcap
+xc9_493_ top n9 unitcap
+xc9_492_ top n9 unitcap
+xc9_491_ top n9 unitcap
+xc9_490_ top n9 unitcap
+xc9_489_ top n9 unitcap
+xc9_488_ top n9 unitcap
+xc9_487_ top n9 unitcap
+xc9_486_ top n9 unitcap
+xc9_485_ top n9 unitcap
+xc9_484_ top n9 unitcap
+xc9_483_ top n9 unitcap
+xc9_482_ top n9 unitcap
+xc9_481_ top n9 unitcap
+xc9_480_ top n9 unitcap
+xc9_479_ top n9 unitcap
+xc9_478_ top n9 unitcap
+xc9_477_ top n9 unitcap
+xc9_476_ top n9 unitcap
+xc9_475_ top n9 unitcap
+xc9_474_ top n9 unitcap
+xc9_473_ top n9 unitcap
+xc9_472_ top n9 unitcap
+xc9_471_ top n9 unitcap
+xc9_470_ top n9 unitcap
+xc9_469_ top n9 unitcap
+xc9_468_ top n9 unitcap
+xc9_467_ top n9 unitcap
+xc9_466_ top n9 unitcap
+xc9_465_ top n9 unitcap
+xc9_464_ top n9 unitcap
+xc9_463_ top n9 unitcap
+xc9_462_ top n9 unitcap
+xc9_461_ top n9 unitcap
+xc9_460_ top n9 unitcap
+xc9_459_ top n9 unitcap
+xc9_458_ top n9 unitcap
+xc9_457_ top n9 unitcap
+xc9_456_ top n9 unitcap
+xc9_455_ top n9 unitcap
+xc9_454_ top n9 unitcap
+xc9_453_ top n9 unitcap
+xc9_452_ top n9 unitcap
+xc9_451_ top n9 unitcap
+xc9_450_ top n9 unitcap
+xc9_449_ top n9 unitcap
+xc9_448_ top n9 unitcap
+xc9_447_ top n9 unitcap
+xc9_446_ top n9 unitcap
+xc9_445_ top n9 unitcap
+xc9_444_ top n9 unitcap
+xc9_443_ top n9 unitcap
+xc9_442_ top n9 unitcap
+xc9_441_ top n9 unitcap
+xc9_440_ top n9 unitcap
+xc9_439_ top n9 unitcap
+xc9_438_ top n9 unitcap
+xc9_437_ top n9 unitcap
+xc9_436_ top n9 unitcap
+xc9_435_ top n9 unitcap
+xc9_434_ top n9 unitcap
+xc9_433_ top n9 unitcap
+xc9_432_ top n9 unitcap
+xc9_431_ top n9 unitcap
+xc9_430_ top n9 unitcap
+xc9_429_ top n9 unitcap
+xc9_428_ top n9 unitcap
+xc9_427_ top n9 unitcap
+xc9_426_ top n9 unitcap
+xc9_425_ top n9 unitcap
+xc9_424_ top n9 unitcap
+xc9_423_ top n9 unitcap
+xc9_422_ top n9 unitcap
+xc9_421_ top n9 unitcap
+xc9_420_ top n9 unitcap
+xc9_419_ top n9 unitcap
+xc9_418_ top n9 unitcap
+xc9_417_ top n9 unitcap
+xc9_416_ top n9 unitcap
+xc9_415_ top n9 unitcap
+xc9_414_ top n9 unitcap
+xc9_413_ top n9 unitcap
+xc9_412_ top n9 unitcap
+xc9_411_ top n9 unitcap
+xc9_410_ top n9 unitcap
+xc9_409_ top n9 unitcap
+xc9_408_ top n9 unitcap
+xc9_407_ top n9 unitcap
+xc9_406_ top n9 unitcap
+xc9_405_ top n9 unitcap
+xc9_404_ top n9 unitcap
+xc9_403_ top n9 unitcap
+xc9_402_ top n9 unitcap
+xc9_401_ top n9 unitcap
+xc9_400_ top n9 unitcap
+xc9_399_ top n9 unitcap
+xc9_398_ top n9 unitcap
+xc9_397_ top n9 unitcap
+xc9_396_ top n9 unitcap
+xc9_395_ top n9 unitcap
+xc9_394_ top n9 unitcap
+xc9_393_ top n9 unitcap
+xc9_392_ top n9 unitcap
+xc9_391_ top n9 unitcap
+xc9_390_ top n9 unitcap
+xc9_389_ top n9 unitcap
+xc9_388_ top n9 unitcap
+xc9_387_ top n9 unitcap
+xc9_386_ top n9 unitcap
+xc9_385_ top n9 unitcap
+xc9_384_ top n9 unitcap
+xc9_383_ top n9 unitcap
+xc9_382_ top n9 unitcap
+xc9_381_ top n9 unitcap
+xc9_380_ top n9 unitcap
+xc9_379_ top n9 unitcap
+xc9_378_ top n9 unitcap
+xc9_377_ top n9 unitcap
+xc9_376_ top n9 unitcap
+xc9_375_ top n9 unitcap
+xc9_374_ top n9 unitcap
+xc9_373_ top n9 unitcap
+xc9_372_ top n9 unitcap
+xc9_371_ top n9 unitcap
+xc9_370_ top n9 unitcap
+xc9_369_ top n9 unitcap
+xc9_368_ top n9 unitcap
+xc9_367_ top n9 unitcap
+xc9_366_ top n9 unitcap
+xc9_365_ top n9 unitcap
+xc9_364_ top n9 unitcap
+xc9_363_ top n9 unitcap
+xc9_362_ top n9 unitcap
+xc9_361_ top n9 unitcap
+xc9_360_ top n9 unitcap
+xc9_359_ top n9 unitcap
+xc9_358_ top n9 unitcap
+xc9_357_ top n9 unitcap
+xc9_356_ top n9 unitcap
+xc9_355_ top n9 unitcap
+xc9_354_ top n9 unitcap
+xc9_353_ top n9 unitcap
+xc9_352_ top n9 unitcap
+xc9_351_ top n9 unitcap
+xc9_350_ top n9 unitcap
+xc9_349_ top n9 unitcap
+xc9_348_ top n9 unitcap
+xc9_347_ top n9 unitcap
+xc9_346_ top n9 unitcap
+xc9_345_ top n9 unitcap
+xc9_344_ top n9 unitcap
+xc9_343_ top n9 unitcap
+xc9_342_ top n9 unitcap
+xc9_341_ top n9 unitcap
+xc9_340_ top n9 unitcap
+xc9_339_ top n9 unitcap
+xc9_338_ top n9 unitcap
+xc9_337_ top n9 unitcap
+xc9_336_ top n9 unitcap
+xc9_335_ top n9 unitcap
+xc9_334_ top n9 unitcap
+xc9_333_ top n9 unitcap
+xc9_332_ top n9 unitcap
+xc9_331_ top n9 unitcap
+xc9_330_ top n9 unitcap
+xc9_329_ top n9 unitcap
+xc9_328_ top n9 unitcap
+xc9_327_ top n9 unitcap
+xc9_326_ top n9 unitcap
+xc9_325_ top n9 unitcap
+xc9_324_ top n9 unitcap
+xc9_323_ top n9 unitcap
+xc9_322_ top n9 unitcap
+xc9_321_ top n9 unitcap
+xc9_320_ top n9 unitcap
+xc9_319_ top n9 unitcap
+xc9_318_ top n9 unitcap
+xc9_317_ top n9 unitcap
+xc9_316_ top n9 unitcap
+xc9_315_ top n9 unitcap
+xc9_314_ top n9 unitcap
+xc9_313_ top n9 unitcap
+xc9_312_ top n9 unitcap
+xc9_311_ top n9 unitcap
+xc9_310_ top n9 unitcap
+xc9_309_ top n9 unitcap
+xc9_308_ top n9 unitcap
+xc9_307_ top n9 unitcap
+xc9_306_ top n9 unitcap
+xc9_305_ top n9 unitcap
+xc9_304_ top n9 unitcap
+xc9_303_ top n9 unitcap
+xc9_302_ top n9 unitcap
+xc9_301_ top n9 unitcap
+xc9_300_ top n9 unitcap
+xc9_299_ top n9 unitcap
+xc9_298_ top n9 unitcap
+xc9_297_ top n9 unitcap
+xc9_296_ top n9 unitcap
+xc9_295_ top n9 unitcap
+xc9_294_ top n9 unitcap
+xc9_293_ top n9 unitcap
+xc9_292_ top n9 unitcap
+xc9_291_ top n9 unitcap
+xc9_290_ top n9 unitcap
+xc9_289_ top n9 unitcap
+xc9_288_ top n9 unitcap
+xc9_287_ top n9 unitcap
+xc9_286_ top n9 unitcap
+xc9_285_ top n9 unitcap
+xc9_284_ top n9 unitcap
+xc9_283_ top n9 unitcap
+xc9_282_ top n9 unitcap
+xc9_281_ top n9 unitcap
+xc9_280_ top n9 unitcap
+xc9_279_ top n9 unitcap
+xc9_278_ top n9 unitcap
+xc9_277_ top n9 unitcap
+xc9_276_ top n9 unitcap
+xc9_275_ top n9 unitcap
+xc9_274_ top n9 unitcap
+xc9_273_ top n9 unitcap
+xc9_272_ top n9 unitcap
+xc9_271_ top n9 unitcap
+xc9_270_ top n9 unitcap
+xc9_269_ top n9 unitcap
+xc9_268_ top n9 unitcap
+xc9_267_ top n9 unitcap
+xc9_266_ top n9 unitcap
+xc9_265_ top n9 unitcap
+xc9_264_ top n9 unitcap
+xc9_263_ top n9 unitcap
+xc9_262_ top n9 unitcap
+xc9_261_ top n9 unitcap
+xc9_260_ top n9 unitcap
+xc9_259_ top n9 unitcap
+xc9_258_ top n9 unitcap
+xc9_257_ top n9 unitcap
+xc9_256_ top n9 unitcap
+xc9_255_ top n9 unitcap
+xc9_254_ top n9 unitcap
+xc9_253_ top n9 unitcap
+xc9_252_ top n9 unitcap
+xc9_251_ top n9 unitcap
+xc9_250_ top n9 unitcap
+xc9_249_ top n9 unitcap
+xc9_248_ top n9 unitcap
+xc9_247_ top n9 unitcap
+xc9_246_ top n9 unitcap
+xc9_245_ top n9 unitcap
+xc9_244_ top n9 unitcap
+xc9_243_ top n9 unitcap
+xc9_242_ top n9 unitcap
+xc9_241_ top n9 unitcap
+xc9_240_ top n9 unitcap
+xc9_239_ top n9 unitcap
+xc9_238_ top n9 unitcap
+xc9_237_ top n9 unitcap
+xc9_236_ top n9 unitcap
+xc9_235_ top n9 unitcap
+xc9_234_ top n9 unitcap
+xc9_233_ top n9 unitcap
+xc9_232_ top n9 unitcap
+xc9_231_ top n9 unitcap
+xc9_230_ top n9 unitcap
+xc9_229_ top n9 unitcap
+xc9_228_ top n9 unitcap
+xc9_227_ top n9 unitcap
+xc9_226_ top n9 unitcap
+xc9_225_ top n9 unitcap
+xc9_224_ top n9 unitcap
+xc9_223_ top n9 unitcap
+xc9_222_ top n9 unitcap
+xc9_221_ top n9 unitcap
+xc9_220_ top n9 unitcap
+xc9_219_ top n9 unitcap
+xc9_218_ top n9 unitcap
+xc9_217_ top n9 unitcap
+xc9_216_ top n9 unitcap
+xc9_215_ top n9 unitcap
+xc9_214_ top n9 unitcap
+xc9_213_ top n9 unitcap
+xc9_212_ top n9 unitcap
+xc9_211_ top n9 unitcap
+xc9_210_ top n9 unitcap
+xc9_209_ top n9 unitcap
+xc9_208_ top n9 unitcap
+xc9_207_ top n9 unitcap
+xc9_206_ top n9 unitcap
+xc9_205_ top n9 unitcap
+xc9_204_ top n9 unitcap
+xc9_203_ top n9 unitcap
+xc9_202_ top n9 unitcap
+xc9_201_ top n9 unitcap
+xc9_200_ top n9 unitcap
+xc9_199_ top n9 unitcap
+xc9_198_ top n9 unitcap
+xc9_197_ top n9 unitcap
+xc9_196_ top n9 unitcap
+xc9_195_ top n9 unitcap
+xc9_194_ top n9 unitcap
+xc9_193_ top n9 unitcap
+xc9_192_ top n9 unitcap
+xc9_191_ top n9 unitcap
+xc9_190_ top n9 unitcap
+xc9_189_ top n9 unitcap
+xc9_188_ top n9 unitcap
+xc9_187_ top n9 unitcap
+xc9_186_ top n9 unitcap
+xc9_185_ top n9 unitcap
+xc9_184_ top n9 unitcap
+xc9_183_ top n9 unitcap
+xc9_182_ top n9 unitcap
+xc9_181_ top n9 unitcap
+xc9_180_ top n9 unitcap
+xc9_179_ top n9 unitcap
+xc9_178_ top n9 unitcap
+xc9_177_ top n9 unitcap
+xc9_176_ top n9 unitcap
+xc9_175_ top n9 unitcap
+xc9_174_ top n9 unitcap
+xc9_173_ top n9 unitcap
+xc9_172_ top n9 unitcap
+xc9_171_ top n9 unitcap
+xc9_170_ top n9 unitcap
+xc9_169_ top n9 unitcap
+xc9_168_ top n9 unitcap
+xc9_167_ top n9 unitcap
+xc9_166_ top n9 unitcap
+xc9_165_ top n9 unitcap
+xc9_164_ top n9 unitcap
+xc9_163_ top n9 unitcap
+xc9_162_ top n9 unitcap
+xc9_161_ top n9 unitcap
+xc9_160_ top n9 unitcap
+xc9_159_ top n9 unitcap
+xc9_158_ top n9 unitcap
+xc9_157_ top n9 unitcap
+xc9_156_ top n9 unitcap
+xc9_155_ top n9 unitcap
+xc9_154_ top n9 unitcap
+xc9_153_ top n9 unitcap
+xc9_152_ top n9 unitcap
+xc9_151_ top n9 unitcap
+xc9_150_ top n9 unitcap
+xc9_149_ top n9 unitcap
+xc9_148_ top n9 unitcap
+xc9_147_ top n9 unitcap
+xc9_146_ top n9 unitcap
+xc9_145_ top n9 unitcap
+xc9_144_ top n9 unitcap
+xc9_143_ top n9 unitcap
+xc9_142_ top n9 unitcap
+xc9_141_ top n9 unitcap
+xc9_140_ top n9 unitcap
+xc9_139_ top n9 unitcap
+xc9_138_ top n9 unitcap
+xc9_137_ top n9 unitcap
+xc9_136_ top n9 unitcap
+xc9_135_ top n9 unitcap
+xc9_134_ top n9 unitcap
+xc9_133_ top n9 unitcap
+xc9_132_ top n9 unitcap
+xc9_131_ top n9 unitcap
+xc9_130_ top n9 unitcap
+xc9_129_ top n9 unitcap
+xc9_128_ top n9 unitcap
+xc9_127_ top n9 unitcap
+xc9_126_ top n9 unitcap
+xc9_125_ top n9 unitcap
+xc9_124_ top n9 unitcap
+xc9_123_ top n9 unitcap
+xc9_122_ top n9 unitcap
+xc9_121_ top n9 unitcap
+xc9_120_ top n9 unitcap
+xc9_119_ top n9 unitcap
+xc9_118_ top n9 unitcap
+xc9_117_ top n9 unitcap
+xc9_116_ top n9 unitcap
+xc9_115_ top n9 unitcap
+xc9_114_ top n9 unitcap
+xc9_113_ top n9 unitcap
+xc9_112_ top n9 unitcap
+xc9_111_ top n9 unitcap
+xc9_110_ top n9 unitcap
+xc9_109_ top n9 unitcap
+xc9_108_ top n9 unitcap
+xc9_107_ top n9 unitcap
+xc9_106_ top n9 unitcap
+xc9_105_ top n9 unitcap
+xc9_104_ top n9 unitcap
+xc9_103_ top n9 unitcap
+xc9_102_ top n9 unitcap
+xc9_101_ top n9 unitcap
+xc9_100_ top n9 unitcap
+xc9_99_ top n9 unitcap
+xc9_98_ top n9 unitcap
+xc9_97_ top n9 unitcap
+xc9_96_ top n9 unitcap
+xc9_95_ top n9 unitcap
+xc9_94_ top n9 unitcap
+xc9_93_ top n9 unitcap
+xc9_92_ top n9 unitcap
+xc9_91_ top n9 unitcap
+xc9_90_ top n9 unitcap
+xc9_89_ top n9 unitcap
+xc9_88_ top n9 unitcap
+xc9_87_ top n9 unitcap
+xc9_86_ top n9 unitcap
+xc9_85_ top n9 unitcap
+xc9_84_ top n9 unitcap
+xc9_83_ top n9 unitcap
+xc9_82_ top n9 unitcap
+xc9_81_ top n9 unitcap
+xc9_80_ top n9 unitcap
+xc9_79_ top n9 unitcap
+xc9_78_ top n9 unitcap
+xc9_77_ top n9 unitcap
+xc9_76_ top n9 unitcap
+xc9_75_ top n9 unitcap
+xc9_74_ top n9 unitcap
+xc9_73_ top n9 unitcap
+xc9_72_ top n9 unitcap
+xc9_71_ top n9 unitcap
+xc9_70_ top n9 unitcap
+xc9_69_ top n9 unitcap
+xc9_68_ top n9 unitcap
+xc9_67_ top n9 unitcap
+xc9_66_ top n9 unitcap
+xc9_65_ top n9 unitcap
+xc9_64_ top n9 unitcap
+xc9_63_ top n9 unitcap
+xc9_62_ top n9 unitcap
+xc9_61_ top n9 unitcap
+xc9_60_ top n9 unitcap
+xc9_59_ top n9 unitcap
+xc9_58_ top n9 unitcap
+xc9_57_ top n9 unitcap
+xc9_56_ top n9 unitcap
+xc9_55_ top n9 unitcap
+xc9_54_ top n9 unitcap
+xc9_53_ top n9 unitcap
+xc9_52_ top n9 unitcap
+xc9_51_ top n9 unitcap
+xc9_50_ top n9 unitcap
+xc9_49_ top n9 unitcap
+xc9_48_ top n9 unitcap
+xc9_47_ top n9 unitcap
+xc9_46_ top n9 unitcap
+xc9_45_ top n9 unitcap
+xc9_44_ top n9 unitcap
+xc9_43_ top n9 unitcap
+xc9_42_ top n9 unitcap
+xc9_41_ top n9 unitcap
+xc9_40_ top n9 unitcap
+xc9_39_ top n9 unitcap
+xc9_38_ top n9 unitcap
+xc9_37_ top n9 unitcap
+xc9_36_ top n9 unitcap
+xc9_35_ top n9 unitcap
+xc9_34_ top n9 unitcap
+xc9_33_ top n9 unitcap
+xc9_32_ top n9 unitcap
+xc9_31_ top n9 unitcap
+xc9_30_ top n9 unitcap
+xc9_29_ top n9 unitcap
+xc9_28_ top n9 unitcap
+xc9_27_ top n9 unitcap
+xc9_26_ top n9 unitcap
+xc9_25_ top n9 unitcap
+xc9_24_ top n9 unitcap
+xc9_23_ top n9 unitcap
+xc9_22_ top n9 unitcap
+xc9_21_ top n9 unitcap
+xc9_20_ top n9 unitcap
+xc9_19_ top n9 unitcap
+xc9_18_ top n9 unitcap
+xc9_17_ top n9 unitcap
+xc9_16_ top n9 unitcap
+xc9_15_ top n9 unitcap
+xc9_14_ top n9 unitcap
+xc9_13_ top n9 unitcap
+xc9_12_ top n9 unitcap
+xc9_11_ top n9 unitcap
+xc9_10_ top n9 unitcap
+xc9_9_ top n9 unitcap
+xc9_8_ top n9 unitcap
+xc9_7_ top n9 unitcap
+xc9_6_ top n9 unitcap
+xc9_5_ top n9 unitcap
+xc9_4_ top n9 unitcap
+xc9_3_ top n9 unitcap
+xc9_2_ top n9 unitcap
+xc9_1_ top n9 unitcap
+xc9_0_ top n9 unitcap
+.ends
+
+
+* expanding   symbol:  switches/bootstrapped_sw_hv.sym # of pins=5
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/switches/bootstrapped_sw_hv.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/switches/bootstrapped_sw_hv.sch
+.subckt bootstrapped_sw_hv  out en vdd in vss
+*.iopin out
+*.ipin en
+*.iopin vss
+*.iopin vdd
+*.iopin in
+xinv1 vdd en enb vss inv_lvt
+XCbs_4_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XCbs_3_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XCbs_2_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XCbs_1_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XCbs_0_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XM3 vdd vg vbsh vbsh sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 vg enb vbsh vbsh sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMs out vg in vss sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM1 vbsl vg in vss sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 vbsl enb vss vss sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMs2 vss enb vs vss sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMs1 vs vdd vg vss sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sar_10b/comparator/trim.sym # of pins=3
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/comparator/trim.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/comparator/trim.sch
+.subckt trim  drain d_4_ d_3_ d_2_ d_1_ d_0_ vss
+*.iopin vss
+*.ipin d_4_,d_3_,d_2_,d_1_,d_0_
+*.opin drain
+XM4_7_ n4 d_4_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4_6_ n4 d_4_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4_5_ n4 d_4_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4_4_ n4 d_4_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4_3_ n4 d_4_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4_2_ n4 d_4_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4_1_ n4 d_4_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4_0_ n4 d_4_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3_3_ n3 d_3_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3_2_ n3 d_3_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3_1_ n3 d_3_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3_0_ n3 d_3_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2_1_ n2 d_2_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2_0_ n2 d_2_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM1 n1 d_1_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM0 n0 d_0_ vss vss sky130_fd_pr__nfet_01v8_lvt L=0.3 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+x4_7_ drain n4 trimcap
+x4_6_ drain n4 trimcap
+x4_5_ drain n4 trimcap
+x4_4_ drain n4 trimcap
+x4_3_ drain n4 trimcap
+x4_2_ drain n4 trimcap
+x4_1_ drain n4 trimcap
+x4_0_ drain n4 trimcap
+x3_3_ drain n3 trimcap
+x3_2_ drain n3 trimcap
+x3_1_ drain n3 trimcap
+x3_0_ drain n3 trimcap
+x2_1_ drain n2 trimcap
+x2_0_ drain n2 trimcap
+x1 drain n1 trimcap
+x0 drain n0 trimcap
+.ends
+
+
+* expanding   symbol:  sar_10b/unitcap/unitcap.sym # of pins=2
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/unitcap/unitcap.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/unitcap/unitcap.sch
+.subckt unitcap  cp cn
+*.iopin cp
+*.iopin cn
+C1 cp cn 2.6f m=1
+.ends
+
+
+* expanding   symbol:  sar_10b/comparator/trimcap.sym # of pins=2
+** sym_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/comparator/trimcap.sym
+** sch_path: /home/oe23ranan/lsi/mpw6/xschem/sar_10b/comparator/trimcap.sch
+.subckt trimcap  cp cn
+*.iopin cp
+*.iopin cn
+c0 net1 cn 2f m=1
+c1 cp net1 1f m=1
+.ends
+
+.GLOBAL GND
+.end
