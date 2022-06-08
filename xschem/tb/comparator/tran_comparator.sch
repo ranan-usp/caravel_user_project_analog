@@ -23,10 +23,13 @@ N 420 -340 450 -340 { lab=clkc}
 N 280 -340 280 -310 { lab=clk}
 N 450 -340 520 -340 { lab=clkc}
 N 520 -440 520 -340 { lab=clkc}
-N 270 -460 410 -460 { lab=vn}
 N 40 -230 60 -230 { lab=GND}
 N 270 -520 300 -520 { lab=#net1}
 N 360 -520 410 -520 { lab=vp}
+N 360 -460 410 -460 {
+lab=vn}
+N 270 -460 300 -460 {
+lab=#net2}
 C {sar_10b/comparator/comparator.sym} 520 -330 0 0 {name=xcom}
 C {devices/lab_wire.sym} 330 -340 0 0 {name=l1 sig_type=std_logic lab=clk}
 C {sky130_stdcells/inv_2.sym} 380 -340 0 0 {name=x15 VGND=vss VNB=vss VPB=vdd VPWR=vdd prefix=sky130_fd_sc_hd__ }
@@ -116,7 +119,7 @@ value="
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/fs_rmin_cmax.spice
 "}
 C {devices/lab_wire.sym} 420 -340 0 1 {name=l2 sig_type=std_logic lab=clkc}
-C {devices/vsource.sym} 280 -280 0 0 {name=Vclk value="PULSE(0 1 1e-9 1e-9 1e-9 20e-6 40e-6)"}
+C {devices/vsource.sym} 280 -280 0 0 {name=Vclk value="PULSE(0 1 1e-9 1e-9 1e-9 1e-6 2e-6)"}
 C {devices/gnd.sym} 280 -250 0 0 {name=l32 lab=GND}
 C {devices/vsource.sym} 240 -520 1 0 {name=V3 value=0.6
 }
@@ -128,5 +131,6 @@ C {devices/noconn.sym} 140 -230 2 0 {name=l10}
 C {devices/gnd.sym} 40 -230 0 0 {name=l19 lab=GND}
 C {sky130_stdcells/inv_1.sym} 100 -230 0 0 {name=x1 VGND=vss VNB=vss VPB=vdd VPWR=vdd prefix=sky130_fd_sc_hd__ 
 }
-C {devices/vsource.sym} 330 -520 1 0 {name=V10 value=-2m
+C {devices/vsource.sym} 330 -520 1 0 {name=V10 value="PULSE(-25m 25m 0 99.8e-6 0 0.2e-6 100e-6)"
 }
+C {devices/vsource.sym} 330 -460 1 0 {name=V5 value="PULSE(25m -25m 0 99.8e-6 0 0.2e-6 100e-6)"}

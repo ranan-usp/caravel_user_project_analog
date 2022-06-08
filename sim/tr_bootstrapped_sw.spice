@@ -2,10 +2,11 @@
 **.subckt tr_bootstrapped_sw
 V1 vss GND 0
 V2 vdd GND 1.4
-Vclk en GND PULSE(1 0 1e-9 1e-9 1e-9 2e-6 4e-6)
+Vclk clk GND PULSE(1 0 1e-9 1e-9 1e-9 2e-6 4e-6)
 C1 vout GND 10p m=1
-V3 vin GND vin
-xsw vout en vdd vin vss bootstrapped_sw
+V3 vin GND PULSE(0 1 0 12.8e-6 0 0.2e-6 13e-6)
+x1 clkb vout clk vdd vin vss bootstrapped_sw2
+Vclk1 clkb GND PULSE(0 1 1e-9 1e-9 1e-9 2e-6 4e-6)
 **** begin user architecture code
  *.options method trap
 *.options gmin 1e-15
@@ -15,7 +16,7 @@ xsw vout en vdd vin vss bootstrapped_sw
 *
 .include /home/oe23ranan/caravel_user_project_analog/xschem/switches/bootstrapped_sw.sp
 
-.param vin=0.7
+
 .param MC_SWITCH=0
 
 *.tran 100e-9 4e-6
@@ -23,7 +24,7 @@ xsw vout en vdd vin vss bootstrapped_sw
 
 .control
 save all
-tran 100e-9 16e-6 uic
+tran 100e-9 13e-6 uic
 run
 
 
@@ -63,8 +64,8 @@ print vbsh_min
 .endc
 
  * FET CORNERS
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
-.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest//corners/ff.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest//corners/ff.spice
 *.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
 *.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
 *.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
@@ -103,41 +104,45 @@ print vbsh_min
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  switches/bootstrapped_sw.sym # of pins=5
-** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/switches/bootstrapped_sw.sym
-** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/switches/bootstrapped_sw.sch
-.subckt bootstrapped_sw  out en vdd in vss
+* expanding   symbol:  switches/bootstrapped_sw2.sym # of pins=6
+** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/switches/bootstrapped_sw2.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/switches/bootstrapped_sw2.sch
+.subckt bootstrapped_sw2  clkb out clk vdd in vss
 *.iopin out
-*.ipin en
+*.ipin clk
 *.iopin vss
 *.iopin vdd
 *.iopin in
-xinv1 vdd en enb vss inv_lvt
-XMs out vg in vss sky130_fd_pr__nfet_01v8_lvt L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+*.ipin clkb
+xinv1 vdd clkb net2 vss inv_lvt
+XMs out net1 in vss sky130_fd_pr__nfet_01v8_lvt L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XMs1 vs vdd vg vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+XMs1 net1 vdd net3 vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XMs2 vss enb vs vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+XMs2 net3 clk vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XM4 vg enb vbsh vbsh sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+XM4 net1 net2 net4 net4 sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XM1 vbsl vg in vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+XM1 in net1 net5 vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XM2 vbsl enb vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+XM2 net2 net1 net5 net5 sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XM3 vdd vg vbsh vbsh sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+XM3 vdd net1 net4 net4 sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XCbs_3_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
-XCbs_2_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
-XCbs_1_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
-XCbs_0_ vbsh vbsl sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XCbs_3_ net4 net5 sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XCbs_2_ net4 net5 sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XCbs_1_ net4 net5 sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XCbs_0_ net4 net5 sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=1 m=1
+XM5 net5 clk vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
 .ends
 
 

@@ -6,11 +6,12 @@ V1 vss GND 0
 V2 vdd GND 1.2
 C1 outn vss 10f m=1
 C2 outp vss 10f m=1
-Vclk clk GND PULSE(0 1 1e-9 1e-9 1e-9 20e-6 40e-6)
+Vclk clk GND PULSE(0 1 1e-9 1e-9 1e-9 1e-6 2e-6)
 V3 net1 GND 0.6
-V4 vn GND 0.600
-x1 GND vss vss vdd vdd net2 sky130_fd_sc_hd__inv_1
-V10 vp net1 -2m
+V4 net2 GND 0.600
+x1 GND vss vss vdd vdd net3 sky130_fd_sc_hd__inv_1
+V10 vp net1 PULSE(-25m 25m 0 99.8e-6 0 0.2e-6 100e-6)
+V5 vn net2 PULSE(25m -25m 0 99.8e-6 0 0.2e-6 100e-6)
 **** begin user architecture code
 .include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
 .include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_1.spice
@@ -24,13 +25,13 @@ V10 vp net1 -2m
 *vt3 trim_3_ 0 1.2
 *vt4 trim_4_ 0 1.2
 
-*.options method trap
+.options method trap
 
 .control
 .param MC_SWITCH=0
 
 tran 100e-9 100e-6
-plot outp
+plt outp
 .endc
 
 

@@ -11,10 +11,10 @@ N 410 -180 410 -150 {lab=vdd}
 N 410 -90 410 -50 {lab=GND}
 N 490 -90 490 -50 {lab=GND}
 N 410 -180 440 -180 {lab=vdd}
-N 420 -420 450 -420 {lab=en}
-N 420 -420 420 -390 {lab=en}
+N 420 -420 450 -420 {lab=clk}
+N 420 -420 420 -390 {lab=clk}
 N 420 -330 420 -290 {lab=GND}
-N 180 -460 180 -440 { lab=en}
+N 180 -460 180 -440 { lab=clk}
 N 300 -330 300 -310 { lab=GND}
 N 300 -410 300 -390 { lab=vout}
 N 60 -400 60 -380 { lab=vin}
@@ -22,6 +22,10 @@ N 60 -320 60 -310 { lab=GND}
 N 60 -410 60 -400 { lab=vin}
 N 60 -410 130 -410 { lab=vin}
 N 230 -410 300 -410 { lab=vout}
+N 190 -460 190 -440 { lab=clkb}
+N 510 -420 540 -420 {lab=clkb}
+N 510 -420 510 -390 {lab=clkb}
+N 510 -330 510 -290 {lab=GND}
 C {devices/vsource.sym} 490 -120 0 0 {name=V1 value=0}
 C {devices/vsource.sym} 410 -120 0 0 {name=V2 value=1.4}
 C {devices/lab_wire.sym} 520 -180 0 0 {name=l7 sig_type=std_logic lab=vss}
@@ -40,7 +44,7 @@ value="*.options method trap
 *
 .include \\\\$::DESIGN_PATH\\\\/switches/bootstrapped_sw.sp
 
-.param vin=0.7
+
 .param MC_SWITCH=0
 
 *.tran 100e-9 4e-6
@@ -48,7 +52,7 @@ value="*.options method trap
 
 .control
 save all
-tran 100e-9 16e-6 uic
+tran 100e-9 13e-6 uic
 run
 
 
@@ -89,7 +93,7 @@ print vbsh_min
 "}
 C {devices/vsource.sym} 420 -360 0 0 {name=Vclk value="PULSE(1 0 1e-9 1e-9 1e-9 2e-6 4e-6)"
 }
-C {devices/lab_wire.sym} 450 -420 0 0 {name=l31 sig_type=std_logic lab=en
+C {devices/lab_wire.sym} 450 -420 0 0 {name=l31 sig_type=std_logic lab=clk
 }
 C {devices/gnd.sym} 420 -290 0 0 {name=l32 lab=GND}
 C {devices/code.sym} 180 -140 0 0 {
@@ -98,8 +102,8 @@ only_toplevel=true
 format="tcleval( @value )"
 spice_ignore="tcleval($cmdline_ignore)"
 value="* FET CORNERS
-*.include \\\\$::SKYWATER_MODELS\\\\/models/corners/tt.spice
-.include \\\\$::SKYWATER_MODELS\\\\//corners/ff.spice
+.include \\\\$::SKYWATER_MODELS\\\\/models/corners/tt.spice
+*.include \\\\$::SKYWATER_MODELS\\\\//corners/ff.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/ss.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/sf.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/fs.spice
@@ -142,9 +146,9 @@ ic=0
 }
 C {devices/lab_wire.sym} 160 -390 0 0 {name=l1 sig_type=std_logic lab=vss}
 C {devices/lab_wire.sym} 160 -430 2 1 {name=l2 sig_type=std_logic lab=vdd}
-C {devices/lab_wire.sym} 180 -440 3 1 {name=l3 sig_type=std_logic lab=en
+C {devices/lab_wire.sym} 180 -440 3 1 {name=l3 sig_type=std_logic lab=clk
 }
-C {devices/vsource.sym} 60 -350 0 0 {name=V3 value=vin
+C {devices/vsource.sym} 60 -350 0 0 {name=V3 value="PULSE(0 1 0 12.8e-6 0 0.2e-6 13e-6)"
 }
 C {devices/gnd.sym} 60 -310 0 0 {name=l5 lab=GND}
 C {devices/gnd.sym} 300 -310 0 0 {name=l4 lab=GND}
@@ -152,5 +156,11 @@ C {devices/lab_wire.sym} 280 -410 0 0 {name=l6 sig_type=std_logic lab=vout
 }
 C {devices/lab_wire.sym} 110 -410 0 0 {name=l9 sig_type=std_logic lab=vin
 }
-C {switches/bootstrapped_sw.sym} 120 -380 0 0 {name=xsw
+C {switches/bootstrapped_sw2.sym} 140 -380 0 0 {name=x1}
+C {devices/lab_wire.sym} 190 -440 3 1 {name=l10 sig_type=std_logic lab=clkb
 }
+C {devices/vsource.sym} 510 -360 0 0 {name=Vclk1 value="PULSE(0 1 1e-9 1e-9 1e-9 2e-6 4e-6)"
+}
+C {devices/lab_wire.sym} 540 -420 0 0 {name=l13 sig_type=std_logic lab=clkb
+}
+C {devices/gnd.sym} 510 -290 0 0 {name=l14 lab=GND}
