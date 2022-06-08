@@ -98,8 +98,8 @@ only_toplevel=true
 format="tcleval( @value )"
 spice_ignore="tcleval($cmdline_ignore)"
 value="* FET CORNERS
-*.include \\\\$::SKYWATER_MODELS\\\\/corners/tt.spice
-.include \\\\$::SKYWATER_MODELS\\\\/corners/ff.spice
+*.include \\\\$::SKYWATER_MODELS\\\\/models/corners/tt.spice
+.include \\\\$::SKYWATER_MODELS\\\\//corners/ff.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/ss.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/sf.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/fs.spice

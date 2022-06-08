@@ -3,7 +3,8 @@
 #----------------------------------------------------------------------
 set DESIGN_PATH [exec pwd]
 # set PDK_PATH $env(SKY130_PDK_PATH)
-set PDK_PATH /tmp/caravel_tutorial/pdk/skywater-pdk/libraries
+# set PDK_PATH /tmp/caravel_tutorial/pdk/skywater-pdk/libraries
+set PDK_PATH /home/oe23ranan/skywater/skywater-pdk/libraries
 
 #----------------------------------------------------------------------
 # xschem system-wide design library paths: xschem_library_path
@@ -24,8 +25,8 @@ set XSCHEM_START_WINDOW ${DESIGN_PATH}/top/xschem_top.sch
 #----------------------------------------------------------------------
 # DIRECTORY WHERE SIMULATIONS, NETLIST AND SIMULATOR OUTPUTS ARE PLACED
 #----------------------------------------------------------------------
-# set netlist_dir ${DESIGN_PATH}/../sim
-set netlist_dir .
+set netlist_dir ${DESIGN_PATH}/../sim
+# set netlist_dir .
 #----------------------------------------------------------------------
 # change default [] with some other characters for bussed signals 
 # in spice netlists (example: data[7] --> data<7>) 
@@ -51,31 +52,31 @@ set snap 10
 # custom colors  may be defined here
 #----------------------------------------------------------------------
 
-set dark_colors { 
-"#eee4c2" "#268BD2" 
-"#aaaaaa" "#222222" 
-"#229900" "#bb2200" 
-"#00ccee" "#ff0000" 
-"#888800" "#00aaaa"
-"#880088" "#00ff00" 
-"#0000cc" "#666600" 
-"#557755" "#aa2222" 
-"#7ccc40" "#00ffcc" 
-"#ce0097" "#d2d46b"
-"#ef6158" "#fdb200" }
+#set dark_colors { 
+#"#eee4c2" "#268BD2" 
+#"#aaaaaa" "#222222" 
+#"#229900" "#bb2200" 
+#"#00ccee" "#ff0000" 
+#"#888800" "#00aaaa"
+#"#880088" "#00ff00" 
+#"#0000cc" "#666600" 
+#"#557755" "#aa2222" 
+#"#7ccc40" "#00ffcc" 
+#"#ce0097" "#d2d46b"
+#"#ef6158" "#fdb200" }
 
-set light_colors {
-"#222222" "#00ccee" 
-"#3f3f3f" "#cccccc" 
-"#88dd00" "#bb2200" 
-"#00ccee" "#ff0000" 
-"#ffff00" "#ffffff"
-"#ff00ff" "#00ff00" 
-"#0000cc" "#aaaa00" 
-"#aaccaa" "#ff7777" 
-"#bfff81" "#00ffcc" 
-"#ce0097" "#d2d46b"
-"#ef6158" "#fdb200" }
+#set light_colors {
+#"#222222" "#00ccee" 
+#"#3f3f3f" "#cccccc" 
+#"#88dd00" "#bb2200" 
+#"#00ccee" "#ff0000" 
+#"#ffff00" "#ffffff"
+#"#ff00ff" "#00ff00" 
+#"#0000cc" "#aaaa00" 
+#"#aaccaa" "#ff7777" 
+#"#bfff81" "#00ffcc" 
+#"#ce0097" "#d2d46b"
+#"#ef6158" "#fdb200" }
 
 #----------------------------------------------------------------------
 # set custom colors for xschem libraries matching certain patterns
@@ -91,17 +92,17 @@ set dircolor(devices$) red
 # keybindings
 #----------------------------------------------------------------------
 
-set replace_key(Key-a) m
-set replace_key(Key-d) Delete
-set replace_key(Key-i) Insert
-set replace_key(Key-r) Control-e
-set replace_key(Key-y) Control-c
-set replace_key(Key-q) Shift-Q
-set replace_key(Shift-Q) q
-set replace_key(Key-l) Alt-Shift-L
-set replace_key(Shift-L) Alt-l
-set replace_key(Shift-L) Alt-l
-set replace_key(Key-p) Control-w
+# set replace_key(Key-a) m
+# set replace_key(Key-d) Delete
+# set replace_key(Key-i) Insert
+# set replace_key(Key-r) Control-e
+# set replace_key(Key-y) Control-c
+# set replace_key(Key-q) Shift-Q
+# set replace_key(Shift-Q) q
+# set replace_key(Key-l) Alt-Shift-L
+# set replace_key(Shift-L) Alt-l
+# set replace_key(Shift-L) Alt-l
+# set replace_key(Key-p) Control-w
 
 #----------------------------------------------------------------------
 # terminal

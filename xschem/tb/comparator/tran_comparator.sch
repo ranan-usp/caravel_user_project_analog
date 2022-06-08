@@ -25,19 +25,6 @@ N 450 -340 520 -340 { lab=clkc}
 N 520 -440 520 -340 { lab=clkc}
 N 270 -460 410 -460 { lab=vn}
 N 40 -230 60 -230 { lab=GND}
-N 520 -590 520 -540 { lab=trim[4:0]}
-N 520 -590 590 -590 { lab=trim[4:0]}
-N 560 -150 560 -120 { lab=trim[4]}
-N 650 -150 650 -120 { lab=trim[3]}
-N 740 -150 740 -120 { lab=trim[2]}
-N 830 -150 830 -120 { lab=trim[1]}
-N 920 -150 920 -120 { lab=trim[0]}
-N 690 -560 760 -560 { lab=trim[4:0]}
-N 910 -560 990 -560 { lab=trimb[4:0]}
-N 840 -640 840 -610 { lab=vdd}
-N 840 -510 840 -480 { lab=vss}
-N 540 -550 610 -550 { lab=trimb[4:0]}
-N 540 -550 540 -530 { lab=trimb[4:0]}
 N 270 -520 300 -520 { lab=#net1}
 N 360 -520 410 -520 { lab=vp}
 C {sar_10b/comparator/comparator.sym} 520 -330 0 0 {name=xcom}
@@ -91,7 +78,7 @@ only_toplevel=true
 format="tcleval( @value )"
 value="
 * FET CORNERS
-.include \\\\$::SKYWATER_MODELS\\\\/corners/tt.spice
+.include \\\\$::SKYWATER_MODELS\\\\/models/corners/tt.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/ff.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/ss.spice
 *.include \\\\$::SKYWATER_MODELS\\\\/corners/sf.spice
@@ -139,36 +126,7 @@ C {devices/vsource.sym} 240 -460 1 0 {name=V4 value=0.600
 C {devices/gnd.sym} 210 -460 1 0 {name=l5 lab=GND}
 C {devices/noconn.sym} 140 -230 2 0 {name=l10}
 C {devices/gnd.sym} 40 -230 0 0 {name=l19 lab=GND}
-C {devices/lab_wire.sym} 520 -590 0 1 {name=l6 sig_type=std_logic lab=trim[4:0]}
-C {devices/vsource.sym} 560 -90 0 0 {name=V5 value=1
-}
-C {devices/lab_wire.sym} 560 -150 0 0 {name=l20 sig_type=std_logic lab=trim[4]}
-C {devices/gnd.sym} 560 -60 0 0 {name=l21 lab=GND}
-C {devices/vsource.sym} 650 -90 0 0 {name=V6 value=0
-}
-C {devices/lab_wire.sym} 650 -150 0 0 {name=l22 sig_type=std_logic lab=trim[3]}
-C {devices/gnd.sym} 650 -60 0 0 {name=l23 lab=GND}
-C {devices/vsource.sym} 740 -90 0 0 {name=V7 value=0
-}
-C {devices/lab_wire.sym} 740 -150 0 0 {name=l24 sig_type=std_logic lab=trim[2]}
-C {devices/gnd.sym} 740 -60 0 0 {name=l25 lab=GND}
-C {devices/vsource.sym} 830 -90 0 0 {name=V8 value=0
-}
-C {devices/lab_wire.sym} 830 -150 0 0 {name=l26 sig_type=std_logic lab=trim[1]}
-C {devices/gnd.sym} 830 -60 0 0 {name=l27 lab=GND}
-C {devices/vsource.sym} 920 -90 0 0 {name=V9 value=1
-}
-C {devices/lab_wire.sym} 920 -150 0 0 {name=l28 sig_type=std_logic lab=trim[0]}
-C {devices/gnd.sym} 920 -60 0 0 {name=l29 lab=GND}
 C {sky130_stdcells/inv_1.sym} 100 -230 0 0 {name=x1 VGND=vss VNB=vss VPB=vdd VPWR=vdd prefix=sky130_fd_sc_hd__ 
-}
-C {support/inv_5b.sym} 760 -510 0 0 {name=x2}
-C {devices/lab_wire.sym} 690 -560 0 1 {name=l33 sig_type=std_logic lab=trim[4:0]}
-C {devices/lab_wire.sym} 910 -560 0 1 {name=l34 sig_type=std_logic lab=trimb[4:0]
-}
-C {devices/lab_wire.sym} 840 -610 3 1 {name=l30 sig_type=std_logic lab=vdd}
-C {devices/lab_wire.sym} 840 -510 3 0 {name=l31 sig_type=std_logic lab=vss}
-C {devices/lab_wire.sym} 540 -550 0 1 {name=l35 sig_type=std_logic lab=trimb[4:0]
 }
 C {devices/vsource.sym} 330 -520 1 0 {name=V10 value=-2m
 }
