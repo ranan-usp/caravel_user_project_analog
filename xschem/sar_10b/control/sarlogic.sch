@@ -23,46 +23,28 @@ P 6 5 430 -20 150 -20 150 -40 430 -40 430 -20 {fill=true}
 T {sar_logic.sp} 320 -110 0 1 0.2 0.2 {}
 T {SAR-CTL} 330 -140 0 1 0.4 0.4 {}
 N 120 -90 150 -90 {lab=sample}
-N 120 -40 150 -40 {lab=ctln[9:0]}
-N 120 -60 150 -60 {lab=ctlp[9:0]}
-N 120 -150 150 -150 {lab=trim[4:0]}
+N 120 -40 150 -40 {lab=ctln[5:0]}
+N 120 -60 150 -60 {lab=ctlp[5:0]}
 N 430 -90 460 -90 {lab=result[9:0]}
-N 430 -60 460 -60 {lab=valid}
 N 430 -120 460 -120 {lab=clk}
-N 430 -140 460 -140 {lab=en}
 N 430 -180 460 -180 {lab=comp}
-N 430 -160 460 -160 {lab=cal}
-N 430 -40 460 -40 {lab=rstn}
 N 120 -110 150 -110 {lab=clkc}
-N 120 -170 150 -170 {lab=trimb[4:0]}
 N 120 -280 150 -280 {lab=dvdd}
 N 120 -240 150 -240 {lab=dvss}
 C {devices/noconn.sym} 430 -180 0 0 {name=l12}
 C {devices/noconn.sym} 150 -60 2 0 {name=l8}
 C {devices/noconn.sym} 150 -40 2 0 {name=l20[7:0]}
 C {devices/noconn.sym} 150 -90 2 0 {name=l22[7:0]}
-C {devices/noconn.sym} 150 -170 2 0 {name=l33}
-C {devices/noconn.sym} 150 -150 2 0 {name=l34}
 C {devices/noconn.sym} 430 -90 0 0 {name=l36[7:0]}
-C {devices/noconn.sym} 430 -60 0 0 {name=l37}
 C {devices/noconn.sym} 150 -110 2 0 {name=l38}
 C {devices/noconn.sym} 430 -120 0 0 {name=l22}
-C {devices/noconn.sym} 430 -140 0 0 {name=l42}
-C {devices/noconn.sym} 430 -160 0 0 {name=l45}
-C {devices/noconn.sym} 430 -40 0 0 {name=l28}
 C {xschem/symbols/devices/opin.sym} 120 -110 2 0 {name=p1 lab=clkc}
-C {xschem/symbols/devices/opin.sym} 120 -60 2 0 {name=p2 lab=ctlp[9:0]}
-C {xschem/symbols/devices/opin.sym} 120 -40 2 0 {name=p3 lab=ctln[9:0]}
+C {xschem/symbols/devices/opin.sym} 120 -60 2 0 {name=p2 lab=ctlp[5:0]}
+C {xschem/symbols/devices/opin.sym} 120 -40 2 0 {name=p3 lab=ctln[5:0]}
 C {xschem/symbols/devices/opin.sym} 120 -90 2 0 {name=p4 lab=sample}
-C {xschem/symbols/devices/opin.sym} 120 -150 0 1 {name=p5 lab=trim[4:0]}
-C {xschem/symbols/devices/opin.sym} 120 -170 0 1 {name=p6 lab=trimb[4:0]}
 C {xschem/symbols/devices/ipin.sym} 460 -180 2 0 {name=p7 lab=comp}
-C {xschem/symbols/devices/ipin.sym} 460 -160 2 0 {name=p8 lab=cal}
-C {xschem/symbols/devices/ipin.sym} 460 -140 2 0 {name=p9 lab=en}
 C {xschem/symbols/devices/ipin.sym} 460 -120 2 0 {name=p10 lab=clk}
-C {xschem/symbols/devices/ipin.sym} 460 -90 2 0 {name=p11 lab=result[9:0]}
-C {xschem/symbols/devices/ipin.sym} 460 -60 2 0 {name=p12 lab=valid}
-C {xschem/symbols/devices/ipin.sym} 460 -40 2 0 {name=p13 lab=rstn}
+C {xschem/symbols/devices/ipin.sym} 460 -90 2 0 {name=p11 lab=result[5:0]}
 C {devices/code.sym} -180 -130 0 0 {name=INCLUDES only_toplevel=false 
 format="tcleval(@value )"
 value=".include \\\\$::DESIGN_PATH\\\\/sar_10b/control/cmos_cells_digital.sp

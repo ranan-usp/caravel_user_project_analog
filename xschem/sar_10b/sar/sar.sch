@@ -39,9 +39,7 @@ N 1460 -550 1460 -520 {lab=avss}
 N 1320 -640 1320 -610 {lab=dvdd}
 N 1320 -550 1320 -520 {lab=dvss}
 N 1100 -170 1200 -170 { lab=clkc}
-N 1160 -60 1200 -60 { lab=valid}
 N 1110 -80 1200 -80 { lab=result[9:0]}
-N 1500 -220 1540 -220 { lab=comp}
 N 1540 -390 1540 -220 { lab=comp}
 N 1500 -80 1530 -80 {lab=dvdd}
 N 1500 -60 1530 -60 {lab=dvss}
@@ -52,6 +50,8 @@ N 1010 -170 1100 -170 {
 lab=clkc}
 N 1000 -170 1010 -170 {
 lab=clkc}
+N 1500 -210 1540 -210 {}
+N 1540 -220 1540 -210 {}
 C {devices/lab_wire.sym} 920 -340 0 0 {name=l58 sig_type=std_logic lab=vn}
 C {devices/lab_wire.sym} 370 -240 0 0 {name=l80 sig_type=std_logic lab=sample}
 C {devices/lab_wire.sym} 370 -160 0 0 {name=l44 sig_type=std_logic lab=ctln[5:0]
@@ -91,8 +91,6 @@ C {devices/lab_wire.sym} 970 -300 3 0 {name=l2 sig_type=std_logic lab=avss}
 C {devices/lab_wire.sym} 370 -140 0 0 {name=l23 sig_type=std_logic lab=avss}
 C {devices/lab_wire.sym} 370 -460 0 0 {name=l31 sig_type=std_logic lab=avdd}
 C {devices/lab_wire.sym} 370 -560 0 0 {name=l4 sig_type=std_logic lab=sample}
-C {devices/lab_wire.sym} 1200 -220 0 0 {name=l30 sig_type=std_logic lab=trimb[4:0]}
-C {devices/lab_wire.sym} 1200 -200 0 0 {name=l32 sig_type=std_logic lab=trim[4:0]}
 C {sar_10b/dac/dac.sym} 520 -200 0 0 {name=xdn}
 C {sar_10b/dac/dac.sym} 520 -520 0 0 {name=xdp}
 C {sar_10b/comparator/comparator.sym} 1000 -210 0 0 {name=xcom}
@@ -108,26 +106,20 @@ C {devices/lab_wire.sym} 1320 -610 1 0 {name=l18 sig_type=std_logic lab=dvdd
 C {devices/lab_wire.sym} 1320 -550 1 1 {name=l26 sig_type=std_logic lab=dvss
 }
 C {devices/lab_wire.sym} 1200 -170 0 0 {name=l33 sig_type=std_logic lab=clkc}
-C {devices/lab_wire.sym} 1200 -150 0 0 {name=l34 sig_type=std_logic lab=ctlp[9:0]
+C {devices/lab_wire.sym} 1200 -150 0 0 {name=l34 sig_type=std_logic lab=ctlp[5:0]
 }
-C {devices/lab_wire.sym} 1200 -130 0 0 {name=l46 sig_type=std_logic lab=ctln[9:0]
+C {devices/lab_wire.sym} 1200 -130 0 0 {name=l46 sig_type=std_logic lab=ctln[5:0]
 }
 C {devices/lab_wire.sym} 1200 -110 0 0 {name=l47 sig_type=std_logic lab=sample}
 C {devices/lab_wire.sym} 1200 -80 0 0 {name=l48 sig_type=std_logic lab=result[9:0]
 }
-C {devices/lab_wire.sym} 1200 -60 0 0 {name=l49 sig_type=std_logic lab=valid}
-C {devices/lab_wire.sym} 1500 -180 0 1 {name=l51 sig_type=std_logic lab=cal}
-C {devices/lab_wire.sym} 1500 -160 0 1 {name=l52 sig_type=std_logic lab=en}
-C {devices/lab_wire.sym} 1500 -130 0 1 {name=l53 sig_type=std_logic lab=clk}
-C {devices/lab_wire.sym} 1500 -110 0 1 {name=l54 sig_type=std_logic lab=rstn}
-C {xschem/symbols/devices/noconn.sym} 1160 -60 0 0 {name=l1}
+C {devices/lab_wire.sym} 1500 -110 0 1 {name=l53 sig_type=std_logic lab=clk}
 C {xschem/symbols/devices/noconn.sym} 1110 -80 0 0 {name=l7[7:0]
 }
 C {devices/lab_wire.sym} 1500 -80 0 1 {name=l7 sig_type=std_logic lab=dvdd
 }
 C {devices/lab_wire.sym} 1500 -60 0 1 {name=l8 sig_type=std_logic lab=dvss
 }
-C {sar_10b/control/sarlogic.sym} 1200 -40 0 0 {name=xlogic
-}
 C {devices/lab_wire.sym} 1000 -220 1 0 {name=l20 sig_type=std_logic lab=clkca
 }
+C {sar_10b/control/sarlogic.sym} 1350 -170 0 0 {name=x1}
