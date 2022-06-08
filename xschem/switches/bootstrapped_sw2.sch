@@ -28,12 +28,12 @@ N 1520 -1060 1550 -1060 {lab=vdd}
 N 1580 -1060 1580 -1030 {lab=#net4}
 N 2100 -1090 2100 -1060 {lab=#net4}
 N 2100 -760 2100 -730 {lab=vss}
-N 1970 -810 2000 -810 {lab=vss}
-N 1970 -810 1970 -780 {lab=vss}
+N 1970 -810 2000 -810 {lab=#net5}
+N 1970 -810 1970 -780 {lab=#net5}
 N 2480 -1130 2480 -1100 {lab=clk}
 N 2370 -1130 2370 -1100 {lab=vdd}
 N 2100 -1020 2100 -990 {lab=#net2}
-N 1970 -780 1970 -760 {lab=vss}
+N 1970 -780 1970 -760 {lab=#net5}
 N 2230 -680 2230 -650 {lab=vss}
 N 2040 -1090 2100 -1090 {
 lab=#net4}
@@ -60,27 +60,27 @@ lab=in}
 N 2150 -760 2150 -680 {
 lab=in}
 N 1880 -760 2070 -760 {
-lab=vss}
+lab=#net5}
 N 2000 -780 2000 -760 {
-lab=vss}
+lab=#net5}
 N 1690 -800 1690 -760 {
-lab=vss}
+lab=#net5}
 N 1690 -880 1690 -800 {
-lab=vss}
+lab=#net5}
 N 1580 -1220 1660 -1220 {
 lab=#net1}
 N 1690 -1060 1770 -1060 {
 lab=#net4}
 N 1800 -760 1880 -760 {
-lab=vss}
+lab=#net5}
 N 1660 -1220 1720 -1220 {
 lab=#net1}
 N 1770 -1060 1830 -1060 {
 lab=#net4}
 N 1740 -760 1800 -760 {
-lab=vss}
+lab=#net5}
 N 1690 -930 1690 -880 {
-lab=vss}
+lab=#net5}
 N 1930 -900 2090 -900 {
 lab=#net2}
 N 2090 -900 2100 -900 {
@@ -93,19 +93,20 @@ N 1800 -900 1820 -900 {
 lab=clkb}
 N 1790 -900 1800 -900 {
 lab=clkb}
-N 1620 -760 1650 -760 {lab=vss}
+N 1620 -760 1650 -760 {lab=#net5}
 N 1650 -760 1740 -760 {
-lab=vss}
+lab=#net5}
 N 1570 -760 1570 -730 {lab=vss}
 N 1510 -810 1530 -810 {
-lab=#net5}
+lab=clk}
 N 1530 -810 1570 -810 {
-lab=#net5}
+lab=clk}
 N 1570 -810 1570 -800 {
-lab=#net5}
+lab=clk}
 N 1600 -760 1620 -760 {
+lab=#net5}
+N 1510 -760 1540 -760 {
 lab=vss}
-N 1510 -760 1540 -760 {}
 N 1480 -810 1510 -810 {lab=clk}
 C {devices/iopin.sym} 2320 -680 0 0 {name=p1 lab=out}
 C {devices/ipin.sym} 1430 -910 2 1 {name=p2 lab=clk}
@@ -219,7 +220,7 @@ spiceprefix=X
 C {devices/lab_wire.sym} 1550 -1060 0 0 {name=l19 sig_type=std_logic lab=vdd}
 C {devices/lab_wire.sym} 2100 -760 1 1 {name=l2 sig_type=std_logic lab=vss}
 C {devices/lab_wire.sym} 2230 -680 3 0 {name=l14 sig_type=std_logic lab=vss}
-C {sky130_primitives/cap_mim_m3_1.sym} 1690 -960 0 0 {name=Cbs[3:0] model=cap_mim_m3_1 W=5 L=5 MF=1 spiceprefix=X ic=0
+C {sky130_primitives/cap_mim_m3_1.sym} 1690 -960 0 0 {name=Cbs[4:0] model=cap_mim_m3_1 W=5 L=5 MF=1 spiceprefix=X ic=0
 }
 C {devices/lab_wire.sym} 1540 -760 2 1 {name=l1 sig_type=std_logic lab=vss}
 C {devices/ipin.sym} 1430 -870 2 1 {name=p6 lab=clkb}
