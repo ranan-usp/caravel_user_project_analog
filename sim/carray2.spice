@@ -1,0 +1,76 @@
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/dac/carray2.sch
+**.subckt carray2 out d5 d4 d2 d0 dummy d3 d1
+*.iopin out
+*.iopin d5
+*.iopin d4
+*.iopin d2
+*.iopin d0
+*.iopin dummy
+*.iopin d3
+*.iopin d1
+C1 out dummy 2.6f m=1
+C2 out d0 2.6f m=1
+C3_1_ out d1 2.6f m=1
+C3_0_ out d1 2.6f m=1
+C4_3_ out d2 2.6f m=1
+C4_2_ out d2 2.6f m=1
+C4_1_ out d2 2.6f m=1
+C4_0_ out d2 2.6f m=1
+C5_7_ out d3 2.6f m=1
+C5_6_ out d3 2.6f m=1
+C5_5_ out d3 2.6f m=1
+C5_4_ out d3 2.6f m=1
+C5_3_ out d3 2.6f m=1
+C5_2_ out d3 2.6f m=1
+C5_1_ out d3 2.6f m=1
+C5_0_ out d3 2.6f m=1
+C6_15_ out d4 2.6f m=1
+C6_14_ out d4 2.6f m=1
+C6_13_ out d4 2.6f m=1
+C6_12_ out d4 2.6f m=1
+C6_11_ out d4 2.6f m=1
+C6_10_ out d4 2.6f m=1
+C6_9_ out d4 2.6f m=1
+C6_8_ out d4 2.6f m=1
+C6_7_ out d4 2.6f m=1
+C6_6_ out d4 2.6f m=1
+C6_5_ out d4 2.6f m=1
+C6_4_ out d4 2.6f m=1
+C6_3_ out d4 2.6f m=1
+C6_2_ out d4 2.6f m=1
+C6_1_ out d4 2.6f m=1
+C6_0_ out d4 2.6f m=1
+C7_31_ out d5 2.6f m=1
+C7_30_ out d5 2.6f m=1
+C7_29_ out d5 2.6f m=1
+C7_28_ out d5 2.6f m=1
+C7_27_ out d5 2.6f m=1
+C7_26_ out d5 2.6f m=1
+C7_25_ out d5 2.6f m=1
+C7_24_ out d5 2.6f m=1
+C7_23_ out d5 2.6f m=1
+C7_22_ out d5 2.6f m=1
+C7_21_ out d5 2.6f m=1
+C7_20_ out d5 2.6f m=1
+C7_19_ out d5 2.6f m=1
+C7_18_ out d5 2.6f m=1
+C7_17_ out d5 2.6f m=1
+C7_16_ out d5 2.6f m=1
+C7_15_ out d5 2.6f m=1
+C7_14_ out d5 2.6f m=1
+C7_13_ out d5 2.6f m=1
+C7_12_ out d5 2.6f m=1
+C7_11_ out d5 2.6f m=1
+C7_10_ out d5 2.6f m=1
+C7_9_ out d5 2.6f m=1
+C7_8_ out d5 2.6f m=1
+C7_7_ out d5 2.6f m=1
+C7_6_ out d5 2.6f m=1
+C7_5_ out d5 2.6f m=1
+C7_4_ out d5 2.6f m=1
+C7_3_ out d5 2.6f m=1
+C7_2_ out d5 2.6f m=1
+C7_1_ out d5 2.6f m=1
+C7_0_ out d5 2.6f m=1
+**.ends
+.end

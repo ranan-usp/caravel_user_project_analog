@@ -1,0 +1,166 @@
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/tb/cdac/tb_cdac.sch
+**.subckt tb_cdac
+x1 out d4 d1 d0 dummy d3 d2 d5 carray2
+V2 dummy GND 0
+V3 d0 GND 0
+V4 d1 GND 1
+V5 d2 GND vd2
+V6 d3 GND vd3
+V7 d4 GND vd4
+V8 d5 GND vd5
+**** begin user architecture code
+ *.options method trap
+*.options gmin 1e-15
+*.options abstol 1e-15
+*.options reltol 0.0001
+*.options vntol 0.1e-6
+*
+*.include /home/oe23ranan/caravel_user_project_analog/xschem/switches/bootstrapped_sw.sp
+
+
+.param MC_SWITCH=0
+
+*.tran 100e-9 4e-6
+.temp 85
+
+.control
+save all
+* tran 100e-9 13e-6 uic
+
+
+*loop
+.param vd0=0
+.param vd1=1
+.param vd2=1
+.param vd3=1
+.param vd4=1
+.param vd5=1
+
+op
+dc V2 0 1 0.1
+run
+
+
+.endc
+
+ * FET CORNERS
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest//corners/ff.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
+
+* TT + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmax.spice
+
+* FF + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmax.spice
+
+
+* SS + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmax.spice
+
+* SF + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmax.spice
+
+* FS + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sar_10b/dac/carray2.sym # of pins=8
+** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/dac/carray2.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/dac/carray2.sch
+.subckt carray2  out d4 d1 d0 dummy d3 d2 d5
+*.iopin out
+*.iopin d5
+*.iopin d4
+*.iopin d2
+*.iopin d0
+*.iopin dummy
+*.iopin d3
+*.iopin d1
+C1 out dummy 2.6f m=1
+C2 out d0 2.6f m=1
+C3_1_ out d1 2.6f m=1
+C3_0_ out d1 2.6f m=1
+C4_3_ out d2 2.6f m=1
+C4_2_ out d2 2.6f m=1
+C4_1_ out d2 2.6f m=1
+C4_0_ out d2 2.6f m=1
+C5_7_ out d3 2.6f m=1
+C5_6_ out d3 2.6f m=1
+C5_5_ out d3 2.6f m=1
+C5_4_ out d3 2.6f m=1
+C5_3_ out d3 2.6f m=1
+C5_2_ out d3 2.6f m=1
+C5_1_ out d3 2.6f m=1
+C5_0_ out d3 2.6f m=1
+C6_15_ out d4 2.6f m=1
+C6_14_ out d4 2.6f m=1
+C6_13_ out d4 2.6f m=1
+C6_12_ out d4 2.6f m=1
+C6_11_ out d4 2.6f m=1
+C6_10_ out d4 2.6f m=1
+C6_9_ out d4 2.6f m=1
+C6_8_ out d4 2.6f m=1
+C6_7_ out d4 2.6f m=1
+C6_6_ out d4 2.6f m=1
+C6_5_ out d4 2.6f m=1
+C6_4_ out d4 2.6f m=1
+C6_3_ out d4 2.6f m=1
+C6_2_ out d4 2.6f m=1
+C6_1_ out d4 2.6f m=1
+C6_0_ out d4 2.6f m=1
+C7_31_ out d5 2.6f m=1
+C7_30_ out d5 2.6f m=1
+C7_29_ out d5 2.6f m=1
+C7_28_ out d5 2.6f m=1
+C7_27_ out d5 2.6f m=1
+C7_26_ out d5 2.6f m=1
+C7_25_ out d5 2.6f m=1
+C7_24_ out d5 2.6f m=1
+C7_23_ out d5 2.6f m=1
+C7_22_ out d5 2.6f m=1
+C7_21_ out d5 2.6f m=1
+C7_20_ out d5 2.6f m=1
+C7_19_ out d5 2.6f m=1
+C7_18_ out d5 2.6f m=1
+C7_17_ out d5 2.6f m=1
+C7_16_ out d5 2.6f m=1
+C7_15_ out d5 2.6f m=1
+C7_14_ out d5 2.6f m=1
+C7_13_ out d5 2.6f m=1
+C7_12_ out d5 2.6f m=1
+C7_11_ out d5 2.6f m=1
+C7_10_ out d5 2.6f m=1
+C7_9_ out d5 2.6f m=1
+C7_8_ out d5 2.6f m=1
+C7_7_ out d5 2.6f m=1
+C7_6_ out d5 2.6f m=1
+C7_5_ out d5 2.6f m=1
+C7_4_ out d5 2.6f m=1
+C7_3_ out d5 2.6f m=1
+C7_2_ out d5 2.6f m=1
+C7_1_ out d5 2.6f m=1
+C7_0_ out d5 2.6f m=1
+.ends
+
+.GLOBAL GND
+.end
