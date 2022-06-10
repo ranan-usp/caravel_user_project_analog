@@ -3,8 +3,8 @@
 #----------------------------------------------------------------------
 set DESIGN_PATH [exec pwd]
 # set PDK_PATH $env(SKY130_PDK_PATH)
-set PDK_PATH /tmp/caravel_tutorial/pdk/skywater-pdk/libraries
-# set PDK_PATH /home/oe23ranan/skywater/skywater-pdk/libraries
+# set PDK_PATH /tmp/caravel_tutorial/pdk/skywater-pdk/libraries
+set PDK_PATH /home/oe23ranan/skywater/skywater-pdk/libraries
 
 #----------------------------------------------------------------------
 # xschem system-wide design library paths: xschem_library_path
@@ -20,7 +20,7 @@ append XSCHEM_LIBRARY_PATH :${DESIGN_PATH}/xschem/symbols
 # window to open on startup: xschem_start_window
 #----------------------------------------------------------------------
 # set XSCHEM_START_WINDOW ${DESIGN_PATH}/user_analog_project_wrapper.sch
-set XSCHEM_START_WINDOW ${DESIGN_PATH}/top/xschem_top.sch
+set XSCHEM_START_WINDOW ${DESIGN_PATH}/user_analog_project_wrapper.sch
 
 #----------------------------------------------------------------------
 # DIRECTORY WHERE SIMULATIONS, NETLIST AND SIMULATOR OUTPUTS ARE PLACED

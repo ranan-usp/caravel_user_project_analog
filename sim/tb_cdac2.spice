@@ -1,115 +1,99 @@
-** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/tb/cdac/tb_cdac.sch
-**.subckt tb_cdac
-V4 d1 GND 1
-V5 d2 GND 1
-V6 d3 GND 1
-V7 d4 GND 1
-V8 d5 GND 1
-C2 out dummy 2.6f m=1
-C3 out d0 2.6f m=1
-C3_1_ out d1 2.6f m=1
-C3_0_ out d1 2.6f m=1
-C4_3_ out d2 2.6f m=1
-C4_2_ out d2 2.6f m=1
-C4_1_ out d2 2.6f m=1
-C4_0_ out d2 2.6f m=1
-C5_7_ out d3 2.6f m=1
-C5_6_ out d3 2.6f m=1
-C5_5_ out d3 2.6f m=1
-C5_4_ out d3 2.6f m=1
-C5_3_ out d3 2.6f m=1
-C5_2_ out d3 2.6f m=1
-C5_1_ out d3 2.6f m=1
-C5_0_ out d3 2.6f m=1
-C6_15_ out d4 2.6f m=1
-C6_14_ out d4 2.6f m=1
-C6_13_ out d4 2.6f m=1
-C6_12_ out d4 2.6f m=1
-C6_11_ out d4 2.6f m=1
-C6_10_ out d4 2.6f m=1
-C6_9_ out d4 2.6f m=1
-C6_8_ out d4 2.6f m=1
-C6_7_ out d4 2.6f m=1
-C6_6_ out d4 2.6f m=1
-C6_5_ out d4 2.6f m=1
-C6_4_ out d4 2.6f m=1
-C6_3_ out d4 2.6f m=1
-C6_2_ out d4 2.6f m=1
-C6_1_ out d4 2.6f m=1
-C6_0_ out d4 2.6f m=1
-C7_31_ out d5 2.6f m=1
-C7_30_ out d5 2.6f m=1
-C7_29_ out d5 2.6f m=1
-C7_28_ out d5 2.6f m=1
-C7_27_ out d5 2.6f m=1
-C7_26_ out d5 2.6f m=1
-C7_25_ out d5 2.6f m=1
-C7_24_ out d5 2.6f m=1
-C7_23_ out d5 2.6f m=1
-C7_22_ out d5 2.6f m=1
-C7_21_ out d5 2.6f m=1
-C7_20_ out d5 2.6f m=1
-C7_19_ out d5 2.6f m=1
-C7_18_ out d5 2.6f m=1
-C7_17_ out d5 2.6f m=1
-C7_16_ out d5 2.6f m=1
-C7_15_ out d5 2.6f m=1
-C7_14_ out d5 2.6f m=1
-C7_13_ out d5 2.6f m=1
-C7_12_ out d5 2.6f m=1
-C7_11_ out d5 2.6f m=1
-C7_10_ out d5 2.6f m=1
-C7_9_ out d5 2.6f m=1
-C7_8_ out d5 2.6f m=1
-C7_7_ out d5 2.6f m=1
-C7_6_ out d5 2.6f m=1
-C7_5_ out d5 2.6f m=1
-C7_4_ out d5 2.6f m=1
-C7_3_ out d5 2.6f m=1
-C7_2_ out d5 2.6f m=1
-C7_1_ out d5 2.6f m=1
-C7_0_ out d5 2.6f m=1
-V1 d0 GND 1
-V2 dummy GND 0
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/tb/cdac/tb_cdac2.sch
+**.subckt tb_cdac2 aout
+*.opin aout
+x2 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
+V1 sw GND dummy
+C1 aout net1 2.6f m=1
+x1 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
+V2 sw GND d0
+C2 aout net2 2.6f m=1
+x3 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
+V3 sw GND d1
+C3_1_ aout net3 2.6f m=1
+C3_0_ aout net3 2.6f m=1
+x4 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
+V4 sw GND d2
+C4_3_ aout net4 2.6f m=1
+C4_2_ aout net4 2.6f m=1
+C4_1_ aout net4 2.6f m=1
+C4_0_ aout net4 2.6f m=1
+x5 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
+V5 sw GND d3
+C3_7_ aout net5 2.6f m=1
+C3_6_ aout net5 2.6f m=1
+C3_5_ aout net5 2.6f m=1
+C3_4_ aout net5 2.6f m=1
+C3_3_ aout net5 2.6f m=1
+C3_2_ aout net5 2.6f m=1
+C3_1_ aout net5 2.6f m=1
+C3_0_ aout net5 2.6f m=1
+x6 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
+V6 sw GND d4
+C4_15_ aout net6 2.6f m=1
+C4_14_ aout net6 2.6f m=1
+C4_13_ aout net6 2.6f m=1
+C4_12_ aout net6 2.6f m=1
+C4_11_ aout net6 2.6f m=1
+C4_10_ aout net6 2.6f m=1
+C4_9_ aout net6 2.6f m=1
+C4_8_ aout net6 2.6f m=1
+C4_7_ aout net6 2.6f m=1
+C4_6_ aout net6 2.6f m=1
+C4_5_ aout net6 2.6f m=1
+C4_4_ aout net6 2.6f m=1
+C4_3_ aout net6 2.6f m=1
+C4_2_ aout net6 2.6f m=1
+C4_1_ aout net6 2.6f m=1
+C4_0_ aout net6 2.6f m=1
+x7 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
+V7 sw GND d5
+C5_31_ aout net7 2.6f m=1
+C5_30_ aout net7 2.6f m=1
+C5_29_ aout net7 2.6f m=1
+C5_28_ aout net7 2.6f m=1
+C5_27_ aout net7 2.6f m=1
+C5_26_ aout net7 2.6f m=1
+C5_25_ aout net7 2.6f m=1
+C5_24_ aout net7 2.6f m=1
+C5_23_ aout net7 2.6f m=1
+C5_22_ aout net7 2.6f m=1
+C5_21_ aout net7 2.6f m=1
+C5_20_ aout net7 2.6f m=1
+C5_19_ aout net7 2.6f m=1
+C5_18_ aout net7 2.6f m=1
+C5_17_ aout net7 2.6f m=1
+C5_16_ aout net7 2.6f m=1
+C5_15_ aout net7 2.6f m=1
+C5_14_ aout net7 2.6f m=1
+C5_13_ aout net7 2.6f m=1
+C5_12_ aout net7 2.6f m=1
+C5_11_ aout net7 2.6f m=1
+C5_10_ aout net7 2.6f m=1
+C5_9_ aout net7 2.6f m=1
+C5_8_ aout net7 2.6f m=1
+C5_7_ aout net7 2.6f m=1
+C5_6_ aout net7 2.6f m=1
+C5_5_ aout net7 2.6f m=1
+C5_4_ aout net7 2.6f m=1
+C5_3_ aout net7 2.6f m=1
+C5_2_ aout net7 2.6f m=1
+C5_1_ aout net7 2.6f m=1
+C5_0_ aout net7 2.6f m=1
+S1 net1 GND swb GND SWITCH1
+S2 net1 vin sw GND SWITCH1
+S3 net2 GND swb GND SWITCH1
+S4 net2 vin sw GND SWITCH1
+S5 net3 GND swb GND SWITCH1
+S6 net3 vin sw GND SWITCH1
+S7 net4 GND swb GND SWITCH1
+S8 net4 vin sw GND SWITCH1
+S9 net5 GND swb GND SWITCH1
+S10 net5 vin sw GND SWITCH1
+S11 net6 GND swb GND SWITCH1
+S12 net6 vin sw GND SWITCH1
+S13 net7 GND swb GND SWITCH1
+S14 net7 vin sw GND SWITCH1
 **** begin user architecture code
- *.options method trap
-*.options gmin 1e-15
-*.options abstol 1e-15
-*.options reltol 0.0001
-*.options vntol 0.1e-6
-*
-*.include /home/oe23ranan/caravel_user_project_analog/xschem/switches/bootstrapped_sw.sp
-
-
-.param MC_SWITCH=0
-
-*.tran 100e-9 4e-6
-.temp 85
-
-
-*.tran 100e-9 13e-6 uic
-.tran 10u 10m
-
-
-*loop
-.ic V(d5) = 0
-.ic V(d4) = 0
-.ic V(d3) = 0
-.ic V(d2) = 0
-.ic V(d1) = 0
-.ic V(d0) = 0
-.ic V(dummy) = 0
-.ic V(out) = 0
-
-
-.op
-run
-.control
-save all
-
-
-.endc
-
  * FET CORNERS
 .include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
 *.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest//corners/ff.spice
@@ -148,6 +132,33 @@ save all
 *.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
 *.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
 
+
+
+.option wnflag=1
+Vin vin 0 PULSE 0 1 0 12.8u 0 0.2u 13u
+
+.control
+save all
+tran 13u 1u
+
+.param dummy=1
+.param d5=0
+.param d4=1
+.param d3=1
+.param d2=1
+.param d1=1
+.param d0=1
+
+
+
+op
+write test_cdac.raw
+.endc
+
+
+
+
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
 **** end user architecture code
 **.ends
 .GLOBAL GND
