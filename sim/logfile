@@ -18,11 +18,11 @@ Initial Transient Solution
 Node                                   Voltage
 ----                                   -------
 sw                                           1
-sw1                                          0
-sw2                                          0
-sw3                                          0
-sw4                                          0
-sw5                                          0
+sw1                                          1
+sw2                                          1
+sw3                                          1
+sw4                                          1
+sw5                                          1
 sw6                                          1
 net1                                         0
 in1                                8.43783e-09
@@ -45,31 +45,31 @@ in0                                8.43783e-09
 x11.enb                              0.0701093
 x11.en_buf                                 1.8
 vin                                          0
-x12.enb                            1.91085e-06
-swb1                                       1.8
-x12.en_buf                                 1.8
-x13.enb                                    1.8
-x13.en_buf                         1.91085e-06
-x14.enb                            1.91085e-06
-swb2                                       1.8
-x14.en_buf                                 1.8
-x15.enb                                    1.8
-x15.en_buf                         1.91085e-06
-x16.enb                            1.91085e-06
-swb3                                       1.8
-x16.en_buf                                 1.8
-x17.enb                                    1.8
-x17.en_buf                         1.91085e-06
-x18.enb                            1.91085e-06
-swb4                                       1.8
-x18.en_buf                                 1.8
-x19.enb                                    1.8
-x19.en_buf                         1.91085e-06
-x20.enb                            1.91085e-06
-swb5                                       1.8
-x20.en_buf                                 1.8
-x21.enb                                    1.8
-x21.en_buf                         1.91085e-06
+x12.enb                                    1.8
+swb1                                0.00435082
+x12.en_buf                         1.91085e-06
+x13.enb                              0.0701093
+x13.en_buf                                 1.8
+x14.enb                                    1.8
+swb2                                0.00435082
+x14.en_buf                         1.91085e-06
+x15.enb                              0.0701093
+x15.en_buf                                 1.8
+x16.enb                                    1.8
+swb3                                0.00435082
+x16.en_buf                         1.91085e-06
+x17.enb                              0.0701093
+x17.en_buf                                 1.8
+x18.enb                                    1.8
+swb4                                0.00435082
+x18.en_buf                         1.91085e-06
+x19.enb                              0.0701093
+x19.en_buf                                 1.8
+x20.enb                                    1.8
+swb5                                0.00435082
+x20.en_buf                         1.91085e-06
+x21.enb                              0.0701093
+x21.en_buf                                 1.8
 x22.enb                                    1.8
 swb6                                0.00435082
 x22.en_buf                         1.91085e-06
@@ -78,9 +78,9 @@ x23.en_buf                                 1.8
 net6                                         0
 sky130_fd_pr__esd_nfet_05v0_nvt.pm3               0
                                              0
-vss#branch                         4.05628e-05
-vdd#branch                        -4.05629e-05
-vin#branch                         2.36863e-11
+vss#branch                         0.000141925
+vdd#branch                        -0.000141925
+vin#branch                          4.1695e-11
 v7#branch                                    0
 v6#branch                                    0
 v5#branch                                    0
@@ -91,6 +91,6 @@ v1#branch                                    0
 
 
 No. of Data Rows : 62
-output              =  5.156369e-01
-output = 5.156369e-01
+output              =  1.000001e+00
+output = 1.000001e+00
 Note: No ".plot", ".print", or ".fourier" lines; no simulations run
