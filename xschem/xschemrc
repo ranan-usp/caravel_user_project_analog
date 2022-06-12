@@ -3,8 +3,8 @@
 #----------------------------------------------------------------------
 set DESIGN_PATH [exec pwd]
 # set PDK_PATH $env(SKY130_PDK_PATH)
-# set PDK_PATH /tmp/caravel_tutorial/pdk/skywater-pdk/libraries
-set PDK_PATH /home/oe23ranan/skywater/skywater-pdk/libraries
+set PDK_PATH /tmp/caravel_tutorial/pdk/skywater-pdk/libraries
+# set PDK_PATH /home/oe23ranan/skywater/skywater-pdk/libraries
 
 #----------------------------------------------------------------------
 # xschem system-wide design library paths: xschem_library_path

@@ -1,165 +1,222 @@
 ** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/tb/cdac/tb_cdac2.sch
-**.subckt tb_cdac2 aout
-*.opin aout
-x2 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
+**.subckt tb_cdac2
 V1 sw GND dummy
-C1 aout net1 2.6f m=1
-x1 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
-V2 sw GND d0
-C2 aout net2 2.6f m=1
-x3 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
-V3 sw GND d1
-C3_1_ aout net3 2.6f m=1
-C3_0_ aout net3 2.6f m=1
-x4 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
-V4 sw GND d2
-C4_3_ aout net4 2.6f m=1
-C4_2_ aout net4 2.6f m=1
-C4_1_ aout net4 2.6f m=1
-C4_0_ aout net4 2.6f m=1
-x5 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
-V5 sw GND d3
-C3_7_ aout net5 2.6f m=1
-C3_6_ aout net5 2.6f m=1
-C3_5_ aout net5 2.6f m=1
-C3_4_ aout net5 2.6f m=1
-C3_3_ aout net5 2.6f m=1
-C3_2_ aout net5 2.6f m=1
-C3_1_ aout net5 2.6f m=1
-C3_0_ aout net5 2.6f m=1
-x6 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
-V6 sw GND d4
-C4_15_ aout net6 2.6f m=1
-C4_14_ aout net6 2.6f m=1
-C4_13_ aout net6 2.6f m=1
-C4_12_ aout net6 2.6f m=1
-C4_11_ aout net6 2.6f m=1
-C4_10_ aout net6 2.6f m=1
-C4_9_ aout net6 2.6f m=1
-C4_8_ aout net6 2.6f m=1
-C4_7_ aout net6 2.6f m=1
-C4_6_ aout net6 2.6f m=1
-C4_5_ aout net6 2.6f m=1
-C4_4_ aout net6 2.6f m=1
-C4_3_ aout net6 2.6f m=1
-C4_2_ aout net6 2.6f m=1
-C4_1_ aout net6 2.6f m=1
-C4_0_ aout net6 2.6f m=1
-x7 sw VGND VNB VPB VPWR swb sky130_fd_sc_hd__inv_2
-V7 sw GND d5
-C5_31_ aout net7 2.6f m=1
-C5_30_ aout net7 2.6f m=1
-C5_29_ aout net7 2.6f m=1
-C5_28_ aout net7 2.6f m=1
-C5_27_ aout net7 2.6f m=1
-C5_26_ aout net7 2.6f m=1
-C5_25_ aout net7 2.6f m=1
-C5_24_ aout net7 2.6f m=1
-C5_23_ aout net7 2.6f m=1
-C5_22_ aout net7 2.6f m=1
-C5_21_ aout net7 2.6f m=1
-C5_20_ aout net7 2.6f m=1
-C5_19_ aout net7 2.6f m=1
-C5_18_ aout net7 2.6f m=1
-C5_17_ aout net7 2.6f m=1
-C5_16_ aout net7 2.6f m=1
-C5_15_ aout net7 2.6f m=1
-C5_14_ aout net7 2.6f m=1
-C5_13_ aout net7 2.6f m=1
-C5_12_ aout net7 2.6f m=1
-C5_11_ aout net7 2.6f m=1
-C5_10_ aout net7 2.6f m=1
-C5_9_ aout net7 2.6f m=1
-C5_8_ aout net7 2.6f m=1
-C5_7_ aout net7 2.6f m=1
-C5_6_ aout net7 2.6f m=1
-C5_5_ aout net7 2.6f m=1
-C5_4_ aout net7 2.6f m=1
-C5_3_ aout net7 2.6f m=1
-C5_2_ aout net7 2.6f m=1
-C5_1_ aout net7 2.6f m=1
-C5_0_ aout net7 2.6f m=1
-S1 net1 GND swb GND SWITCH1
-S2 net1 vin sw GND SWITCH1
-S3 net2 GND swb GND SWITCH1
-S4 net2 vin sw GND SWITCH1
-S5 net3 GND swb GND SWITCH1
-S6 net3 vin sw GND SWITCH1
-S7 net4 GND swb GND SWITCH1
-S8 net4 vin sw GND SWITCH1
-S9 net5 GND swb GND SWITCH1
-S10 net5 vin sw GND SWITCH1
-S11 net6 GND swb GND SWITCH1
-S12 net6 vin sw GND SWITCH1
-S13 net7 GND swb GND SWITCH1
-S14 net7 vin sw GND SWITCH1
+V2 sw1 GND d0
+V3 sw2 GND d1
+V4 sw3 GND d2
+V5 sw4 GND d3
+V6 sw5 GND d4
+V7 sw6 GND d5
+x9 net1 in1 unitcap
+x10_1_ net2 in2 unitcap
+x10_0_ net2 in2 unitcap
+x11_3_ net3 in3 unitcap
+x11_2_ net3 in3 unitcap
+x11_1_ net3 in3 unitcap
+x11_0_ net3 in3 unitcap
+x12_7_ net4 in4 unitcap
+x12_6_ net4 in4 unitcap
+x12_5_ net4 in4 unitcap
+x12_4_ net4 in4 unitcap
+x12_3_ net4 in4 unitcap
+x12_2_ net4 in4 unitcap
+x12_1_ net4 in4 unitcap
+x12_0_ net4 in4 unitcap
+x13_15_ net5 in5 unitcap
+x13_14_ net5 in5 unitcap
+x13_13_ net5 in5 unitcap
+x13_12_ net5 in5 unitcap
+x13_11_ net5 in5 unitcap
+x13_10_ net5 in5 unitcap
+x13_9_ net5 in5 unitcap
+x13_8_ net5 in5 unitcap
+x13_7_ net5 in5 unitcap
+x13_6_ net5 in5 unitcap
+x13_5_ net5 in5 unitcap
+x13_4_ net5 in5 unitcap
+x13_3_ net5 in5 unitcap
+x13_2_ net5 in5 unitcap
+x13_1_ net5 in5 unitcap
+x13_0_ net5 in5 unitcap
+x14_31_ aout in6 unitcap
+x14_30_ aout in6 unitcap
+x14_29_ aout in6 unitcap
+x14_28_ aout in6 unitcap
+x14_27_ aout in6 unitcap
+x14_26_ aout in6 unitcap
+x14_25_ aout in6 unitcap
+x14_24_ aout in6 unitcap
+x14_23_ aout in6 unitcap
+x14_22_ aout in6 unitcap
+x14_21_ aout in6 unitcap
+x14_20_ aout in6 unitcap
+x14_19_ aout in6 unitcap
+x14_18_ aout in6 unitcap
+x14_17_ aout in6 unitcap
+x14_16_ aout in6 unitcap
+x14_15_ aout in6 unitcap
+x14_14_ aout in6 unitcap
+x14_13_ aout in6 unitcap
+x14_12_ aout in6 unitcap
+x14_11_ aout in6 unitcap
+x14_10_ aout in6 unitcap
+x14_9_ aout in6 unitcap
+x14_8_ aout in6 unitcap
+x14_7_ aout in6 unitcap
+x14_6_ aout in6 unitcap
+x14_5_ aout in6 unitcap
+x14_4_ aout in6 unitcap
+x14_3_ aout in6 unitcap
+x14_2_ aout in6 unitcap
+x14_1_ aout in6 unitcap
+x14_0_ aout in6 unitcap
+x10 in0 swbd vdd GND vss my_passgate
+x11 in0 sw vdd vin vss my_passgate
+x12 in1 swb1 vdd GND vss my_passgate
+x13 in1 sw1 vdd vin vss my_passgate
+x14 in2 swb2 vdd GND vss my_passgate
+x15 in2 sw2 vdd vin vss my_passgate
+x16 in3 swb3 vdd GND vss my_passgate
+x17 in3 sw3 vdd vin vss my_passgate
+x18 in4 swb4 vdd GND vss my_passgate
+x19 in4 sw4 vdd vin vss my_passgate
+x20 in5 swb5 vdd GND vss my_passgate
+x21 in5 sw5 vdd vin vss my_passgate
+x22 in6 swb6 vdd GND vss my_passgate
+x23 in6 sw6 vdd vin vss my_passgate
+x7 sw6 vss vss vdd vdd swb6 sky130_fd_sc_hd__inv_2
+x1 sw5 vss vss vdd vdd swb5 sky130_fd_sc_hd__inv_2
+x2 sw4 vss vss vdd vdd swb4 sky130_fd_sc_hd__inv_2
+x3 sw3 vss vss vdd vdd swb3 sky130_fd_sc_hd__inv_2
+x4 sw2 vss vss vdd vdd swb2 sky130_fd_sc_hd__inv_2
+x5 sw1 vss vss vdd vdd swb1 sky130_fd_sc_hd__inv_2
+x6 sw vss vss vdd vdd swbd sky130_fd_sc_hd__inv_2
+x8 net6 in0 unitcap
+R7 net1 net6 para m=1
+R1 net2 net1 para m=1
+R2 net3 net2 para m=1
+R3 net4 net3 para m=1
+R4 net5 net4 para m=1
+R5 aout net5 para m=1
 **** begin user architecture code
  * FET CORNERS
-.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest//corners/ff.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
 
 * TT + R + C
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmax.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmax.spice
 
 * FF + R + C
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmax.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmax.spice
 
 
 * SS + R + C
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmax.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmax.spice
 
 * SF + R + C
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmax.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmax.spice
 
 * FS + R + C
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmax.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
-*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmax.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
+*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
 
 
 
 .option wnflag=1
-Vin vin 0 PULSE 0 1 0 12.8u 0 0.2u 13u
+.option plotwinsize=0
+Vin vin 0 dc PULSE(0 1 0 12.8u 0 0.2u 13u)
+*Vin vin 0 1.8
+VDD vdd 0 1.8
+VSS vss 0 0
+
+.param dummy=1
+.param d5=1
+.param d4=0
+.param d3=0
+.param d2=0
+.param d1=0
+.param d0=0
+.param para=5
 
 .control
 save all
-tran 13u 1u
+tran 1u 13u
 
-.param dummy=1
-.param d5=0
-.param d4=1
-.param d3=1
-.param d2=1
-.param d1=1
-.param d0=1
+meas tran output find v(aout) at=13u
 
-
-
-op
-write test_cdac.raw
+wrdata out output
+print output
 .endc
 
 
 
 
-.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
+.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
 **** end user architecture code
 **.ends
+
+* expanding   symbol:  sar_10b/unitcap/unitcap.sym # of pins=2
+** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/unitcap/unitcap.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/unitcap/unitcap.sch
+.subckt unitcap  cp cn
+*.iopin cp
+*.iopin cn
+C1 cp cn 2.6f m=1
+.ends
+
+
+* expanding   symbol:  switches/my_passgate.sym # of pins=5
+** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/switches/my_passgate.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/switches/my_passgate.sch
+.subckt my_passgate  out en vdd in vss
+*.iopin out
+*.ipin en
+*.iopin vss
+*.iopin vdd
+*.iopin in
+x2 vdd en enb vss inv_lvt
+x1 vdd enb en_buf vss inv_lvt
+XMSN out en_buf in vss sky130_fd_pr__nfet_01v8 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XMSP in enb out vdd sky130_fd_pr__pfet_01v8 L=0.5 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  logic/inv_lvt.sym # of pins=4
+** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/logic/inv_lvt.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/logic/inv_lvt.sch
+.subckt inv_lvt  vdd in out vss
+*.iopin vdd
+*.iopin vss
+*.ipin in
+*.opin out
+XM1 out in vss vss sky130_fd_pr__nfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 out in vdd vdd sky130_fd_pr__pfet_01v8_lvt L=0.4 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
 .GLOBAL GND
 .end
