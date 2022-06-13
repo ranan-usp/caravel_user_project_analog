@@ -454,7 +454,7 @@ Vin vin 0 dc PULSE(0 1 0 12.8u 0 0.2u 13u)
 VDD vdd 0 1.8
 VSS vss 0 0
 
-.param dummy=1
+.param dummy=0
 .param d5=1
 .param d4=0
 .param d3=0

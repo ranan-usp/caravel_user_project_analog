@@ -100,42 +100,42 @@ R4 net5 net4 para m=1
 R5 aout net5 para m=1
 **** begin user architecture code
  * FET CORNERS
-.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
 
 * TT + R + C
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmax.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmax.spice
 
 * FF + R + C
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmax.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmax.spice
 
 
 * SS + R + C
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmax.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmax.spice
 
 * SF + R + C
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmax.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmax.spice
 
 * FS + R + C
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmax.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
-*.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
 
 
 
@@ -146,7 +146,7 @@ Vin vin 0 dc PULSE(0 1 0 12.8u 0 0.2u 13u)
 VDD vdd 0 1.8
 VSS vss 0 0
 
-.param dummy=1
+.param dummy=0
 .param d5=1
 .param d4=0
 .param d3=0
@@ -168,7 +168,7 @@ print output
 
 
 
-.include /tmp/caravel_tutorial/pdk/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
 **** end user architecture code
 **.ends
 

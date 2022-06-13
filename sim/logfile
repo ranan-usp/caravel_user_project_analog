@@ -17,7 +17,7 @@ Initial Transient Solution
 
 Node                                   Voltage
 ----                                   -------
-sw                                           1
+sw                                           0
 sw1                                          1
 sw2                                          1
 sw3                                          1
@@ -36,14 +36,14 @@ net5                                         0
 in5                                8.43783e-09
 aout                                         0
 in6                                8.43783e-09
-x10.enb                                    1.8
-swbd                                0.00435082
+x10.enb                            1.91085e-06
+swbd                                       1.8
 vss                                          0
 vdd                                        1.8
-x10.en_buf                         1.91085e-06
+x10.en_buf                                 1.8
 in0                                8.43783e-09
-x11.enb                              0.0701093
-x11.en_buf                                 1.8
+x11.enb                                    1.8
+x11.en_buf                         1.91085e-06
 vin                                          0
 x12.enb                                    1.8
 swb1                                0.00435082
@@ -78,9 +78,9 @@ x23.en_buf                                 1.8
 net6                                         0
 sky130_fd_pr__esd_nfet_05v0_nvt.pm3               0
                                              0
-vss#branch                         0.000141925
-vdd#branch                        -0.000141925
-vin#branch                          4.1695e-11
+vss#branch                         0.000121652
+vdd#branch                        -0.000121653
+vin#branch                         3.80933e-11
 v7#branch                                    0
 v6#branch                                    0
 v5#branch                                    0
@@ -91,6 +91,6 @@ v1#branch                                    0
 
 
 No. of Data Rows : 62
-output              =  1.000001e+00
-output = 1.000001e+00
+output              =  9.843761e-01
+output = 9.843761e-01
 Note: No ".plot", ".print", or ".fourier" lines; no simulations run

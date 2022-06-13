@@ -20,7 +20,8 @@ def set_condition(path,to_path,digital_code):
         if '.param d' in line and 'dummy' not in line:
             words = re.split('[ =]',line)
             num = int(words[1].split('d')[-1])
-            new_line = '.param d' + str(num) + '=' + digital_code[num]
+
+            new_line = '.param d' + str(num) + '=' + digital_code[len(digital_code)-1-num]
 
         else:
             new_line = line
