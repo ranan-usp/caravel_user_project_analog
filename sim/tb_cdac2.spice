@@ -7,83 +7,83 @@ V4 sw3 GND d2
 V5 sw4 GND d3
 V6 sw5 GND d4
 V7 sw6 GND d5
-x9 net1 in1 unitcap
-x10_1_ net2 in2 unitcap
-x10_0_ net2 in2 unitcap
-x11_3_ net3 in3 unitcap
-x11_2_ net3 in3 unitcap
-x11_1_ net3 in3 unitcap
-x11_0_ net3 in3 unitcap
-x12_7_ net4 in4 unitcap
-x12_6_ net4 in4 unitcap
-x12_5_ net4 in4 unitcap
-x12_4_ net4 in4 unitcap
-x12_3_ net4 in4 unitcap
-x12_2_ net4 in4 unitcap
-x12_1_ net4 in4 unitcap
-x12_0_ net4 in4 unitcap
-x13_15_ net5 in5 unitcap
-x13_14_ net5 in5 unitcap
-x13_13_ net5 in5 unitcap
-x13_12_ net5 in5 unitcap
-x13_11_ net5 in5 unitcap
-x13_10_ net5 in5 unitcap
-x13_9_ net5 in5 unitcap
-x13_8_ net5 in5 unitcap
-x13_7_ net5 in5 unitcap
-x13_6_ net5 in5 unitcap
-x13_5_ net5 in5 unitcap
-x13_4_ net5 in5 unitcap
-x13_3_ net5 in5 unitcap
-x13_2_ net5 in5 unitcap
-x13_1_ net5 in5 unitcap
-x13_0_ net5 in5 unitcap
-x14_31_ aout in6 unitcap
-x14_30_ aout in6 unitcap
-x14_29_ aout in6 unitcap
-x14_28_ aout in6 unitcap
-x14_27_ aout in6 unitcap
-x14_26_ aout in6 unitcap
-x14_25_ aout in6 unitcap
-x14_24_ aout in6 unitcap
-x14_23_ aout in6 unitcap
-x14_22_ aout in6 unitcap
-x14_21_ aout in6 unitcap
-x14_20_ aout in6 unitcap
-x14_19_ aout in6 unitcap
-x14_18_ aout in6 unitcap
-x14_17_ aout in6 unitcap
-x14_16_ aout in6 unitcap
-x14_15_ aout in6 unitcap
-x14_14_ aout in6 unitcap
-x14_13_ aout in6 unitcap
-x14_12_ aout in6 unitcap
-x14_11_ aout in6 unitcap
-x14_10_ aout in6 unitcap
-x14_9_ aout in6 unitcap
-x14_8_ aout in6 unitcap
-x14_7_ aout in6 unitcap
-x14_6_ aout in6 unitcap
-x14_5_ aout in6 unitcap
-x14_4_ aout in6 unitcap
-x14_3_ aout in6 unitcap
-x14_2_ aout in6 unitcap
-x14_1_ aout in6 unitcap
-x14_0_ aout in6 unitcap
-x10 in0 swbd vdd GND vss my_passgate
-x11 in0 sw vdd vin vss my_passgate
-x12 in1 swb1 vdd GND vss my_passgate
-x13 in1 sw1 vdd vin vss my_passgate
-x14 in2 swb2 vdd GND vss my_passgate
-x15 in2 sw2 vdd vin vss my_passgate
-x16 in3 swb3 vdd GND vss my_passgate
-x17 in3 sw3 vdd vin vss my_passgate
-x18 in4 swb4 vdd GND vss my_passgate
-x19 in4 sw4 vdd vin vss my_passgate
-x20 in5 swb5 vdd GND vss my_passgate
-x21 in5 sw5 vdd vin vss my_passgate
-x22 in6 swb6 vdd GND vss my_passgate
-x23 in6 sw6 vdd vin vss my_passgate
+x9 d0 in0 unitcap
+x10_1_ d1 in1 unitcap
+x10_0_ d1 in1 unitcap
+x11_3_ d2 in2 unitcap
+x11_2_ d2 in2 unitcap
+x11_1_ d2 in2 unitcap
+x11_0_ d2 in2 unitcap
+x12_7_ d3 in3 unitcap
+x12_6_ d3 in3 unitcap
+x12_5_ d3 in3 unitcap
+x12_4_ d3 in3 unitcap
+x12_3_ d3 in3 unitcap
+x12_2_ d3 in3 unitcap
+x12_1_ d3 in3 unitcap
+x12_0_ d3 in3 unitcap
+x13_15_ d4 in4 unitcap
+x13_14_ d4 in4 unitcap
+x13_13_ d4 in4 unitcap
+x13_12_ d4 in4 unitcap
+x13_11_ d4 in4 unitcap
+x13_10_ d4 in4 unitcap
+x13_9_ d4 in4 unitcap
+x13_8_ d4 in4 unitcap
+x13_7_ d4 in4 unitcap
+x13_6_ d4 in4 unitcap
+x13_5_ d4 in4 unitcap
+x13_4_ d4 in4 unitcap
+x13_3_ d4 in4 unitcap
+x13_2_ d4 in4 unitcap
+x13_1_ d4 in4 unitcap
+x13_0_ d4 in4 unitcap
+x14_31_ d5 in5 unitcap
+x14_30_ d5 in5 unitcap
+x14_29_ d5 in5 unitcap
+x14_28_ d5 in5 unitcap
+x14_27_ d5 in5 unitcap
+x14_26_ d5 in5 unitcap
+x14_25_ d5 in5 unitcap
+x14_24_ d5 in5 unitcap
+x14_23_ d5 in5 unitcap
+x14_22_ d5 in5 unitcap
+x14_21_ d5 in5 unitcap
+x14_20_ d5 in5 unitcap
+x14_19_ d5 in5 unitcap
+x14_18_ d5 in5 unitcap
+x14_17_ d5 in5 unitcap
+x14_16_ d5 in5 unitcap
+x14_15_ d5 in5 unitcap
+x14_14_ d5 in5 unitcap
+x14_13_ d5 in5 unitcap
+x14_12_ d5 in5 unitcap
+x14_11_ d5 in5 unitcap
+x14_10_ d5 in5 unitcap
+x14_9_ d5 in5 unitcap
+x14_8_ d5 in5 unitcap
+x14_7_ d5 in5 unitcap
+x14_6_ d5 in5 unitcap
+x14_5_ d5 in5 unitcap
+x14_4_ d5 in5 unitcap
+x14_3_ d5 in5 unitcap
+x14_2_ d5 in5 unitcap
+x14_1_ d5 in5 unitcap
+x14_0_ d5 in5 unitcap
+x10 in_dummy swbd vdd GND vss my_passgate
+x11 in_dummy sw vdd vin vss my_passgate
+x12 in0 swb1 vdd GND vss my_passgate
+x13 in0 sw1 vdd vin vss my_passgate
+x14 in1 swb2 vdd GND vss my_passgate
+x15 in1 sw2 vdd vin vss my_passgate
+x16 in2 swb3 vdd GND vss my_passgate
+x17 in2 sw3 vdd vin vss my_passgate
+x18 in3 swb4 vdd GND vss my_passgate
+x19 in3 sw4 vdd vin vss my_passgate
+x20 in4 swb5 vdd GND vss my_passgate
+x21 in4 sw5 vdd vin vss my_passgate
+x22 in5 swb6 vdd GND vss my_passgate
+x23 in5 sw6 vdd vin vss my_passgate
 x7 sw6 vss vss vdd vdd swb6 sky130_fd_sc_hd__inv_2
 x1 sw5 vss vss vdd vdd swb5 sky130_fd_sc_hd__inv_2
 x2 sw4 vss vss vdd vdd swb4 sky130_fd_sc_hd__inv_2
@@ -91,13 +91,13 @@ x3 sw3 vss vss vdd vdd swb3 sky130_fd_sc_hd__inv_2
 x4 sw2 vss vss vdd vdd swb2 sky130_fd_sc_hd__inv_2
 x5 sw1 vss vss vdd vdd swb1 sky130_fd_sc_hd__inv_2
 x6 sw vss vss vdd vdd swbd sky130_fd_sc_hd__inv_2
-x8 net6 in0 unitcap
-R7 net1 net6 para m=1
-R1 net2 net1 para m=1
-R2 net3 net2 para m=1
-R3 net4 net3 para m=1
-R4 net5 net4 para m=1
-R5 aout net5 para m=1
+x8 dummy in_dummy unitcap
+R7 d0 dummy para m=1
+R1 d1 d0 para m=1
+R2 d2 d1 para m=1
+R3 d3 d2 para m=1
+R4 d4 d3 para m=1
+R5 d5 d4 para m=1
 **** begin user architecture code
  * FET CORNERS
 .include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
@@ -159,7 +159,7 @@ VSS vss 0 0
 save all
 tran 1u 13u
 
-meas tran output find v(aout) at=13u
+meas tran output find v(d5) at=13u
 
 wrdata out output
 print output

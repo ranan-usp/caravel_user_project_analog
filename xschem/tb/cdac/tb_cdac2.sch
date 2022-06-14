@@ -33,11 +33,11 @@ lab=GND}
 N 170 -140 170 -110 {
 lab=sw}
 N 200 -420 200 -380 {
-lab=in0}
+lab=in_dummy}
 N 200 -420 300 -420 {
-lab=in0}
+lab=in_dummy}
 N 300 -420 300 -380 {
-lab=in0}
+lab=in_dummy}
 N 420 -170 420 -140 {
 lab=sw1}
 N 420 -140 520 -140 {
@@ -67,15 +67,15 @@ lab=GND}
 N 470 -140 470 -110 {
 lab=sw1}
 N 500 -420 500 -380 {
-lab=in1}
+lab=in0}
 N 500 -420 600 -420 {
-lab=in1}
+lab=in0}
 N 600 -420 600 -380 {
-lab=in1}
+lab=in0}
 N 560 -450 560 -420 {
-lab=in1}
+lab=in0}
 N 560 -570 560 -510 {
-lab=#net1}
+lab=d0}
 N 740 -170 740 -140 {
 lab=sw2}
 N 740 -140 840 -140 {
@@ -105,15 +105,15 @@ lab=GND}
 N 790 -140 790 -110 {
 lab=sw2}
 N 820 -420 820 -380 {
-lab=in2}
+lab=in1}
 N 820 -420 920 -420 {
-lab=in2}
+lab=in1}
 N 920 -420 920 -380 {
-lab=in2}
+lab=in1}
 N 880 -450 880 -420 {
-lab=in2}
+lab=in1}
 N 880 -570 880 -510 {
-lab=#net2}
+lab=d1}
 N 1040 -170 1040 -140 {
 lab=sw3}
 N 1040 -140 1140 -140 {
@@ -143,15 +143,15 @@ lab=GND}
 N 1090 -140 1090 -110 {
 lab=sw3}
 N 1120 -420 1120 -380 {
-lab=in3}
+lab=in2}
 N 1120 -420 1220 -420 {
-lab=in3}
+lab=in2}
 N 1220 -420 1220 -380 {
-lab=in3}
+lab=in2}
 N 1180 -450 1180 -420 {
-lab=in3}
+lab=in2}
 N 1180 -570 1180 -510 {
-lab=#net3}
+lab=d2}
 N 1340 -170 1340 -140 {
 lab=sw4}
 N 1340 -140 1440 -140 {
@@ -181,15 +181,15 @@ lab=GND}
 N 1390 -140 1390 -110 {
 lab=sw4}
 N 1420 -420 1420 -380 {
-lab=in4}
+lab=in3}
 N 1420 -420 1520 -420 {
-lab=in4}
+lab=in3}
 N 1520 -420 1520 -380 {
-lab=in4}
+lab=in3}
 N 1480 -450 1480 -420 {
-lab=in4}
+lab=in3}
 N 1480 -570 1480 -510 {
-lab=#net4}
+lab=d3}
 N 1640 -170 1640 -140 {
 lab=sw5}
 N 1640 -140 1740 -140 {
@@ -219,15 +219,15 @@ lab=GND}
 N 1690 -140 1690 -110 {
 lab=sw5}
 N 1720 -420 1720 -380 {
-lab=in5}
+lab=in4}
 N 1720 -420 1820 -420 {
-lab=in5}
+lab=in4}
 N 1820 -420 1820 -380 {
-lab=in5}
+lab=in4}
 N 1780 -450 1780 -420 {
-lab=in5}
+lab=in4}
 N 1780 -570 1780 -510 {
-lab=#net5}
+lab=d4}
 N 1960 -170 1960 -140 {
 lab=sw6}
 N 1960 -140 2060 -140 {
@@ -257,15 +257,15 @@ lab=GND}
 N 2010 -140 2010 -110 {
 lab=sw6}
 N 2040 -420 2040 -380 {
-lab=in6}
+lab=in5}
 N 2040 -420 2140 -420 {
-lab=in6}
+lab=in5}
 N 2140 -420 2140 -380 {
-lab=in6}
+lab=in5}
 N 2100 -450 2100 -420 {
-lab=in6}
+lab=in5}
 N 2100 -570 2100 -510 {
-lab=aout}
+lab=d5}
 N 180 -330 180 -310 {
 lab=vss}
 N 180 -390 180 -370 {
@@ -323,25 +323,25 @@ lab=vss}
 N 2120 -390 2120 -370 {
 lab=vdd}
 N 260 -570 260 -520 {
-lab=#net6}
+lab=dummy}
 N 260 -460 260 -420 {
-lab=in0}
+lab=in_dummy}
 N 260 -570 360 -570 {
-lab=#net6}
+lab=dummy}
 N 420 -570 690 -570 {
-lab=#net1}
+lab=d0}
 N 750 -570 1000 -570 {
-lab=#net2}
+lab=d1}
 N 1060 -570 1310 -570 {
-lab=#net3}
+lab=d2}
 N 1370 -570 1610 -570 {
-lab=#net4}
+lab=d3}
 N 1670 -570 1920 -570 {
-lab=#net5}
+lab=d4}
 N 1980 -570 2020 -570 {
-lab=aout}
+lab=d5}
 N 2020 -570 2100 -570 {
-lab=aout}
+lab=d5}
 C {gnd.sym} 200 -300 0 0 {name=l2 lab=GND}
 C {lab_wire.sym} 240 -350 0 0 {name=l3 sig_type=std_logic lab=sw}
 C {lab_wire.sym} 140 -350 0 0 {name=l4 sig_type=std_logic lab=swbd
@@ -467,7 +467,7 @@ VSS vss 0 0
 save all
 tran 1u 13u
 
-meas tran output find v(aout) at=13u
+meas tran output find v(d5) at=13u
 
 wrdata out output
 print output
@@ -529,7 +529,7 @@ C {lab_wire.sym} 2020 -380 0 0 {name=l62 sig_type=std_logic lab=vdd}
 C {switches/my_passgate.sym} 1940 -210 0 0 {name=x23}
 C {lab_wire.sym} 2120 -320 0 0 {name=l63 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 2120 -380 0 0 {name=l64 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} 2070 -570 0 1 {name=l65 sig_type=std_logic lab=aout}
+C {lab_wire.sym} 2070 -570 0 1 {name=l65 sig_type=std_logic lab=d5}
 C {xschem_sky130/sky130_stdcells/inv_2.sym} 1960 -210 3 0 {name=x7 VGND=vss VNB=vss VPB=vdd VPWR=vdd prefix=sky130_fd_sc_hd__ }
 C {xschem_sky130/sky130_stdcells/inv_2.sym} 1640 -210 3 0 {name=x1 VGND=vss VNB=vss VPB=vdd VPWR=vdd prefix=sky130_fd_sc_hd__ }
 C {xschem_sky130/sky130_stdcells/inv_2.sym} 1340 -210 3 0 {name=x2 VGND=vss VNB=vss VPB=vdd VPWR=vdd prefix=sky130_fd_sc_hd__ }
@@ -568,10 +568,16 @@ value=para
 footprint=1206
 device=resistor
 m=1}
-C {lab_wire.sym} 540 -420 0 0 {name=l66 sig_type=std_logic lab=in1}
-C {lab_wire.sym} 860 -420 0 0 {name=l67 sig_type=std_logic lab=in2}
-C {lab_wire.sym} 1160 -420 0 0 {name=l68 sig_type=std_logic lab=in3}
-C {lab_wire.sym} 1460 -420 0 0 {name=l69 sig_type=std_logic lab=in4}
-C {lab_wire.sym} 1760 -420 0 0 {name=l70 sig_type=std_logic lab=in5}
-C {lab_wire.sym} 2080 -420 0 0 {name=l71 sig_type=std_logic lab=in6}
-C {lab_wire.sym} 240 -420 0 0 {name=l72 sig_type=std_logic lab=in0}
+C {lab_wire.sym} 540 -420 0 0 {name=l66 sig_type=std_logic lab=in0}
+C {lab_wire.sym} 860 -420 0 0 {name=l67 sig_type=std_logic lab=in1}
+C {lab_wire.sym} 1160 -420 0 0 {name=l68 sig_type=std_logic lab=in2}
+C {lab_wire.sym} 1460 -420 0 0 {name=l69 sig_type=std_logic lab=in3}
+C {lab_wire.sym} 1760 -420 0 0 {name=l70 sig_type=std_logic lab=in4}
+C {lab_wire.sym} 2080 -420 0 0 {name=l71 sig_type=std_logic lab=in5}
+C {lab_wire.sym} 240 -420 0 0 {name=l72 sig_type=std_logic lab=in_dummy}
+C {lab_wire.sym} 260 -570 0 0 {name=l50 sig_type=std_logic lab=dummy}
+C {lab_wire.sym} 560 -570 0 0 {name=l73 sig_type=std_logic lab=d0}
+C {lab_wire.sym} 880 -570 0 0 {name=l74 sig_type=std_logic lab=d1}
+C {lab_wire.sym} 1180 -570 0 0 {name=l75 sig_type=std_logic lab=d2}
+C {lab_wire.sym} 1480 -570 0 0 {name=l76 sig_type=std_logic lab=d3}
+C {lab_wire.sym} 1780 -570 0 0 {name=l77 sig_type=std_logic lab=d4}

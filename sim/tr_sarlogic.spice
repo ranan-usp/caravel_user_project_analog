@@ -1,0 +1,186 @@
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/tb/sar_10b/tr_sarlogic.sch
+**.subckt tr_sarlogic
+V1 vss GND 0
+V2 vdd GND {vdd}
+Vclk clk GND DC 0 PULSE(0 1 10e-6 1e-9 1e-9 2e-6 4e-6)
+V3 cal GND 0
+Vrstn rstn GND DC 0 PULSE(0 1.2 10e-6 1e-9 1e-9 99e-6 100e-6)
+xlogic __UNCONNECTED_PIN__0 __UNCONNECTED_PIN__1 __UNCONNECTED_PIN__2 __UNCONNECTED_PIN__3
++ __UNCONNECTED_PIN__4 __UNCONNECTED_PIN__5_5_ __UNCONNECTED_PIN__5_4_ __UNCONNECTED_PIN__5_3_ __UNCONNECTED_PIN__5_2_
++ __UNCONNECTED_PIN__5_1_ __UNCONNECTED_PIN__5_0_ __UNCONNECTED_PIN__6 __UNCONNECTED_PIN__7_5_ __UNCONNECTED_PIN__7_4_
++ __UNCONNECTED_PIN__7_3_ __UNCONNECTED_PIN__7_2_ __UNCONNECTED_PIN__7_1_ __UNCONNECTED_PIN__7_0_ __UNCONNECTED_PIN__8_5_
++ __UNCONNECTED_PIN__8_4_ __UNCONNECTED_PIN__8_3_ __UNCONNECTED_PIN__8_2_ __UNCONNECTED_PIN__8_1_ __UNCONNECTED_PIN__8_0_
++ sarlogic
+V4 en GND {vdd}
+Vcomp comp GND DC 0 PULSE(0 {vdd} 40e-6 1e-9 1e-9 99e-6 100e-6)
+**** begin user architecture code
+
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_4.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_8.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/decap/sky130_fd_sc_hd__decap_3.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/buf/sky130_fd_sc_hd__buf_1.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_1.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/tap/sky130_fd_sc_hd__tap_2.spice
+ *.options method = trap
+*.options gmin   = 1e-12
+*.options abstol = 1e-8
+*.options chtol  = 1e-18
+*.options reltol = 0.01
+*.options vntol  = 0.1e-6
+
+*.options rshunt = 10e-12
+
+.param MC_SWITCH=0
+
+.ic v(valid)=0
+.ic v(sample)=0
+.ic v(clkc)=0
+
+.ic v(trim_0_)=0
+.ic v(trim_1_)=0
+.ic v(trim_2_)=0
+.ic v(trim_3_)=0
+.ic v(trim_4_)=0
+.ic v(trimb_0_)=0
+.ic v(trimb_1_)=0
+.ic v(trimb_2_)=0
+.ic v(trimb_3_)=0
+.ic v(trimb_4_)=0
+
+
+.ic v(result_0_)=0
+.ic v(result_1_)=0
+.ic v(result_2_)=0
+.ic v(result_3_)=0
+.ic v(result_4_)=0
+.ic v(result_5_)=0
+.ic v(result_6_)=0
+.ic v(result_7_)=0
+.ic v(result_8_)=0
+.ic v(result_9_)=0
+
+.ic v(ctlp_0_)=0
+.ic v(ctlp_1_)=0
+.ic v(ctlp_2_)=0
+.ic v(ctlp_3_)=0
+.ic v(ctlp_4_)=0
+.ic v(ctlp_5_)=0
+.ic v(ctlp_6_)=0
+.ic v(ctlp_7_)=0
+.ic v(ctlp_8_)=0
+.ic v(ctlp_9_)=0
+
+.ic v(ctln_0_)=0
+.ic v(ctln_1_)=0
+.ic v(ctln_2_)=0
+.ic v(ctln_3_)=0
+.ic v(ctln_4_)=0
+.ic v(ctln_5_)=0
+.ic v(ctln_6_)=0
+.ic v(ctln_7_)=0
+.ic v(ctln_8_)=0
+.ic v(ctln_9_)=0
+
+.include /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/control/sarlogic.ext.spice
+
+.param vdd=1.2
+
+*.tran 100e-9 68e-6
+.tran 100e-9 68e-6 uic
+
+.control
+run
+
+echo Simulation Finished
+echo -------------------
+shell date
+echo -------------------
+
+.endc
+
+ * FET CORNERS
+.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs.spice
+
+* TT + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/tt_rmin_cmax.spice
+
+* FF + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ff_rmin_cmax.spice
+
+
+* SS + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/ss_rmin_cmax.spice
+
+* SF + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/sf_rmin_cmax.spice
+
+* FS + R + C
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmax.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmax_cmin.spice
+*.include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/corners/fs_rmin_cmax.spice
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sar_10b/control/sarlogic.sym # of pins=9
+** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/control/sarlogic.sym
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/control/sarlogic.sch
+.subckt sarlogic  dvdd dvss comp clk clkc result_5_ result_4_ result_3_ result_2_ result_1_
++ result_0_ sample ctlp_5_ ctlp_4_ ctlp_3_ ctlp_2_ ctlp_1_ ctlp_0_ ctln_5_ ctln_4_ ctln_3_ ctln_2_ ctln_1_
++ ctln_0_
+*.opin clkc
+*.opin ctlp_5_,ctlp_4_,ctlp_3_,ctlp_2_,ctlp_1_,ctlp_0_
+*.opin ctln_5_,ctln_4_,ctln_3_,ctln_2_,ctln_1_,ctln_0_
+*.opin sample
+*.ipin comp
+*.ipin clk
+*.ipin result_5_,result_4_,result_3_,result_2_,result_1_,result_0_
+*.iopin dvdd
+*.iopin dvss
+**** begin user architecture code
+.include /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/control/cmos_cells_digital.sp
+.include /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/control/sarlogic.sp
+
+**** end user architecture code
+**** begin user architecture code
+* Keep the sar_logic underscore name. Otherwise xschem gets confused.
+Xuut dclk drstn den dcomp dcal dvalid dres0 dres1 dres2 dres3 dres4 dres5 dres6 dres7 dres8 dres9
++ dsamp dctlp0 dctlp1 dctlp2 dctlp3 dctlp4 dctlp5 dctlp6 dctlp7 dctlp8 dctlp9 dctln0 dctln1 dctln2 dctln3
++ dctln4 dctln5 dctln6 dctln7 dctln8 dctln9 dtrim0 dtrim1 dtrim2 dtrim3 dtrim4 dtrimb0 dtrimb1 dtrimb2
++ dtrimb3 dtrimb4 dclkc sar_logic
+
+.model adc_buff adc_bridge(in_low = 0.2 in_high=0.8)
+.model dac_buff dac_bridge(out_high = 1.2)
+
+Aad [clk rstn en comp cal] [dclk drstn den dcomp dcal] adc_buff
+Ada1 [dctlp0 dctlp1 dctlp2 dctlp3 dctlp4 dctlp5 dctlp6 dctlp7 dctlp8 dctlp9] [ctlp_0_ ctlp_1_
++ ctlp_2_ ctlp_3_ ctlp_4_ ctlp_5_ ctlp_6_ ctlp_7_ ctlp_8_ ctlp_9_] dac_buff
+Ada2 [dctln0 dctln1 dctln2 dctln3 dctln4 dctln5 dctln6 dctln7 dctln8 dctln9] [ctln_0_ ctln_1_
++ ctln_2_ ctln_3_ ctln_4_ ctln_5_ ctln_6_ ctln_7_ ctln_8_ ctln_9_] dac_buff
+Ada3 [dres0 dres1 dres2 dres3 dres4 dres5 dres6 dres7 dres8 dres9 dsamp dclkc] [res0 res1 res2 res3
++ res4 res5 res6 res7 res8 res9 sample clkc] dac_buff
+Ada4 [dtrim4 dtrim3 dtrim2 dtrim1 dtrim0 dtrimb4 dtrimb3 dtrimb2 dtrimb1 dtrimb0] [trim_4_ trim_3_
++ trim_2_ trim_1_ trim_0_ trimb_4_ trimb_3_ trimb_2_ trimb_1_ trimb_0_ ] dac_buff
+
+**** end user architecture code
+.ends
+
+.GLOBAL GND
+.end
