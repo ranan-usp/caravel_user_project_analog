@@ -1,5 +1,5 @@
-** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/tb/cdac/tb_cdac2.sch
-**.subckt tb_cdac2
+** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/tb/cdac/tb_cdac3.sch
+**.subckt tb_cdac3
 V1 sw GND dummy
 V2 sw1 GND d0
 V3 sw2 GND d1
@@ -7,69 +7,6 @@ V4 sw3 GND d2
 V5 sw4 GND d3
 V6 sw5 GND d4
 V7 sw6 GND d5
-x9 dd0 in1_dash unitcap
-x10_1_ dd1 in2_dash unitcap
-x10_0_ dd1 in2_dash unitcap
-x11_3_ dd2 in3_dash unitcap
-x11_2_ dd2 in3_dash unitcap
-x11_1_ dd2 in3_dash unitcap
-x11_0_ dd2 in3_dash unitcap
-x12_7_ dd3 in4_dash unitcap
-x12_6_ dd3 in4_dash unitcap
-x12_5_ dd3 in4_dash unitcap
-x12_4_ dd3 in4_dash unitcap
-x12_3_ dd3 in4_dash unitcap
-x12_2_ dd3 in4_dash unitcap
-x12_1_ dd3 in4_dash unitcap
-x12_0_ dd3 in4_dash unitcap
-x13_15_ dd4 in5_dash unitcap
-x13_14_ dd4 in5_dash unitcap
-x13_13_ dd4 in5_dash unitcap
-x13_12_ dd4 in5_dash unitcap
-x13_11_ dd4 in5_dash unitcap
-x13_10_ dd4 in5_dash unitcap
-x13_9_ dd4 in5_dash unitcap
-x13_8_ dd4 in5_dash unitcap
-x13_7_ dd4 in5_dash unitcap
-x13_6_ dd4 in5_dash unitcap
-x13_5_ dd4 in5_dash unitcap
-x13_4_ dd4 in5_dash unitcap
-x13_3_ dd4 in5_dash unitcap
-x13_2_ dd4 in5_dash unitcap
-x13_1_ dd4 in5_dash unitcap
-x13_0_ dd4 in5_dash unitcap
-x14_31_ output in6_dash unitcap
-x14_30_ output in6_dash unitcap
-x14_29_ output in6_dash unitcap
-x14_28_ output in6_dash unitcap
-x14_27_ output in6_dash unitcap
-x14_26_ output in6_dash unitcap
-x14_25_ output in6_dash unitcap
-x14_24_ output in6_dash unitcap
-x14_23_ output in6_dash unitcap
-x14_22_ output in6_dash unitcap
-x14_21_ output in6_dash unitcap
-x14_20_ output in6_dash unitcap
-x14_19_ output in6_dash unitcap
-x14_18_ output in6_dash unitcap
-x14_17_ output in6_dash unitcap
-x14_16_ output in6_dash unitcap
-x14_15_ output in6_dash unitcap
-x14_14_ output in6_dash unitcap
-x14_13_ output in6_dash unitcap
-x14_12_ output in6_dash unitcap
-x14_11_ output in6_dash unitcap
-x14_10_ output in6_dash unitcap
-x14_9_ output in6_dash unitcap
-x14_8_ output in6_dash unitcap
-x14_7_ output in6_dash unitcap
-x14_6_ output in6_dash unitcap
-x14_5_ output in6_dash unitcap
-x14_4_ output in6_dash unitcap
-x14_3_ output in6_dash unitcap
-x14_2_ output in6_dash unitcap
-x14_1_ output in6_dash unitcap
-x14_0_ output in6_dash unitcap
 x10 in_dummy swbd vdd GND vss my_passgate
 x11 in_dummy sw vdd vin vss my_passgate
 x12 in1 swb1 vdd GND vss my_passgate
@@ -91,7 +28,6 @@ x3 sw3 vss vss vdd vdd swb3 sky130_fd_sc_hd__inv_2
 x4 sw2 vss vss vdd vdd swb2 sky130_fd_sc_hd__inv_2
 x5 sw1 vss vss vdd vdd swb1 sky130_fd_sc_hd__inv_2
 x6 sw vss vss vdd vdd swbd sky130_fd_sc_hd__inv_2
-x8 ddummy in_dummy_dash unitcap
 R7 dd0 ddummy para m=1
 R1 dd1 dd0 para m=1
 R2 dd2 dd1 para m=1
@@ -105,6 +41,13 @@ R_para3 in3 in3_dash 5 m=1
 R_para4 in4 in4_dash 5 m=1
 R_para5 in5 in5_dash 5 m=1
 R_para6 in6 in6_dash 5 m=1
+CP0 ddummy in_dummy_dash 1p m=1
+CP1 dd0 in1_dash 1p m=1
+CP2 dd1 in2_dash 1p m=1
+CP3 dd2 in3_dash 1p m=1
+CP4 dd3 in4_dash 1p m=1
+CP5 dd4 in5_dash 1p m=1
+CP6 output in6_dash 1p m=1
 **** begin user architecture code
  * FET CORNERS
 .include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/corners/tt.spice
@@ -178,16 +121,6 @@ print output
 .include /home/oe23ranan/skywater/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_2.spice
 **** end user architecture code
 **.ends
-
-* expanding   symbol:  sar_10b/unitcap/unitcap.sym # of pins=2
-** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/unitcap/unitcap.sym
-** sch_path: /home/oe23ranan/caravel_user_project_analog/xschem/sar_10b/unitcap/unitcap.sch
-.subckt unitcap  cp cn
-*.iopin cp
-*.iopin cn
-C1 cp cn 2.6f m=1
-.ends
-
 
 * expanding   symbol:  switches/my_passgate.sym # of pins=5
 ** sym_path: /home/oe23ranan/caravel_user_project_analog/xschem/switches/my_passgate.sym
